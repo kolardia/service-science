@@ -6,7 +6,7 @@ import pl.service.science.publication.domain.Publication;
 
 public interface PublicationDAO {
 	
-	public void getPublication(Publication publication);
-	public List<Publication> addPublications();
+	public void addPublication(Publication publication);
+	public List<Publication> getPublications();
 
 }
