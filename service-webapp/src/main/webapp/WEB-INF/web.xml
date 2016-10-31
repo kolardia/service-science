@@ -4,7 +4,7 @@
  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-    <display-name>base</display-name>
+    <display-name>BASE</display-name>
 
     <servlet>
     <servlet-name>mvc-dispatcher</servlet-name>
@@ -29,7 +29,5 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    
-    
 
 </web-app>

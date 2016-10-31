@@ -13,6 +13,12 @@ public class ApplicationController {
 	
      	        return "index";
 		    }
+		    
+		    @RequestMapping("/add")
+		    public String addContest(Model model) {
+		    	model.addAttribute("info", "form");
+		        return "forms/contest";
+		    } 
 }
 		    
 		
