@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.service.science.publication.dao.PublicationDAO;
+import pl.service.science.publication.dao.impl.JDBCPublicationDAO;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.forms.ContestDTO;
 
@@ -18,7 +19,10 @@ public class ApplicationController {
 	
 	      @Autowired
 	      private PublicationDAO contestDao;
-		        
+		    
+	      @Autowired
+	      private JDBCPublicationDAO publicationDao;
+	      
 		        @RequestMapping("/")
 			    public String showIndex(Model model) {
 			        model.addAttribute("message", "Publications | BASE");
@@ -32,6 +36,9 @@ public class ApplicationController {
 		    
 		    @RequestMapping("/add")
 		    public String addContest(Model model) {
+		    	
+		    	Publication publication = new Publication(6, "Art 2017 International","some text");
+	     	    publicationDao.insertPublication(publication);
 		    	model.addAttribute("info", "form: aad contest");
 		        return "forms/contest";
 		    } 

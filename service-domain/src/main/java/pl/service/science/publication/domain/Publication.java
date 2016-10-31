@@ -6,6 +6,14 @@ public class Publication {
 	public String title;
 	public String contents;
 	
+	public Publication(int id, String title, String contents) {
+		this.setId(id);
+		this.setTitle(title);
+		this.setContents(contents);
+	}
+	public Publication() {
+		
+	}
 	public int getId() {
 		return id;
 	}

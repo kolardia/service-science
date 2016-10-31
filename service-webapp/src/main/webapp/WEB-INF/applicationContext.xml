@@ -13,4 +13,10 @@
     <context:component-scan base-package="pl.service.*" /> <!-- Chcemy automatycznie obsługiwać wszystkie klasy z adnotacjami w tym pakiecie -->
     <context:annotation-config /> <!-- To na przyszłość, pozwoli nam korzystać z adnotacji także w klasach, które byśmy skonfigurowali ręcznie -->
 	<mvc:annotation-driven />
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/service" />
+		<property name="username" value="root" />
+		<property name="password" value="apaszka@Akaszy" />
+	</bean>
 </beans>
