@@ -1,13 +1,15 @@
 package pl.service.science.publication.forms;
 
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class ContestDTO {
 	
-	/*@NotEmpty
-	private int id;*/
 	
-	/*@NotEmpty
+	//private int id;
+	
+	@NotEmpty
     @Size(min=3)
     private String contents;
 	@NotEmpty
@@ -28,7 +30,5 @@ public class ContestDTO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	
-	*/
 	
 }
