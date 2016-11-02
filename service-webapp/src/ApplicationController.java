@@ -37,7 +37,7 @@ public class ApplicationController {
 		    @RequestMapping("/add")
 		    public String addContest(Model model) {
 		    	
-		    	Publication publication = new Publication(9, "Art 2017 International","some text");
+		    	Publication publication = new Publication(7, "Art 2017 International","some text");
 	     	    publicationDao.insertPublication(publication);
 		    	model.addAttribute("info", "form: aad contest");
 		        return "forms/contest";
