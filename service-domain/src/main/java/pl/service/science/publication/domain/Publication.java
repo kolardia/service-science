@@ -1,17 +1,19 @@
 package pl.service.science.publication.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Publication {
 	
-	//@Id
+	@Id
 	public int id;
 	 
-	//@Column(name="publication_title", nullable=false)
+	@Column//(name="publication_title", nullable=false)
 	public String title;
 	
-	//@Column(name="publication_contents")
+	@Column//(name="publication_contents")
 	public String contents;
 	
 	public Publication(int id, String title, String contents) {

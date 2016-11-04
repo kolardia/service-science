@@ -26,6 +26,7 @@ public class ApplicationController {
 		        @RequestMapping("/")
 			    public String showIndex(Model model) {
 			        model.addAttribute("message", "Publications | BASE");
+			       
 			        
 			        Publication contest = new Publication();
 	     			model.addAttribute("element", contest);
@@ -36,9 +37,9 @@ public class ApplicationController {
 		    
 		    @RequestMapping("/add")
 		    public String addContest(Model model) {
-		    	
-		    	Publication publication = new Publication(9, "Art 2017 International","some text");
-	     	    publicationDao.insertPublication(publication);
+		    	 contestDao.xxxx();
+		    	//Publication publication = new Publication(9, "Art 2017 International","some text");
+	     	   // publicationDao.insertPublication(publication);
 		    	model.addAttribute("info", "form: aad contest");
 		        return "forms/contest";
 		    } 

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+ xmlns:tx="http://www.springframework.org/schema/tx"
  xmlns:context="http://www.springframework.org/schema/context"
  xsi:schemaLocation="
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
  http://www.springframework.org/schema/mvc 
  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
  http://www.springframework.org/schema/beans 
@@ -12,17 +15,18 @@
 
     <context:component-scan base-package="pl.service.*" /> <!-- Chcemy automatycznie obsługiwać wszystkie klasy z adnotacjami w tym pakiecie -->
     <context:annotation-config /> <!-- To na przyszłość, pozwoli nam korzystać z adnotacji także w klasach, które byśmy skonfigurowali ręcznie -->
-	<mvc:annotation-driven />
+	<tx:annotation-driven/> 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/service" />
 		<property name="username" value="root" />
 		<property name="password" value="apaszka@Akaszy" />
 	</bean>
+	
 	<bean id="entityManagerFactory"
 	 class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 	    <property name="dataSource" ref="dataSource" />
-	    <property name="packagesToScan" value="pl.kobietydokodu.model" />
+	    <property name="packagesToScan" value="pl.service.science.*" />
 	    <property name="jpaVendorAdapter">
 	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 	            <property name="showSql" value="false" />
@@ -40,13 +44,5 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 	    <property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	
-	
-	
-	
-	
-
-
-	
 	
 </beans>

@@ -4,17 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.management.Query;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.service.science.publication.dao.PublicationDAO;
 import pl.service.science.publication.domain.Publication;
 
 @Repository
 public class JDBCPublicationDAO{
-	
+
 	@Autowired
 	private DataSource dataSource;
 	
