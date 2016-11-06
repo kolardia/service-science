@@ -19,12 +19,9 @@ public class ApplicationController {
 	
 	      @Autowired
 	      private PublicationDAO contestDao;
-		    
-	      @Autowired
-	      private JDBCPublicationDAO publicationDao;
-	      
-		        @RequestMapping("/")
-			    public String showIndex(Model model) {
+		        
+	      @RequestMapping("/")
+	      public String showIndex(Model model) {
 			        model.addAttribute("message", "Publications | BASE");
 			       
 			        
@@ -37,10 +34,7 @@ public class ApplicationController {
 		    
 		    @RequestMapping("/add")
 		    public String addContest(Model model) {
-		    	 contestDao.xxxx();
-		    	//Publication publication = new Publication(9, "Art 2017 International","some text");
-	     	   // publicationDao.insertPublication(publication);
-		    	model.addAttribute("info", "form: aad contest");
+		    	model.addAttribute("info", "x");
 		        return "forms/contest";
 		    } 
 		    
@@ -53,9 +47,11 @@ public class ApplicationController {
 		            return "forms/contest";
 		        } else {
 		        	Publication contest = new Publication();
+		        	contest.setId(form.getId());
 		        	contest.setTitle(form.getTitle());
 		        	contest.setContents(form.getContents());
 		        	contestDao.addPublication(contest);
+		        	
 		            return "redirect:/";
 
 		        }

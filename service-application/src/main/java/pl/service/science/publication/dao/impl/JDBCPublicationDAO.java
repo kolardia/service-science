@@ -24,8 +24,8 @@ public class JDBCPublicationDAO{
 	
 	public void insertPublication(Publication publication){
 		
-		String sql = "INSERT INTO publications" +
-				"(publication_id, publication_title, publication_content) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO Publication" +
+				"(id, title, contents) VALUES (?, ?, ?)";
 		
 		Connection conn = null;
 		

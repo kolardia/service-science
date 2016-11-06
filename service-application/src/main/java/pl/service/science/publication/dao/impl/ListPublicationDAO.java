@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,30 +16,22 @@ import pl.service.science.publication.domain.Publication;
 public class ListPublicationDAO implements PublicationDAO {
 	
 	List<Publication> publications = new ArrayList<Publication>();
-
+	
     @PersistenceContext
-    EntityManager entityManager;
+    EntityManager e;
+
 
     @Transactional 
-    public void xxxx() {
-    	
-    	Publication publication = new Publication();
-    	//uzupełniamy dane kota
-    	publication = entityManager.merge(publication);
-    		
-        // jakieś operacje z EntityManagerem ...
-
- 
-    }
-
-
 	public void addPublication(Publication publication) {
-		publications.add(publication);
+    	e.merge(publication);
 		
 	}
 
+	
+	@SuppressWarnings("unchecked")
 	public List<Publication> getPublications() {
-		return publications;
+		Query query = e.createQuery("SELECT k FROM Publication k");
+		return query.getResultList();
 		
 	}
 
