@@ -8,6 +8,7 @@ public interface PublicationDAO {
 	
 	public void addPublication(Publication publication);
 	public List<Publication> getPublications();
+	public Publication getPublication(int id);
 	//public List<Publication> xxxx();
 
 }

@@ -2,20 +2,24 @@ package pl.service.science;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.service.science.publication.dao.PublicationDAO;
-import pl.service.science.publication.dao.impl.JDBCPublicationDAO;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.forms.ContestDTO;
 
 @Controller
 public class ApplicationController {
+	
+
+	final static Logger logger = Logger.getLogger(ApplicationController.class);
 	
 	      @Autowired
 	      private PublicationDAO contestDao;
@@ -34,9 +38,22 @@ public class ApplicationController {
 		    
 		    @RequestMapping("/add")
 		    public String addContest(Model model) {
-		    	model.addAttribute("info", "x");
+		    	model.addAttribute("info", "FORM");
 		        return "forms/contest";
 		    } 
+		    
+		    @RequestMapping("/{id}")
+		    public String szczegolyKota(@PathVariable("id") Integer id, Model model) {
+		    	
+		    	Publication contestTemp= new Publication();
+		    	contestTemp = contestDao.getPublication(id);
+		    	logger.info("contestDao.getPublication(id): " + contestTemp + contestTemp.getTitle() + contestTemp.getContents());
+		    	
+		    	model.addAttribute("title", contestTemp.getTitle());
+	 	        model.addAttribute("contents", contestTemp.getContents());
+		    	
+		        return "details/contest";
+		    }
 		    
 		    @RequestMapping("/form")
 		    public String showFormContest(@ModelAttribute("form") @Valid ContestDTO form, BindingResult result, Model model2) {

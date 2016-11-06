@@ -34,6 +34,12 @@ public class ListPublicationDAO implements PublicationDAO {
 		return query.getResultList();
 		
 	}
+	 
+	public Publication getPublication(int id){
+		Publication publication = new Publication();
+		publication = e.find(Publication.class, id);
+		return publication;
+	}
 
 	
 }
