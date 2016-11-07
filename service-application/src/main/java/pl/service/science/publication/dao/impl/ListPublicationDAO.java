@@ -13,7 +13,7 @@ import pl.service.science.publication.dao.PublicationDAO;
 import pl.service.science.publication.domain.Publication;
 
 @Repository
-public class ListPublicationDAO implements PublicationDAO {
+public class ListPublicationDAO implements PublicationDAO{
 	
 	List<Publication> publications = new ArrayList<Publication>();
 	
@@ -26,20 +26,27 @@ public class ListPublicationDAO implements PublicationDAO {
     	e.merge(publication);
 		
 	}
-
-	
+    
 	@SuppressWarnings("unchecked")
-	public List<Publication> getPublications() {
+	public List<Publication> getPublications_en() {
 		Query query = e.createQuery("SELECT k FROM Publication k");
 		return query.getResultList();
 		
 	}
-	 
+   
+	@SuppressWarnings("unchecked")
+	public List<Publication> getPublications_pl() {
+		Query query = e.createQuery("SELECT k FROM Publication k WHERE id>100");
+		return query.getResultList();
+		
+	}
+	
 	public Publication getPublication(int id){
 		Publication publication = new Publication();
 		publication = e.find(Publication.class, id);
 		return publication;
 	}
-
 	
-}
+	
+		}
+	

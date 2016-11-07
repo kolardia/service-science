@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE >
 <html>
 <head>
@@ -10,8 +11,13 @@
 	<title>Insert title here</title>
 </head>
 <body>
-
-	<a href="http://localhost:8080/service-webapp/add">Add publication</a>
+	<h2><spring:message code="web.layout.top.title" /></h2>
+	<spring:url value="/?lang=en" var="en" />
+	<spring:url value="/?lang=pl" var="pl" />
+	<a href="${en}">English</a>
+	<a href="${pl}">Polski</a>
+	<spring:url value="/add" var="elementAdd" />
+	<a href="${elementAdd}">Add publication</a>
 	
 	<h1><strong>${message}</strong></h1>
 	<strong>${title}</strong> <br />
