@@ -28,15 +28,15 @@ public class ListPublicationDAO implements PublicationDAO{
 	}
     
 	@SuppressWarnings("unchecked")
-	public List<Publication> getPublications_en() {
-		Query query = e.createQuery("SELECT k FROM Publication k");
+	public List<Publication> getPublications_en(String select) {
+		Query query = e.createQuery(select);
 		return query.getResultList();
 		
 	}
    
 	@SuppressWarnings("unchecked")
-	public List<Publication> getPublications_pl() {
-		Query query = e.createQuery("SELECT k FROM Publication k WHERE id>100");
+	public List<Publication> getPublications_pl(String select) {
+		Query query = e.createQuery(select);
 		return query.getResultList();
 		
 	}

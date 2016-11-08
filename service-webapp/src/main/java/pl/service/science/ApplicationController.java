@@ -1,7 +1,10 @@
 package pl.service.science;
 
+import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import pl.service.science.model.impl.IntroducePublication;
 import pl.service.science.publication.dao.PublicationDAO;
@@ -22,39 +26,41 @@ import pl.service.science.publication.forms.ContestDTO;
 @Controller
 public class ApplicationController {
 	
-	public Locale locale;
+	
 	final static Logger logger = Logger.getLogger(ApplicationController.class);
-
+	
 	
 	@Autowired
-	private PublicationDAO contestDao;
+	private PublicationDAO publicationDao;
 	
+
+	
+
 	      @RequestMapping("/")
-	      public String showIndex(Model model) {
-	    	  Locale locale = LocaleContextHolder.getLocale();
+	      public String showIndex(HttpServletRequest request, Model model) {
+	    	  Publication contest = new Publication();
+	    	  Locale locale = RequestContextUtils.getLocale(request);
+	    	  String language = locale.getLanguage();
 	    	  
-			        model.addAttribute("message", "Publications | BASE");	        
-			        Publication contest = new Publication();
-			        IntroducePublication local = new IntroducePublication();
-	     			model.addAttribute("element", contest);
-	     	        model.addAttribute("collection", local.searchLanguage(locale, contestDao.getPublications_en(), contestDao.getPublications_pl()));
-	
+	    		  model.addAttribute("element", contest);
+	    		  model.addAttribute("collection", this.searchLanguage(language, publicationDao.getPublications_en("SELECT k FROM Publication k  WHERE id<1"), publicationDao.getPublications_en("SELECT k FROM Publication k"))); 
+
      	        return "index";
 		    }
 		    
 		  
 			@RequestMapping("/add")
-		    public String addContest(Model model) {
+		    public String addPublication(Model model) {
 			
 		    	model.addAttribute("info", "FORM");
 		        return "forms/contest";
 		    } 
 		    
 		    @RequestMapping("/{id}")
-		    public String szczegolyKota(@PathVariable("id") Integer id, Model model) {
+		    public String detailPublication(@PathVariable("id") Integer id, Model model) {
 		    	
 		    	Publication contestTemp= new Publication();
-		    	contestTemp = contestDao.getPublication(id);
+		    	contestTemp = publicationDao.getPublication(id);
 		    	logger.info("contestDao.getPublication(id): " + contestTemp + contestTemp.getTitle() + contestTemp.getContents());
 		    	model.addAttribute("title", contestTemp.getTitle());
 	 	        model.addAttribute("contents", contestTemp.getContents());
@@ -63,7 +69,7 @@ public class ApplicationController {
 		    }
 		    
 		    @RequestMapping("/form")
-		    public String showFormContest(@ModelAttribute("form") @Valid ContestDTO form, BindingResult result, Model model2) {
+		    public String showFormPublication(@ModelAttribute("form") @Valid ContestDTO form, BindingResult result, Model model2) {
 		        if (result.hasErrors()) {
 		        	
 		        	model2.addAttribute("info", "form not normal!");
@@ -74,13 +80,42 @@ public class ApplicationController {
 		        	contest.setId(form.getId());
 		        	contest.setTitle(form.getTitle());
 		        	contest.setContents(form.getContents());
-		        	contestDao.addPublication(contest);
+		        	publicationDao.addPublication(contest);
 		        	
 		            return "redirect:/";
 
 		        }
 		    }
+
+	public List<Publication>  searchLanguage(String language, List<Publication> listLanguage_en, List<Publication> listLanguage_pl){
+		/*https://docs.oracle.com/javase/tutorial/i18n/locale/create.html
+		   * http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
+		   * Region Codes
+		   * Country A 2     A 3     Number
+		   * POLAND  PL      POL     616 
+		   * */
+		  /*
+		   * http://www.loc.gov/standards/iso639-2/php/code_list.php
+		   * Language Code
+		   * ISO 639-2 Code 	ISO 639-1 Code 	English name of Language
+		   * pol 				pl 				Polish
+		   * */
+		  Locale plLocale = new Locale.Builder().setLanguage("pl").setRegion("PL").build();
+		  Locale enLocale = new Locale.Builder().setLanguage("en").setRegion("US").build();
+		  
+		  String plLanguage = plLocale.getLanguage();
+		  String enLanguage = enLocale.getLanguage();
+		  
+		  if(language == plLanguage){
+			  logger.info("***list_en: locale.ENGLISH ***");
+			  return  listLanguage_pl; 
+		  }else if(language == enLanguage ){
+			  logger.info("***list_pl: defaultLocale ***");
+			 return  listLanguage_en; 
+		  }else{
+				 List<Publication> list= null;
+				 logger.info("***A NEW EMPTY LIST: Translation not found: locale ***");
+				return list ;	
+		  }	
+	}
 }
-
-	
-

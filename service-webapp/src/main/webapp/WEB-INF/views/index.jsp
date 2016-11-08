@@ -4,6 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE >
 <html>
 <head>
@@ -12,8 +13,8 @@
 </head>
 <body>
 	<h2><spring:message code="web.layout.top.title" /></h2>
-	<spring:url value="/?lang=en" var="en" />
-	<spring:url value="/?lang=pl" var="pl" />
+	<spring:url value="/?language=en" var="en" />
+	<spring:url value="/?language=pl" var="pl" />
 	<a href="${en}">English</a>
 	<a href="${pl}">Polski</a>
 	<spring:url value="/add" var="elementAdd" />
@@ -27,10 +28,7 @@
 		<spring:url value="/${element.id}" var="elementUrl" />
 		<button onclick="location.href='${elementUrl}'">Query</button>
 		Element: ${element.id}: ${element.title}<br />
-		
-		
-		
 	</c:forEach>
-
+<h1><strong>${info}</strong></h1>
 </body>
 </html>

@@ -44,18 +44,23 @@ http://www.springframework.org/schema/tx/spring-tx.xsd
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 	    <property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	
+	<!-- I18N BEGIN -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
     <property name="basename" value="i18n/messages"></property>
 	</bean>
-	
+	<!-- Declare the Interceptor -->
 	<mvc:interceptors>
-	    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-	        <property name="paramName" value="lang" />
-	    </bean>
+	   <bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+	</bean>
 	</mvc:interceptors>
-	
+	<!-- Declare the Resolver -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieName" value="podcastpediaPreferredLanguage"/>
 	    <property name="defaultLocale" value="pl" />
-	</bean>				
+	    <property name="cookieMaxAge" value="604800"/>
+	</bean>	
+	<!-- I18N END -->
+		
 </beans>
