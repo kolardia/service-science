@@ -1,4 +1,4 @@
-package pl.service.science.publication.dao.impl;
+package pl.service.science.dao.publication.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

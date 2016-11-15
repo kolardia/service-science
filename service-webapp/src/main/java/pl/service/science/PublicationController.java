@@ -14,26 +14,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.RequestContextUtils;
-import pl.service.science.publication.dao.Interfejs;
-import pl.service.science.publication.dao.impl.ListPublicationDAO;
+
+import pl.service.science.dao.publication.DaoPublication;
+import pl.service.science.dao.publication.impl.ListPublicationDAO;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.forms.ContestDTO;
+import pl.service.science.service.publication.ServicePublication;
 
 @Controller
-public class ApplicationController {
+public class PublicationController {
 	
 	
-	final static Logger logger = Logger.getLogger(ApplicationController.class);
+	final static Logger logger = Logger.getLogger(PublicationController.class);
 	
 	
 	@Autowired
 	private ListPublicationDAO publicationDao;
 	
+	
+	
 	@Autowired
-	protected Interfejs dao;
+	protected ServicePublication service;
 	
 
-	
 
 	      @RequestMapping("/")
 	      public String showIndex(HttpServletRequest request, Model model) {
@@ -42,8 +45,8 @@ public class ApplicationController {
 	    	  String language = locale.getLanguage();
 	    	  
 	    		  model.addAttribute("element", contest);
-	    		  //model.addAttribute("collection", this.searchLanguage(language, publicationDao.getPublications_en("SELECT k FROM Publication k  WHERE id<1"), publicationDao.getPublications_en("SELECT k FROM Publication k"))); 
-	    		  model.addAttribute("collection", dao.findAll());
+	    		 //model.addAttribute("collection", service.searchLanguage(language, publicationDao.getPublications_en("SELECT k FROM Publication k  WHERE id<1"), publicationDao.getPublications_en("SELECT k FROM Publication k"))); 
+	    		 model.addAttribute("collection", service.findAll());
      	        return "index";
 		    }
 		    
@@ -59,8 +62,8 @@ public class ApplicationController {
 		    public String detailPublication(@PathVariable("id") Integer id, Model model) {
 		    	
 		    	Publication contestTemp= new Publication();
-		    	contestTemp = dao.findById(id);
-		    	logger.info("contestDao.getPublication(id): " + dao.findById(id));
+		    	contestTemp = service.findById(id);
+		    	logger.info("contestDao.getPublication(id): " + service.findById(id));
 		    	logger.info("contestDao.getPublication(id): " + contestTemp + contestTemp.getTitle() + contestTemp.getContents());
 		    	model.addAttribute("title", contestTemp.getTitle());
 	 	        model.addAttribute("contents", contestTemp.getContents());
@@ -81,42 +84,10 @@ public class ApplicationController {
 		        	contest.setTitle(form.getTitle());
 		        	contest.setContents(form.getContents());
 		        	//publicationDao.addPublication(contest);
-		        	dao.save(contest);
+		        	service.save(contest);
 		        	
 		            return "redirect:/";
 
 		        }
 		    }
-
-	public List<Publication>  searchLanguage(String language, List<Publication> listLanguage_en, List<Publication> listLanguage_pl){
-		/*https://docs.oracle.com/javase/tutorial/i18n/locale/create.html
-		   * http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
-		   * Region Codes
-		   * Country A 2     A 3     Number
-		   * POLAND  PL      POL     616 
-		   * */
-		  /*
-		   * http://www.loc.gov/standards/iso639-2/php/code_list.php
-		   * Language Code
-		   * ISO 639-2 Code 	ISO 639-1 Code 	English name of Language
-		   * pol 				pl 				Polish
-		   * */
-		  Locale plLocale = new Locale.Builder().setLanguage("pl").setRegion("PL").build();
-		  Locale enLocale = new Locale.Builder().setLanguage("en").setRegion("US").build();
-		  
-		  String plLanguage = plLocale.getLanguage();
-		  String enLanguage = enLocale.getLanguage();
-		  
-		  if(language == plLanguage){
-			  logger.info("***list_en: locale.ENGLISH ***");
-			  return  listLanguage_pl; 
-		  }else if(language == enLanguage ){
-			  logger.info("***list_pl: defaultLocale ***");
-			 return  listLanguage_en; 
-		  }else{
-				 List<Publication> list= null;
-				 logger.info("***A NEW EMPTY LIST: Translation not found: locale ***");
-				return list ;	
-		  }	
-	}
 }

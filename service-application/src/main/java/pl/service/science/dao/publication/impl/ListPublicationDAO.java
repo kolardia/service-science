@@ -1,4 +1,4 @@
-package pl.service.science.publication.dao.impl;
+package pl.service.science.dao.publication.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +7,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import pl.service.science.publication.dao.Interfejs;
+
+import pl.service.science.dao.publication.DaoPublication;
 import pl.service.science.publication.domain.Publication;
 
 @Repository
-public class ListPublicationDAO{
+public class ListPublicationDAO  {
 	
 	List<Publication> publications = new ArrayList<Publication>();
 	
