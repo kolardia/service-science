@@ -5,15 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import pl.service.science.publication.dao.PublicationDAO;
+import pl.service.science.publication.dao.Interfejs;
 import pl.service.science.publication.domain.Publication;
 
 @Repository
-public class ListPublicationDAO implements PublicationDAO{
+public class ListPublicationDAO{
 	
 	List<Publication> publications = new ArrayList<Publication>();
 	
@@ -45,7 +43,7 @@ public class ListPublicationDAO implements PublicationDAO{
 		Publication publication = new Publication();
 		publication = e.find(Publication.class, id);
 		return publication;
-	}
+	} 
 	
 	
 		}

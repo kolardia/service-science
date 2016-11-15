@@ -4,22 +4,18 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
-
-import pl.service.science.model.impl.IntroducePublication;
-import pl.service.science.publication.dao.PublicationDAO;
+import pl.service.science.publication.dao.Interfejs;
+import pl.service.science.publication.dao.impl.ListPublicationDAO;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.forms.ContestDTO;
 
@@ -31,7 +27,10 @@ public class ApplicationController {
 	
 	
 	@Autowired
-	private PublicationDAO publicationDao;
+	private ListPublicationDAO publicationDao;
+	
+	@Autowired
+	protected Interfejs dao;
 	
 
 	
@@ -43,8 +42,8 @@ public class ApplicationController {
 	    	  String language = locale.getLanguage();
 	    	  
 	    		  model.addAttribute("element", contest);
-	    		  model.addAttribute("collection", this.searchLanguage(language, publicationDao.getPublications_en("SELECT k FROM Publication k  WHERE id<1"), publicationDao.getPublications_en("SELECT k FROM Publication k"))); 
-
+	    		  //model.addAttribute("collection", this.searchLanguage(language, publicationDao.getPublications_en("SELECT k FROM Publication k  WHERE id<1"), publicationDao.getPublications_en("SELECT k FROM Publication k"))); 
+	    		  model.addAttribute("collection", dao.findAll());
      	        return "index";
 		    }
 		    
@@ -60,7 +59,8 @@ public class ApplicationController {
 		    public String detailPublication(@PathVariable("id") Integer id, Model model) {
 		    	
 		    	Publication contestTemp= new Publication();
-		    	contestTemp = publicationDao.getPublication(id);
+		    	contestTemp = dao.findById(id);
+		    	logger.info("contestDao.getPublication(id): " + dao.findById(id));
 		    	logger.info("contestDao.getPublication(id): " + contestTemp + contestTemp.getTitle() + contestTemp.getContents());
 		    	model.addAttribute("title", contestTemp.getTitle());
 	 	        model.addAttribute("contents", contestTemp.getContents());
@@ -80,7 +80,8 @@ public class ApplicationController {
 		        	contest.setId(form.getId());
 		        	contest.setTitle(form.getTitle());
 		        	contest.setContents(form.getContents());
-		        	publicationDao.addPublication(contest);
+		        	//publicationDao.addPublication(contest);
+		        	dao.save(contest);
 		        	
 		            return "redirect:/";
 
