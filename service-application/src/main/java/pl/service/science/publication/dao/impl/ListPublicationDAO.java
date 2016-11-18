@@ -1,4 +1,4 @@
-package pl.service.science.dao.publication.impl;
+package pl.service.science.publication.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import pl.service.science.dao.publication.DaoPublication;
 import pl.service.science.publication.domain.Publication;
+import pl.service.science.translation.domain.Translation;
 
 @Repository
 public class ListPublicationDAO  {
@@ -45,7 +44,11 @@ public class ListPublicationDAO  {
 		publication = e.find(Publication.class, id);
 		return publication;
 	} 
-	
-	
+	@Transactional 
+	public Translation getTranslation(int id){
+		Translation translation = new Translation();
+		translation = e.find(Translation.class, id);
+		return translation;
+	} 
 		}
 	

@@ -1,4 +1,4 @@
-package pl.service.science.service.publication.impl;
+package pl.service.science.publication.service.impl;
 
 import java.util.List;
 import java.util.Locale;
@@ -7,32 +7,35 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.service.science.dao.publication.DaoPublication;
+import pl.service.science.publication.dao.DaoPublication;
 import pl.service.science.publication.domain.Publication;
-import pl.service.science.service.publication.ServicePublication;
+import pl.service.science.publication.service.ServicePublication;
 
 @Service
 public class ServicePublicationImpl implements ServicePublication{
-
+	
+	final static Logger logger = Logger.getLogger(ServicePublication.class);
 	
 	@Autowired
 	protected  DaoPublication dao;
 	
 
-	 public Publication findById(int id){
+	 public Publication findById(Long id){
 		 
 		 return dao.findById(id);
 		 
 	 };
 	 public List<Publication> findAll(){
+		 
 		 return dao.findAll();
 	 };
 	
 	public Publication  save(Publication contest){
+		
 		 return dao.save(contest);
 	 };
 	
-	final static Logger logger = Logger.getLogger(ServicePublicationImpl.class);
+	
 	
 	
 	public List<Publication>  searchLanguage(String language, List<Publication> listLanguage_en, List<Publication> listLanguage_pl){

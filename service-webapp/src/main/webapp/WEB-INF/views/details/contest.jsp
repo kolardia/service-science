@@ -11,8 +11,9 @@
 <body>
 	<h2>Form</h2>
 	<h3>${info}</h3>
-	<strong>${title}</strong> <br />
-	<strong>${contents}</strong>
+	element 1: <strong>${title}</strong> <br />
+	element 2: <strong>${contents}</strong> <br />
+	element 3: <strong>${category}</strong>
 
 </body>
 </html>

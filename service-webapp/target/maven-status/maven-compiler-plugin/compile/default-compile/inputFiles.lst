@@ -1,2 +1,4 @@
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/PublicationController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/PublicationStatusController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/PublicationCategoryController.java
 /home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/forms/ContestDTO.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/ApplicationController.java

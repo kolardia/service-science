@@ -7,23 +7,24 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class ContestDTO {
 	
 	@NotEmpty
-	private int id;
+	private Long id;
 	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	@NotEmpty
     @Size(min=3)
     private String contents;
+	
 	@NotEmpty
     private String title;
 	
-    public String getTitle() {
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
 		return title;
 	}
 

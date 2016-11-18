@@ -6,7 +6,7 @@
  xmlns:context="http://www.springframework.org/schema/context"
  xsi:schemaLocation="
  http://www.springframework.org/schema/data/jpa
- http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
+ http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
  http://www.springframework.org/schema/tx
  http://www.springframework.org/schema/tx/spring-tx.xsd
  http://www.springframework.org/schema/mvc 
@@ -29,7 +29,7 @@
 	<bean id="entityManagerFactory"
 	 class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 	    <property name="dataSource" ref="dataSource" />
-	    <property name="packagesToScan" value="pl.service.science.*" />
+	    <property name="packagesToScan" value="pl.service.*" />
 	    <property name="jpaVendorAdapter">
 	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 	            <property name="showSql" value="false" />

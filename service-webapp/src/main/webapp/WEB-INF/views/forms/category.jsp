@@ -19,15 +19,10 @@
 					<form:errors path="Id" cssclass="error" /><br />
 					<input type="text" name="Id" /><br />
 					
-					<strong>Title</strong>
-					<form:errors path="title" cssclass="error" /><br />
-					<input type="text" name="title" /><br />
-					
-					<strong>Content</strong>
-					<form:errors path="contents" cssclass="error" /><br />
-					<input type="text" name="contents" /><br />
-					
-					
+					<strong>Name</strong>
+					<form:errors path="name" cssclass="error" /><br />
+					<input type="text" name="name" /><br />
+
 					<input type="submit" value="Submit form" />
 				</form:form>
 	

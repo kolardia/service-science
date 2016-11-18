@@ -15,20 +15,33 @@
 	<h2><spring:message code="web.layout.top.title" /></h2>
 	<spring:url value="/?language=en" var="en" />
 	<spring:url value="/?language=pl" var="pl" />
-	<a href="${en}">English</a>
-	<a href="${pl}">Polski</a>
-	<spring:url value="/add" var="elementAdd" />
-	<a href="${elementAdd}">Add publication</a>
+	*<a href="${en}">English</a>*
+	*<a href="${pl}">Polski</a>*<br />
 	
+	<spring:url value="/publication/add" var="publicationAdd" />
+	<spring:url value="/category/add" var="categoryAdd" />
+	*<a href="${publicationAdd}">Add publication</a>*
+	*<a href="${categoryAdd}">Add category</a>*<br />
+	<spring:url value="/category" var="categoryUrl" />
+	*<a href="${categoryUrl}">Category</a>*
+	<spring:url value="/" var="publicationUrl" />
+	*<a href="${publicationUrl}">Publication</a>*
 	<h1><strong>${message}</strong></h1>
 	<strong>${title}</strong> <br />
 	<strong>${context}</strong>
-	
-	<c:forEach varStatus="status" var="element" items="${collection}">
-		<spring:url value="/${element.id}" var="elementUrl" />
+
+	<c:forEach varStatus="status" var="publication" items="${collectionPublication}">
+		<spring:url value="/publication/${publication.id}" var="elementUrl" />
 		<button onclick="location.href='${elementUrl}'">Query</button>
-		Element: ${element.id}: ${element.title}<br />
+		Publication: ${publication.id}: ${publication.title}<br />
 	</c:forEach>
+
+	<c:forEach varStatus="status" var="category" items="${collectionCategory}">
+		<spring:url value="/category/${category.id}" var="elementUrl" />
+		<button onclick="location.href='${elementUrl}'">Query</button>
+		Category:${category.id} : ${category.name}<br />
+	</c:forEach>
+  
 <h1><strong>${info}</strong></h1>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package pl.service.science.dao.publication.impl;
+package pl.service.science.publication.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ public class JDBCPublicationDAO{
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, publication.getId());
+			ps.setLong(1, publication.getId());
 			ps.setString(2, publication.getTitle());
 			ps.setString(3, publication.getContents());
 
