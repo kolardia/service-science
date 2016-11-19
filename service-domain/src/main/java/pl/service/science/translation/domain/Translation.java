@@ -4,52 +4,56 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
+@Entity
 public class Translation {
 	
+	@Id
+	public Long id;
 
-	public int translationId;
-
-	public String translationPl;
-
-	public String translationEn;
+	@Column
+	public String polish;
 	
-	public Translation(int translationId, String translationPl) {
-		this.setTranslationId(translationId);
-		this.setTranslationEn(translationPl);
+	@Column
+	public String english;
+	
+	public Translation(Long id, String pl) {
+		this.setId(id);
+		this.setPolish(pl);
 	}
 	
-	public Translation(int translationId, String translationPl, String translationEn) {
-		this.setTranslationId(translationId);
-		this.setTranslationPl(translationPl);
-		this.setTranslationEn(translationEn);
+	public Translation(Long id, String pl, String en) {
+		this.setId(id);
+		this.setPolish(pl);
+		this.setEnglish(en);
 	}
 	
 	public Translation() {
 		
 	}
-	
-	public int getTranslationId() {
-		return translationId;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getPolish() {
+		return polish;
+	}
+
+	public void setPolish(String polish) {
+		this.polish = polish;
+	}
+
+	public String getEnglish() {
+		return english;
+	}
+
+	public void setEnglish(String english) {
+		this.english = english;
 	}
 	
-	public void setTranslationId(int translationId) {
-		this.translationId = translationId;
-	}
-	public String getTranslationPl() {
-		return translationPl;
-	}
-	
-	public void setTranslationPl(String translationPl) {
-		this.translationPl = translationPl;
-	}
-	
-	public String getTranslationEn() {
-		return translationEn;
-	}
-	
-	public void setTranslationEn(String translationEn) {
-		this.translationEn = translationEn;
-	}
-	
+
 }

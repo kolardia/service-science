@@ -31,8 +31,7 @@ public class PublicationController {
 	@Autowired
 	protected ServicePublication service;
 
-	@Autowired
-	protected ServicePublicationCategory serviceCategory;
+	
 
 	      @RequestMapping("/")
 	      public String showIndex(HttpServletRequest request, Model model) {
@@ -42,7 +41,7 @@ public class PublicationController {
 	    	  
 	    	 model.addAttribute("publication", contest);
 	    	 model.addAttribute("collectionPublication", service.findAll());
-	    		//model.addAttribute("collection", service.searchLanguage(language, publicationDao.getPublications_en("SELECT k FROM Publication k  WHERE id<1"), publicationDao.getPublications_en("SELECT k FROM Publication k"))); 
+	    	 //model.addAttribute("collection", service.searchLanguage(language, publicationDao.getPublications_en("SELECT k FROM Publication k  WHERE id<1"), publicationDao.getPublications_en("SELECT k FROM Publication k"))); 
      	        
 	    		 return "index";
 		    }

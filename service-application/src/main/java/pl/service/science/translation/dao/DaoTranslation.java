@@ -5,9 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import pl.service.science.translation.domain.Translation;
 
-//@Repository
-public interface DaoTranslation /*extends CrudRepository <Translation, Long>*/ {
+@Repository
+public interface DaoTranslation extends CrudRepository <Translation, Long> {
 	
- //public Translation findById(int id);
+ public Translation findById(Long id);
 	
 }

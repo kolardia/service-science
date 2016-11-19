@@ -1,41 +1,42 @@
 package pl.service.science.publication.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
+@Entity
 public class PublicationStatus {
 
-
-	public int idStatus;
+	@Id
+	public int id;
 	
-	public String nameStatus;
+	@Column
+	public String name;
 	
 	public PublicationStatus(int id, String name) {
-		this.setIdStatus(id);;
-		this.setNameStatus(name);;
+		this.setId(id);;
+		this.setName(name);;
 	}
 	
 	public PublicationStatus(){
 		
 	}
 
-	public int getIdStatus() {
-		return idStatus;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdStatus(int idStatus) {
-		this.idStatus = idStatus;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getNameStatus() {
-		return nameStatus;
+	public String getName() {
+		return name;
 	}
 
-	public void setNameStatus(String nameStatus) {
-		this.nameStatus = nameStatus;
+	public void setName(String name) {
+		this.name = name;
 	}
-	
 	
 		
 }

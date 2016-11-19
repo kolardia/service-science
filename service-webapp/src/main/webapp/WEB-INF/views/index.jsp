@@ -41,6 +41,12 @@
 		<button onclick="location.href='${elementUrl}'">Query</button>
 		Category:${category.id} : ${category.name}<br />
 	</c:forEach>
+	
+		<c:forEach varStatus="status" var="translation" items="${collectionTranslation}">
+		<spring:url value="/translation/${translation.id}" var="elementUrl" />
+		<button onclick="location.href='${elementUrl}'">Update</button>
+		Translation:${translation.id} : ${translation.polish}:  ${translation.english}<br />
+	</c:forEach>
   
 <h1><strong>${info}</strong></h1>
 </body>
