@@ -38,7 +38,7 @@ public class PublicationController {
 	    	 Publication contest = new Publication();
 	    	  Locale locale = RequestContextUtils.getLocale(request);
 	    	  String language = locale.getLanguage();
-	    	  
+	    	
 	    	 model.addAttribute("publication", contest);
 	    	 model.addAttribute("collectionPublication", service.findAll());
 	    	 //model.addAttribute("collection", service.searchLanguage(language, publicationDao.getPublications_en("SELECT k FROM Publication k  WHERE id<1"), publicationDao.getPublications_en("SELECT k FROM Publication k"))); 

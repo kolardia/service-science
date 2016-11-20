@@ -12,5 +12,5 @@ public interface ServicePublication {
 	 public List<Publication> findAll();
 	 public Publication  save(Publication contest);
 	 public List<Publication>  searchLanguage(String language, List<Publication> listLanguage_en, List<Publication> listLanguage_pl);
-
+	 public void delete(Long id);
 }

@@ -36,7 +36,10 @@ public class ServicePublicationImpl implements ServicePublication{
 	 };
 	
 	
-	
+	 public void delete(Long id){
+		 
+		 dao.delete(id);
+	 };
 	
 	public List<Publication>  searchLanguage(String language, List<Publication> listLanguage_en, List<Publication> listLanguage_pl){
 		/*https://docs.oracle.com/javase/tutorial/i18n/locale/create.html
