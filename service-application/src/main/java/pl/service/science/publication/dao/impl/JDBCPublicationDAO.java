@@ -25,9 +25,6 @@ public class JDBCPublicationDAO{
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setLong(1, publication.getId());
-			ps.setString(2, publication.getTitle());
-			ps.setString(3, publication.getContents());
-
 			ps.executeUpdate();
 			ps.close();
 			

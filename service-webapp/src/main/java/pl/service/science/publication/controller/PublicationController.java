@@ -56,10 +56,10 @@ public class PublicationController {
 		    	
 		    	
 		    			
-		    	logger.info("contestDao.getPublication(id): " + contestTemp + contestTemp.getTitle() + contestTemp.getContents());
-		    	model.addAttribute("title", contestTemp.getTitle());
-	 	        model.addAttribute("contents", contestTemp.getContents());
-	 	        model.addAttribute("category", categoryTemp.getName());
+		    	//logger.info("contestDao.getPublication(id): " + contestTemp + contestTemp.getTitle() + contestTemp.getContents());
+		    	//model.addAttribute("title", contestTemp.getTitle());
+	 	       // model.addAttribute("contents", contestTemp.getContents());
+	 	       // model.addAttribute("category", categoryTemp.getName());
 		    	
 		        return "details/contest";
 		    }
@@ -81,8 +81,8 @@ public class PublicationController {
 		        } else {
 		        	Publication contest = new Publication();
 		        	contest.setId(form.getId());
-		        	contest.setTitle(form.getTitle());
-		        	contest.setContents(form.getContents());
+		        	//contest.setTitle(form.getTitle());
+		        	//contest.setContents(form.getContents());
 		        	//publicationDao.addPublication(contest);
 		         	service.save(contest);
 		        	

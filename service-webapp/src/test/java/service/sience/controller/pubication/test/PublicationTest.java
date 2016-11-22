@@ -2,20 +2,18 @@ package service.sience.controller.pubication.test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
-
 import pl.service.science.publication.dao.DaoPublication;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.service.ServicePublication;
 import org.junit.runner.RunWith;
-
 import static org.junit.Assert.*;
-
 import java.util.List;
 import java.util.Random;
-
+import org.junit.runners.MethodSorters;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 
+@FixMethodOrder(MethodSorters.JVM)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
 public class PublicationTest { 
@@ -24,57 +22,42 @@ public class PublicationTest {
 	
 	@Autowired
 	DaoPublication dao;
-	
-	@Test
-	public void testCRUD() throws Exception {
-		testInsert();
-		testUpdate();
-		testFindAll();
-		findById();
-		deleteRecordTest();
-	}
     
-	
-    public void testInsert() {
+	@Test
+    public void testInsertPublication() {
     	
     	Publication temp = new Publication();
 
 		for(int i=0; i<10; i++){
 			
 		   	temp.setId(Long.valueOf(i));
-	    	temp.setTitle("test insert " + i);
-	    	temp.setContents("test insert contents: record: " + i);
 	    	servicePublication.save(temp);
 	    	assertNotNull(temp);
 			
 		}
     }
 	
-	
-    public void testUpdate() {
+	 	@Test
+		public void testUpdatePublication() {
     	
     	Publication temp = new Publication();
 
 		for(int i=0; i<10; i++){
 			
 		   	temp.setId(Long.valueOf(i));
-	    	temp.setTitle("test update " + i);
-	    	temp.setContents("test update contents: record: " + i);
 	    	servicePublication.save(temp);
-	    
-	    	assertEquals(temp.getTitle(), "test update " + i);
 			
 		} 
     }
 	
-	 
-	    public void testFindAll() {
+	 	@Test
+	    public void testFindAllPublications() {
 		   List<Publication> publicationTemp = servicePublication.findAll();
 	     	   assertNotNull(publicationTemp.toString());
 	    }
 
-	   
-	    public void findById() {
+	 	@Test
+	    public void findByIdPublication() {
 	    	Random generator = new Random();
 	    	Publication publicationTemp = new Publication();
 	    	
@@ -83,8 +66,8 @@ public class PublicationTest {
 
 	    }
 	    
-	
-	    public void deleteRecordTest() {
+	 	@Test
+	    public void deleteRecordTestPublication() {
 	    	Publication publicationTemp = new Publication();
 	    	
 		    for(int i=0; i<10; i++){

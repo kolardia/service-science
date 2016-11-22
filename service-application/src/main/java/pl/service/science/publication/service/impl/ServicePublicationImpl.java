@@ -21,23 +21,19 @@ public class ServicePublicationImpl implements ServicePublication{
 	
 
 	 public Publication findById(Long id){
-		 
 		 return dao.findById(id);
 		 
 	 };
 	 public List<Publication> findAll(){
-		 
 		 return dao.findAll();
 	 };
 	
 	public Publication  save(Publication contest){
-		
 		 return dao.save(contest);
 	 };
 	
 	
 	 public void delete(Long id){
-		 
 		 dao.delete(id);
 	 };
 	

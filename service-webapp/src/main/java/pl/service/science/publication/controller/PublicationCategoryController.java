@@ -42,7 +42,7 @@ public class PublicationCategoryController {
     	categoryTemp = serviceCategory.findById(id);
     	
     	model.addAttribute("title", categoryTemp.getId());
-        model.addAttribute("contents", categoryTemp.getName());
+       // model.addAttribute("contents", categoryTemp.getName());
     	
         return "details/contest";
     }
@@ -65,7 +65,7 @@ public class PublicationCategoryController {
         } else {
         	PublicationCategory categoryTemp= new PublicationCategory();
         	categoryTemp.setId(form.getId());
-        	categoryTemp.setName(form.getName());
+        //	categoryTemp.setName(form.getName());
  
         	//ublicationDao.addPublication(contest);
         	serviceCategory.save(categoryTemp);

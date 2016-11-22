@@ -10,6 +10,5 @@ import pl.service.science.publication.domain.Publication;
 public interface DaoPublication extends CrudRepository<Publication, Long>{
 	
 	 public Publication findById(Long id);
-	 public List<Publication> findAll();	
-	 public void delete(Long id);
+	 public List<Publication> findAll();
 }
