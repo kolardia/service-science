@@ -1,22 +1,21 @@
 package pl.service.science.publication.forms;
 
 import javax.validation.constraints.Size;
-
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class ContestDTO {
-	
+
 	@NotEmpty
 	private Long id;
-	
+
 	@NotEmpty
-    @Size(min=3)
-    private String contents;
-	
+	@Size(min = 3)
+	private String contents;
+
 	@NotEmpty
-    private String title;
-	
-    public Long getId() {
+	private String title;
+
+	public Long getId() {
 		return id;
 	}
 
@@ -39,5 +38,5 @@ public class ContestDTO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	
+
 }

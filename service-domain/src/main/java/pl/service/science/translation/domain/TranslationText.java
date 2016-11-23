@@ -10,36 +10,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-/***********************************************
- * CREATE TABLE  TranslationTexts (
- * language_id int(11),
- * translation_id int(11),
- * text VARCHAR(45) NOT NULL,
- *  CONSTRAINT fk_translation_id FOREIGN KEY (translation_id) REFERENCES Translations (translation_id)
- *  CONSTRAINT fk_language_id FOREIGN KEY (language_id) REFERENCES Translations (translation_id),);
- *  * **************************************************************************/
 @Entity
-@Table(name="translation_text")
+@Table(name = "translation_text")
 public class TranslationText {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="translation_text_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "translation_text_id")
 	public Long id;
-	
-	
+
 	@ManyToOne
-	@JoinColumn(name="translation_text_language_id")
+	@JoinColumn(name = "translation_text_language_id")
 	public Language language;
-	
+
 	@OneToOne
-	@JoinColumn(name="translation_text_translation_id")
+	@JoinColumn(name = "translation_text_translation_id")
 	public Translation translation;
-	
-	@Column(name="translation_text")
+
+	@Column(name = "translation_text")
 	public String text;
- 
-	
 
 	public Long getId() {
 		return id;
@@ -72,6 +61,5 @@ public class TranslationText {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
-}
 
+}

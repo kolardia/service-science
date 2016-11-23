@@ -1,7 +1,6 @@
 package pl.service.science.localization.domain;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,32 +9,31 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import pl.service.science.translation.domain.Translation;
 
 @Entity
-@Table(name="region")
+@Table(name = "region")
 public class Region {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="region_id")
-	public Long id;
-	
-	@ManyToOne
-	@JoinColumn(name="region_translation_id")
-	public Translation regionTranslation;
-	
-	@OneToOne
-	@JoinColumn(name="country_id")
-	public Country country;
-	
-	@OneToMany(mappedBy= "region")
-	public List <City> city;
 
-	public Region(){
-		
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "region_id")
+	public Long id;
+
+	@ManyToOne
+	@JoinColumn(name = "region_translation_id")
+	public Translation regionTranslation;
+
+	@ManyToOne
+	@JoinColumn(name = "country_id")
+	public Country country;
+
+	@OneToMany(mappedBy = "region")
+	public List<City> city;
+
+	public Region() {
+
 	}
 
 	public Long getId() {
@@ -45,7 +43,6 @@ public class Region {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public Translation getRegionTranslation() {
 		return regionTranslation;
@@ -70,8 +67,4 @@ public class Region {
 	public void setCity(List<City> city) {
 		this.city = city;
 	}
-
-
-
-
 }

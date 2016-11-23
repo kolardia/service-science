@@ -1,7 +1,6 @@
 package pl.service.science.localization.domain;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,27 +10,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import pl.service.science.translation.domain.Translation;
 
 @Entity
-@Table(name="country")
+@Table(name = "country")
 public class Country {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="country_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "country_id")
 	public Long id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="coutry_transation_id")
+	@JoinColumn(name = "coutry_transation_id")
 	public Translation countryTranslation;
-	 
-	@OneToMany(mappedBy= "country")
+
+	@OneToMany(mappedBy = "country")
 	public List<Region> region;
-	
-	public Country(){
-		
+
+	public Country() {
+
 	}
 
 	public Long getId() {
@@ -41,9 +39,6 @@ public class Country {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-	
 
 	public Translation getCountryTranslation() {
 		return countryTranslation;
@@ -60,10 +55,5 @@ public class Country {
 	public void setRegion(List<Region> region) {
 		this.region = region;
 	}
-
-
-
-
-	
 
 }

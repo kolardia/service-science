@@ -1,51 +1,56 @@
 package pl.service.science.translation.domain;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import pl.service.science.localization.domain.City;
 import pl.service.science.localization.domain.Country;
 import pl.service.science.localization.domain.Region;
+import pl.service.science.section.domain.Section;
 import pl.service.science.section.domain.SectionType;
+import pl.service.science.user.domain.AuthorizationStatus;
 
 @Entity
-@Table(name="translation")
+@Table(name = "translation")
 public class Translation {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="translation_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "translation_id")
 	public Long id;
 
-
-	@OneToOne(mappedBy= "translation")
+	@OneToOne(mappedBy = "translation")
 	public TranslationText text;
-	
-	@OneToMany(mappedBy= "cityTranslation")
+
+	@OneToMany(mappedBy = "cityTranslation")
 	public List<City> city;
-	
-	
-	@OneToMany(mappedBy= "regionTranslation")
-	public List <Region> region;
-	
-	
-	@OneToMany(mappedBy= "countryTranslation")
+
+	@OneToMany(mappedBy = "regionTranslation")
+	public List<Region> region;
+
+	@OneToMany(mappedBy = "countryTranslation")
 	public List<Country> country;
-	
-	@OneToOne(mappedBy= "typeTranslation")
-	public SectionType sectionType;
-	
-	
+
+	@OneToMany(mappedBy = "typeTranslation")
+	public List<SectionType> type;
+
+	@OneToMany(mappedBy = "sectionTranslation")
+	public List<Section> section;
+
+	@OneToMany(mappedBy = "descriptionTranslation")
+	public List<Section> description;
+
+	@OneToMany(mappedBy = "authorizationStatusTranslation")
+	public List<AuthorizationStatus> authorizationStatus;
+
 	public Translation() {
-		
+
 	}
 
 	public Long getId() {
@@ -55,7 +60,6 @@ public class Translation {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public TranslationText getText() {
 		return text;
@@ -71,14 +75,6 @@ public class Translation {
 
 	public void setCity(List<City> city) {
 		this.city = city;
-	}
-
-	public SectionType getSectionType() {
-		return sectionType;
-	}
-
-	public void setSectionType(SectionType sectionType) {
-		this.sectionType = sectionType;
 	}
 
 	public List<Region> getRegion() {
@@ -97,7 +93,12 @@ public class Translation {
 		this.country = country;
 	}
 
+	public List<SectionType> getType() {
+		return type;
+	}
 
-	
+	public void setType(List<SectionType> type) {
+		this.type = type;
+	}
 
 }

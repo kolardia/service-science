@@ -7,21 +7,21 @@ import pl.service.science.publication.dao.DaoPublicationCategory;
 import pl.service.science.publication.domain.PublicationCategory;
 import pl.service.science.publication.service.ServicePublicationCategory;
 
-
 @Service
-public class ServicePublicationCategoryImpl implements ServicePublicationCategory{
-	
-	@Autowired
-	protected  DaoPublicationCategory dao;
+public class ServicePublicationCategoryImpl implements ServicePublicationCategory {
 
-	 public PublicationCategory findById(Long id){
-		 return dao.findById(id); 
-	 };
-	 
-	 public List<PublicationCategory> findAll(){
-		 return dao.findAll();
-	 };
-	 public PublicationCategory  save(PublicationCategory category){
-		 return dao.save(category);
-	 };
+	@Autowired
+	protected DaoPublicationCategory dao;
+
+	public PublicationCategory findById(Long id) {
+		return dao.findById(id);
+	};
+
+	public List<PublicationCategory> findAll() {
+		return dao.findAll();
+	};
+
+	public PublicationCategory save(PublicationCategory category) {
+		return dao.save(category);
+	};
 }

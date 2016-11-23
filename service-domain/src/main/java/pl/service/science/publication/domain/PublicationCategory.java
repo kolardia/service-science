@@ -1,6 +1,5 @@
 package pl.service.science.publication.domain;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,25 +8,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import pl.service.science.translation.domain.Translation;
 
-
 @Entity
-@Table(name="publication_category")
+@Table(name = "publication_category")
 public class PublicationCategory {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="publication_category_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "publication_category_id")
 	public Long id;
-	
+
 	@OneToOne
-	@JoinColumn(name="category_translation_id")
+	@JoinColumn(name = "category_translation_id")
 	public Translation nameTranslation;
 
-	public PublicationCategory(){
-		
+	public PublicationCategory() {
+
 	}
 
 	public Long getId() {
@@ -50,6 +47,5 @@ public class PublicationCategory {
 	public String toString() {
 		return "PublicationCategory [id=" + id + ", nameTranslation=" + nameTranslation + "]";
 	}
-
 
 }

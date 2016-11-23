@@ -1,6 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE >
 <html>
@@ -9,28 +9,36 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2><spring:message code="web.layout.top.title" /></h2>
+	<h2>
+		<spring:message code="web.layout.top.title" />
+	</h2>
 	<h3>${info}</h3>
 	<br />
 
-			<h3>${info}</h3>
-				<form:form action="form" modelAttribute="form" method="get">
-					<strong>Id</strong>
-					<form:errors path="Id" cssclass="error" /><br />
-					<input type="text" name="Id" /><br />
-					
-					<strong>Title</strong>
-					<form:errors path="title" cssclass="error" /><br />
-					<input type="text" name="title" /><br />
-					
-					<strong>Content</strong>
-					<form:errors path="contents" cssclass="error" /><br />
-					<input type="text" name="contents" /><br />
-					
-					
-					<input type="submit" value="Submit form" />
-				</form:form>
-	
-		
+	<h3>${info}</h3>
+	<form:form action="form" modelAttribute="form" method="get">
+		<strong>Id</strong>
+		<form:errors path="Id" cssclass="error" />
+		<br />
+		<input type="text" name="Id" />
+		<br />
+
+		<strong>Title</strong>
+		<form:errors path="title" cssclass="error" />
+		<br />
+		<input type="text" name="title" />
+		<br />
+
+		<strong>Content</strong>
+		<form:errors path="contents" cssclass="error" />
+		<br />
+		<input type="text" name="contents" />
+		<br />
+
+
+		<input type="submit" value="Submit form" />
+	</form:form>
+
+
 </body>
 </html>

@@ -11,44 +11,43 @@ import pl.service.science.publication.domain.Publication;
 import pl.service.science.translation.domain.Translation;
 
 @Repository
-public class ListPublicationDAO  {
-	
+public class ListPublicationDAO {
+
 	List<Publication> publications = new ArrayList<Publication>();
-	
-    @PersistenceContext
-    EntityManager e;
 
+	@PersistenceContext
+	EntityManager e;
 
-    @Transactional 
+	@Transactional
 	public void addPublication(Publication publication) {
-    	e.merge(publication);
-		
+		e.merge(publication);
+
 	}
-    
+
 	@SuppressWarnings("unchecked")
 	public List<Publication> getPublications_en(String select) {
 		Query query = e.createQuery(select);
 		return query.getResultList();
-		
+
 	}
-   
+
 	@SuppressWarnings("unchecked")
 	public List<Publication> getPublications_pl(String select) {
 		Query query = e.createQuery(select);
 		return query.getResultList();
-		
+
 	}
-	
-	public Publication getPublication(int id){
+
+	public Publication getPublication(int id) {
 		Publication publication = new Publication();
 		publication = e.find(Publication.class, id);
 		return publication;
-	} 
-	@Transactional 
-	public Translation getTranslation(int id){
+	}
+
+	@Transactional
+	public Translation getTranslation(int id) {
 		Translation translation = new Translation();
 		translation = e.find(Translation.class, id);
 		return translation;
-	} 
-		}
-	
+	}
+}

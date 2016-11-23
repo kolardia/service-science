@@ -1,6 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE >
 <html>
@@ -11,9 +11,12 @@
 <body>
 	<h2>Form</h2>
 	<h3>${info}</h3>
-	element 1: <strong>${title}</strong> <br />
-	element 2: <strong>${contents}</strong> <br />
-	element 3: <strong>${category}</strong>
+	element 1:
+	<strong>${title}</strong>
+	<br /> element 2:
+	<strong>${contents}</strong>
+	<br /> element 3:
+	<strong>${category}</strong>
 
 </body>
 </html>

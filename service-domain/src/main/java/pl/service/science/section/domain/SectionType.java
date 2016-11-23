@@ -1,38 +1,47 @@
 package pl.service.science.section.domain;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import pl.service.science.translation.domain.Translation;
 
-/*
- * 
- * CREATE TABLE SectionTypes (
-			name VARCHAR(45) NOT NULL,
-            PRIMARY KEY (name)
-            );
- * 
- * 
- * */
-
 @Entity
-@Table(name="section_type")
+@Table(name = "section_type")
 public class SectionType {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="section_type_id")
-	private Long id;
-	
-	@OneToOne
-	@JoinColumn(name="type_translation_id")
-	private Translation typeTranslation;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "section_type_id")
+	public Long id;
+
+	@ManyToOne
+	@JoinColumn(name = "type_translation_id")
+	public Translation typeTranslation;
+
+	@OneToMany(mappedBy = "sectionType")
+	public List<Section> section;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Translation getTypeTranslation() {
+		return typeTranslation;
+	}
+
+	public void setTypeTranslation(Translation typeTranslation) {
+		this.typeTranslation = typeTranslation;
+	}
 
 }

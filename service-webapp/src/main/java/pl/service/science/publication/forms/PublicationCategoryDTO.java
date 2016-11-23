@@ -1,17 +1,16 @@
 package pl.service.science.publication.forms;
 
 import javax.validation.constraints.Size;
-
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class PublicationCategoryDTO {
-	
+
 	@NotEmpty
 	private Long id;
-	
+
 	@NotEmpty
-    @Size(min=3)
-    private String name;
+	@Size(min = 3)
+	private String name;
 
 	public Long getId() {
 		return id;
@@ -28,7 +27,5 @@ public class PublicationCategoryDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 }

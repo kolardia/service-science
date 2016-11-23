@@ -9,33 +9,33 @@ import org.springframework.stereotype.Repository;
 import pl.service.science.publication.domain.Publication;
 
 @Repository
-public class JDBCPublicationDAO{
+public class JDBCPublicationDAO {
 
 	@Autowired
 	private DataSource dataSource;
-	
-	public void insertPublication(Publication publication){
-		
-		String sql = "INSERT INTO Publication" +
-				"(id, title, contents) VALUES (?, ?, ?)";
-		
+
+	public void insertPublication(Publication publication) {
+
+		String sql = "INSERT INTO Publication" + "(id, title, contents) VALUES (?, ?, ?)";
+
 		Connection conn = null;
-		
+
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setLong(1, publication.getId());
 			ps.executeUpdate();
 			ps.close();
-			
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-			
+
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {}
+				} catch (SQLException e) {
+				}
 			}
 		}
 

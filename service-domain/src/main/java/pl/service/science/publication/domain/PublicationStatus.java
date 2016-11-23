@@ -8,24 +8,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import pl.service.science.translation.domain.Translation;
 
 @Entity
-@Table(name="publication_status")
+@Table(name = "publication_status")
 public class PublicationStatus {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="publication_status_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "publication_status_id")
 	public int id;
-	
+
 	@OneToOne
-	@JoinColumn(name="status_translation_id")
+	@JoinColumn(name = "status_translation_id")
 	public Translation nameTranslation;
-	
-	public PublicationStatus(){
-		
+
+	public PublicationStatus() {
+
 	}
 
 	public int getId() {
@@ -48,5 +47,5 @@ public class PublicationStatus {
 	public String toString() {
 		return "PublicationStatus [id=" + id + ", nameTranslation=" + nameTranslation + "]";
 	}
-		
+
 }
