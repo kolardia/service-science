@@ -6,8 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import pl.service.science.translation.domain.Translation;
 
 @Entity
@@ -19,8 +20,8 @@ public class AuthorizationStatus {
 	@Column(name = "authorization_status_id")
 	public Long id;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "status_translation_id")
-	public Translation authorizationStatusTranslation;
+	public Translation authorizationStatus;
 
 }

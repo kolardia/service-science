@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import pl.service.science.publication.dao.DaoPublication;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.service.ServicePublication;
+import pl.service.science.translation.domain.Translation;
+import pl.service.science.translation.service.ServiceTranslation;
 
 @Service
 public class ServicePublicationImpl implements ServicePublication {
@@ -16,6 +18,9 @@ public class ServicePublicationImpl implements ServicePublication {
 
 	@Autowired
 	protected DaoPublication dao;
+
+	@Autowired
+	ServiceTranslation serviceTranslation;
 
 	public Publication findById(Long id) {
 		return dao.findById(id);
@@ -33,6 +38,24 @@ public class ServicePublicationImpl implements ServicePublication {
 	public void delete(Long id) {
 		dao.delete(id);
 	};
+
+	public void deleteAllPublicationParts(Publication poublication){
+		this.delete(poublication.getId());
+		serviceTranslation.deleteTranslationParts(poublication.getTitle());
+		serviceTranslation.deleteTranslationParts(poublication.getContents());
+	}
+	
+	
+	public void saveText(Translation translation, String text, String code) {
+	
+		serviceTranslation.newText(translation, text, code);
+	}
+	
+	public Translation insert(Translation translation){
+		serviceTranslation.save(translation);
+		
+		return translation;
+	}
 
 	public List<Publication> searchLanguage(String language, List<Publication> listLanguage_en,
 			List<Publication> listLanguage_pl) {

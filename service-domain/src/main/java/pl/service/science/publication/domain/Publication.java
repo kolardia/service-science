@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import pl.service.science.translation.domain.Translation;
 
 @Entity
@@ -21,23 +22,15 @@ public class Publication {
 
 	@OneToOne
 	@JoinColumn(name = "title_translation_id")
-	public Translation translationTitle;
+	public Translation title;
 
 	@OneToOne
 	@JoinColumn(name = "contents_translation_id")
-	public Translation translationContents;
+	public Translation contents;
 
 	@OneToOne
 	@JoinColumn(name = "category_id")
 	public PublicationCategory category;
-
-	/*
-	 * @OneToMany(mappedBy="department") private Set<Employee> employees;
-	 */
-
-	/*
-	 * @OneToMany(mappedBy="id") public List<PublicationCategory> categoryId;
-	 */
 
 	public Publication() {
 
@@ -59,26 +52,25 @@ public class Publication {
 		this.category = category;
 	}
 
-	public Translation getTranslationTitle() {
-		return translationTitle;
+	public Translation getTitle() {
+		return title;
 	}
 
-	public void setTranslationTitle(Translation translationTitle) {
-		this.translationTitle = translationTitle;
+	public void setTitle(Translation title) {
+		this.title = title;
 	}
 
-	public Translation getTranslationContents() {
-		return translationContents;
+	public Translation getContents() {
+		return contents;
 	}
 
-	public void setTranslationContents(Translation translationContents) {
-		this.translationContents = translationContents;
+	public void setContents(Translation contents) {
+		this.contents = contents;
 	}
 
 	@Override
 	public String toString() {
-		return "Publication [id=" + id + ", translationTitle=" + translationTitle + ", translationContents="
-				+ translationContents + ", category=" + category + "]";
+		return "Publication [id=" + id + ", title=" + title + ", contents=" + contents + ", category=" + category + "]";
 	}
 
 }

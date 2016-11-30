@@ -25,26 +25,25 @@ public class Section {
 	@Column(name = "section_enabled")
 	public Boolean enabled;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "section_translation_id")
-	public Translation sectionTranslation;
+	public Translation section;
 
 	@ManyToOne
 	@JoinColumn(name = "section_type_id")
-	public SectionType sectionType;
-
-	@ManyToOne
-	@JoinColumn(name = "description_translation_id")
-	public Translation descriptionTranslation;
+	public SectionType type;
 
 	@OneToOne
-	@JoinColumn(name = "section_location_id")
+	@JoinColumn(name = "description_translation_id")
+	public Translation description;
+
+	@OneToOne
 	public SectionLocation location;
 
 	@OneToMany(mappedBy = "sectionCenter")
 	public List<SectionCenter> center;
 
-	@OneToMany(mappedBy = "sectionOrder")
-	public List<SectionCenter> order;
+	@OneToMany(mappedBy = "subsection")
+	public List<SectionCenter> subsection;
 
 }

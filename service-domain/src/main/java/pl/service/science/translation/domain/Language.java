@@ -3,8 +3,6 @@ package pl.service.science.translation.domain;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -13,15 +11,14 @@ import javax.persistence.Table;
 @Table(name = "language")
 public class Language {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "language_id")
 	public Long id;
 
-	@Column(name = "language_code")
+	@Column(name = "language_code", nullable = false)
 	public String code;
 
 	@OneToMany(mappedBy = "language")
-	public List<TranslationText> text;
+	public List<TextTranslation> text;
 
 	public Long getId() {
 		return id;
@@ -39,11 +36,11 @@ public class Language {
 		this.code = code;
 	}
 
-	public List<TranslationText> getText() {
+	public List<TextTranslation> getText() {
 		return text;
 	}
 
-	public void setText(List<TranslationText> text) {
+	public void setText(List<TextTranslation> text) {
 		this.text = text;
 	}
 

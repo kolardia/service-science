@@ -9,9 +9,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.domain.PublicationCategory;
 import pl.service.science.publication.forms.PublicationCategoryDTO;
+import pl.service.science.publication.service.ServicePublication;
 import pl.service.science.publication.service.ServicePublicationCategory;
+import pl.service.science.translation.dao.DaoTranslationText;
 
 @Controller
 public class PublicationCategoryController {
@@ -21,14 +25,32 @@ public class PublicationCategoryController {
 	@Autowired
 	ServicePublicationCategory serviceCategory;
 
+	@Autowired
+	protected ServicePublication service;
+
+	@Autowired
+	DaoTranslationText serviceTranslationText;
+
 	@RequestMapping("/category")
 	public String showIndexCategory(Model model) {
+
+		Publication publication = new Publication();
+
+		model.addAttribute("publication", publication);
+		model.addAttribute("translation", serviceTranslationText.findByTranslation(publication.getTitle()));
+		model.addAttribute("collectionPublication", service.findAll());
+		return "index";
+
+	}
+
+	@RequestMapping("/panel")
+	public String showPanel(Model model) {
+
 		PublicationCategory category = new PublicationCategory();
 
 		model.addAttribute("category", category);
 		model.addAttribute("collectionCategory", serviceCategory.findAll());
-
-		return "index";
+		return "admin/panel";
 	}
 
 	@RequestMapping("/category/{id}")

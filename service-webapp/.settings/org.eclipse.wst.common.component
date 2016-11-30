@@ -5,6 +5,10 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/details"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/forms"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin"/>
         <dependent-module archiveName="service-application-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service-application/service-application">
             <dependency-type>uses</dependency-type>
         </dependent-module>

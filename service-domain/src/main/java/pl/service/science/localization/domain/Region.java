@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import pl.service.science.translation.domain.Translation;
 
@@ -21,16 +22,18 @@ public class Region {
 	@Column(name = "region_id")
 	public Long id;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "region_translation_id")
-	public Translation regionTranslation;
+	public Translation region;
 
-	@ManyToOne
+	// Country which is divided into regions
+	@OneToOne
 	@JoinColumn(name = "country_id")
 	public Country country;
 
-	@OneToMany(mappedBy = "region")
-	public List<City> city;
+	// Cities in the area of the region
+	@OneToMany(mappedBy = "cityRegion")
+	public List<City> cities;
 
 	public Region() {
 
@@ -44,12 +47,12 @@ public class Region {
 		this.id = id;
 	}
 
-	public Translation getRegionTranslation() {
-		return regionTranslation;
+	public Translation getRegion() {
+		return region;
 	}
 
-	public void setRegionTranslation(Translation regionTranslation) {
-		this.regionTranslation = regionTranslation;
+	public void setRegion(Translation region) {
+		this.region = region;
 	}
 
 	public Country getCountry() {
@@ -60,11 +63,12 @@ public class Region {
 		this.country = country;
 	}
 
-	public List<City> getCity() {
-		return city;
+	public List<City> getCities() {
+		return cities;
 	}
 
-	public void setCity(List<City> city) {
-		this.city = city;
+	public void setCities(List<City> cities) {
+		this.cities = cities;
 	}
+
 }

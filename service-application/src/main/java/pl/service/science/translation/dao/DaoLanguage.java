@@ -12,4 +12,5 @@ public interface DaoLanguage extends CrudRepository<Language, Long> {
 
 	public List<Language> findAll();
 
+	public Language findByCode(String code);
 }

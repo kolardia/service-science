@@ -21,11 +21,12 @@ public class SectionLocation {
 	public Long id;
 
 	@OneToOne(mappedBy = "location")
-	public Section locationSection;
+	@JoinColumn(name="section_id")
+	public Section location;
 
 	@ManyToOne
 	@JoinColumn(name = "section_city_id")
-	public City sectonLocationCity;
+	public City sectonLocation;
 
 	@Column(name = "section_adress")
 	public String sectionAdress;

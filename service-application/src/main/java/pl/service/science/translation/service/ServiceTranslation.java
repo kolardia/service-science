@@ -15,4 +15,10 @@ public interface ServiceTranslation {
 
 	public void delete(Translation translation);
 
+	public void deleteTranslationParts(Translation translation);
+
+	public Translation newText(Translation translation, String text, String languageCode);
+
+	public Translation updateText(Translation translation, String text, String languageCode);
+
 }

@@ -1,6 +1,7 @@
 package pl.service.science.localization.domain;
 
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import pl.service.science.section.domain.SectionLocation;
 import pl.service.science.translation.domain.Translation;
 import pl.service.science.user.domain.User;
@@ -28,19 +30,19 @@ public class City {
 	@Column(name = "city_id")
 	Long id;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "city_translation_id")
-	public Translation cityTranslation;
+	public Translation city;
 
 	@ManyToOne
 	@JoinColumn(name = "city_region_id")
-	public Region region;
+	public Region cityRegion;
 
-	@OneToMany(mappedBy = "sectonLocationCity")
-	public List<SectionLocation> locationCity;
+	@OneToMany(mappedBy = "sectonLocation")
+	public List<SectionLocation> cities;
 
-	@OneToOne(mappedBy = "userAdressCity")
-	public User adressCity;
+	@OneToOne(mappedBy = "cityOfResidence")
+	public User cityOfResidence;
 
 	public City() {
 
@@ -54,20 +56,36 @@ public class City {
 		this.id = id;
 	}
 
-	public Region getRegion() {
-		return region;
+	public Translation getCity() {
+		return city;
 	}
 
-	public void setRegion(Region region) {
-		this.region = region;
+	public void setCity(Translation city) {
+		this.city = city;
 	}
 
-	public Translation getCityTranslation() {
-		return cityTranslation;
+	public Region getCityRegion() {
+		return cityRegion;
 	}
 
-	public void setCityTranslation(Translation cityTranslation) {
-		this.cityTranslation = cityTranslation;
+	public void setCityRegion(Region cityRegion) {
+		this.cityRegion = cityRegion;
+	}
+
+	public List<SectionLocation> getCities() {
+		return cities;
+	}
+
+	public void setCities(List<SectionLocation> cities) {
+		this.cities = cities;
+	}
+
+	public User getCityOfResidence() {
+		return cityOfResidence;
+	}
+
+	public void setCityOfResidence(User cityOfResidence) {
+		this.cityOfResidence = cityOfResidence;
 	}
 
 }

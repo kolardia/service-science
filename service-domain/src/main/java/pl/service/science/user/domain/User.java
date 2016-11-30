@@ -16,7 +16,7 @@ public class User {
 	@Column(name = "user_id")
 	public Long id;
 
-	@Column(name = "user_emaail")
+	@Column(name = "user_email")
 	public String email;
 
 	@Column(name = "user_name")
@@ -27,7 +27,7 @@ public class User {
 
 	@OneToOne
 	@JoinColumn(name = "user_aadress_city")
-	public City userAdressCity;
+	public City cityOfResidence;
 
 	@Column(name = "user_enabled")
 	public Boolean enabled;

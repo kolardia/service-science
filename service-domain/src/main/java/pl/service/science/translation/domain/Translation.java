@@ -12,6 +12,9 @@ import javax.persistence.Table;
 import pl.service.science.localization.domain.City;
 import pl.service.science.localization.domain.Country;
 import pl.service.science.localization.domain.Region;
+import pl.service.science.publication.domain.Publication;
+import pl.service.science.publication.domain.PublicationCategory;
+import pl.service.science.publication.domain.PublicationStatus;
 import pl.service.science.section.domain.Section;
 import pl.service.science.section.domain.SectionType;
 import pl.service.science.user.domain.AuthorizationStatus;
@@ -25,33 +28,41 @@ public class Translation {
 	@Column(name = "translation_id")
 	public Long id;
 
-	@OneToOne(mappedBy = "translation")
-	public TranslationText text;
+	@OneToMany(mappedBy = "translation")
+	public List<TextTranslation> textTranslation;
 
-	@OneToMany(mappedBy = "cityTranslation")
-	public List<City> city;
+	@OneToOne(mappedBy = "title")
+	public Publication titlePublication;
 
-	@OneToMany(mappedBy = "regionTranslation")
-	public List<Region> region;
+	@OneToOne(mappedBy = "statusName")
+	public PublicationStatus statusTranslation;
 
-	@OneToMany(mappedBy = "countryTranslation")
-	public List<Country> country;
+	@OneToOne(mappedBy = "categoryName")
+	public PublicationCategory categoryTranslation;
 
-	@OneToMany(mappedBy = "typeTranslation")
-	public List<SectionType> type;
+	@OneToOne(mappedBy = "contents")
+	public Publication contentsTranslation;
 
-	@OneToMany(mappedBy = "sectionTranslation")
-	public List<Section> section;
+	@OneToOne(mappedBy = "city")
+	public City cityTranslation;
 
-	@OneToMany(mappedBy = "descriptionTranslation")
-	public List<Section> description;
+	@OneToOne(mappedBy = "region")
+	public Region regionTranslation;
 
-	@OneToMany(mappedBy = "authorizationStatusTranslation")
-	public List<AuthorizationStatus> authorizationStatus;
+	@OneToOne(mappedBy = "country")
+	public Country countryTranslation;
 
-	public Translation() {
+	@OneToOne(mappedBy = "type")
+	public SectionType typeTranslation;
 
-	}
+	@OneToOne(mappedBy = "section")
+	public Section sectionTranslation;
+
+	@OneToOne(mappedBy = "description")
+	public Section descriptionTranslation;
+
+	@OneToOne(mappedBy = "authorizationStatus")
+	public AuthorizationStatus authorizationTranslation;
 
 	public Long getId() {
 		return id;
@@ -61,44 +72,99 @@ public class Translation {
 		this.id = id;
 	}
 
-	public TranslationText getText() {
-		return text;
+	public List<TextTranslation> getTextTranslation() {
+		return textTranslation;
 	}
 
-	public void setText(TranslationText text) {
-		this.text = text;
+	public void setTextTranslation(List<TextTranslation> textTranslation) {
+		this.textTranslation = textTranslation;
 	}
 
-	public List<City> getCity() {
-		return city;
+	public Publication getTitlePublication() {
+		return titlePublication;
 	}
 
-	public void setCity(List<City> city) {
-		this.city = city;
+	public void setTitlePublication(Publication titlePublication) {
+		this.titlePublication = titlePublication;
 	}
 
-	public List<Region> getRegion() {
-		return region;
+	public PublicationStatus getStatusTranslation() {
+		return statusTranslation;
 	}
 
-	public void setRegion(List<Region> region) {
-		this.region = region;
+	public void setStatusTranslation(PublicationStatus statusTranslation) {
+		this.statusTranslation = statusTranslation;
 	}
 
-	public List<Country> getCountry() {
-		return country;
+	public PublicationCategory getCategoryTranslation() {
+		return categoryTranslation;
 	}
 
-	public void setCountry(List<Country> country) {
-		this.country = country;
+	public void setCategoryTranslation(PublicationCategory categoryTranslation) {
+		this.categoryTranslation = categoryTranslation;
 	}
 
-	public List<SectionType> getType() {
-		return type;
+	public Publication getContentsTranslation() {
+		return contentsTranslation;
 	}
 
-	public void setType(List<SectionType> type) {
-		this.type = type;
+	public void setContentsTranslation(Publication contentsTranslation) {
+		this.contentsTranslation = contentsTranslation;
 	}
 
+	public City getCityTranslation() {
+		return cityTranslation;
+	}
+
+	public void setCityTranslation(City cityTranslation) {
+		this.cityTranslation = cityTranslation;
+	}
+
+	public Region getRegionTranslation() {
+		return regionTranslation;
+	}
+
+	public void setRegionTranslation(Region regionTranslation) {
+		this.regionTranslation = regionTranslation;
+	}
+
+	public Country getCountryTranslation() {
+		return countryTranslation;
+	}
+
+	public void setCountryTranslation(Country countryTranslation) {
+		this.countryTranslation = countryTranslation;
+	}
+
+	public SectionType getTypeTranslation() {
+		return typeTranslation;
+	}
+
+	public void setTypeTranslation(SectionType typeTranslation) {
+		this.typeTranslation = typeTranslation;
+	}
+
+	public Section getSectionTranslation() {
+		return sectionTranslation;
+	}
+
+	public void setSectionTranslation(Section sectionTranslation) {
+		this.sectionTranslation = sectionTranslation;
+	}
+
+	public Section getDescriptionTranslation() {
+		return descriptionTranslation;
+	}
+
+	public void setDescriptionTranslation(Section descriptionTranslation) {
+		this.descriptionTranslation = descriptionTranslation;
+	}
+
+	public AuthorizationStatus getAuthorizationTranslation() {
+		return authorizationTranslation;
+	}
+
+	public void setAuthorizationTranslation(AuthorizationStatus authorizationTranslation) {
+		this.authorizationTranslation = authorizationTranslation;
+	}
 }

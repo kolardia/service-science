@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -12,9 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>
-		<spring:message code="web.layout.top.title" />
-	</h2>
+
 	<spring:url value="/?language=en" var="en" />
 	<spring:url value="/?language=pl" var="pl" />
 	*
@@ -43,24 +43,9 @@
 
 	<c:forEach varStatus="status" var="publication"
 		items="${collectionPublication}">
-		<spring:url value="/publication/${publication.id}" var="elementUrl" />
-		<button onclick="location.href='${elementUrl}'">Query</button>
-		Publication: ${publication.id}: ${publication.title}<br />
+		publicaton: ${publication.id}: ${translation.text}<br />
 	</c:forEach>
 
-	<c:forEach varStatus="status" var="category"
-		items="${collectionCategory}">
-		<spring:url value="/category/${category.id}" var="elementUrl" />
-		<button onclick="location.href='${elementUrl}'">Query</button>
-		Category:${category.id} : ${category.name}<br />
-	</c:forEach>
-
-	<c:forEach varStatus="status" var="translation"
-		items="${collectionTranslation}">
-		<spring:url value="/translation/${translation.id}" var="elementUrl" />
-		<button onclick="location.href='${elementUrl}'">Update</button>
-		Translation:${translation.id} : ${translation.polish}:  ${translation.english}<br />
-	</c:forEach>
 
 	<h1>
 		<strong>${info}</strong>

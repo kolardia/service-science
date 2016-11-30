@@ -1,6 +1,5 @@
 package pl.service.science.publication.controller;
 
-import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
@@ -11,11 +10,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.support.RequestContextUtils;
 import pl.service.science.publication.domain.Publication;
-import pl.service.science.publication.domain.PublicationCategory;
 import pl.service.science.publication.forms.ContestDTO;
 import pl.service.science.publication.service.ServicePublication;
+import pl.service.science.translation.dao.DaoLanguage;
+import pl.service.science.translation.dao.DaoTranslationText;
+import pl.service.science.translation.domain.Translation;
+import pl.service.science.translation.domain.TextTranslation;
+import pl.service.science.translation.service.ServiceTranslation;
 
 @Controller
 public class PublicationController {
@@ -27,18 +29,25 @@ public class PublicationController {
 	@Autowired
 	protected ServicePublication service;
 
+	@Autowired
+	ServiceTranslation serviceTranslation;
+
+	@Autowired
+	DaoTranslationText serviceTranslationText;
+
+	@Autowired
+	DaoLanguage serviceLanguage;
+
 	@RequestMapping("/")
 	public String showIndex(HttpServletRequest request, Model model) {
-		Publication contest = new Publication();
-		Locale locale = RequestContextUtils.getLocale(request);
-		String language = locale.getLanguage();
+		// Publication contest = new Publication();
+		// Locale locale = RequestContextUtils.getLocale(request);
+		// String language = locale.getLanguage();
 
-		model.addAttribute("publication", contest);
-		model.addAttribute("collectionPublication", service.findAll());
-		// model.addAttribute("collection", service.searchLanguage(language,
-		// publicationDao.getPublications_en("SELECT k FROM Publication k WHERE
-		// id<1"), publicationDao.getPublications_en("SELECT k FROM Publication
-		// k")));
+		TextTranslation translationText = new TextTranslation();
+
+		model.addAttribute("translation", translationText);
+		model.addAttribute("collectionTranslation", serviceTranslationText.findAll());
 
 		return "index";
 	}
@@ -46,10 +55,10 @@ public class PublicationController {
 	@RequestMapping("/publication/{id}")
 	public String detailPublication(@PathVariable("id") Long id, Model model) {
 
-		Publication contestTemp = new Publication();
-		contestTemp = service.findById(id);
+		// Publication contestTemp = new Publication();
+		// contestTemp = service.findById(id);
 
-		PublicationCategory categoryTemp = contestTemp.getCategory();
+		// PublicationCategory categoryTemp = contestTemp.getCategory();
 
 		// logger.info("contestDao.getPublication(id): " + contestTemp +
 		// contestTemp.getTitle() + contestTemp.getContents());
@@ -76,11 +85,30 @@ public class PublicationController {
 
 			return "forms/contest";
 		} else {
+
+			Translation tIdTitle = new Translation();
+			serviceTranslation.save(tIdTitle);
+
+			TextTranslation titleTranslation = new TextTranslation();
+			titleTranslation.setLanguage(serviceLanguage.findById(new Long(1)));
+			titleTranslation.setTranslation(tIdTitle);
+			titleTranslation.setText(form.getTitle());
+			serviceTranslationText.save(titleTranslation);
+
+			Translation tIdContents = new Translation();
+			serviceTranslation.save(tIdContents);
+
+			TextTranslation contentsTranslation = new TextTranslation();
+			contentsTranslation.setLanguage(serviceLanguage.findById(new Long(1)));
+			contentsTranslation.setTranslation(tIdContents);
+			contentsTranslation.setText(form.getContents());
+			serviceTranslationText.save(contentsTranslation);
+
 			Publication contest = new Publication();
-			contest.setId(form.getId());
-			// contest.setTitle(form.getTitle());
-			// contest.setContents(form.getContents());
-			// publicationDao.addPublication(contest);
+
+			contest.setTitle(tIdTitle);
+			contest.setContents(tIdContents);
+
 			service.save(contest);
 
 			return "redirect:/";

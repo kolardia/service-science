@@ -11,5 +11,4 @@ public interface DaoTranslation extends CrudRepository<Translation, Long> {
 	public Translation findById(Long id);
 
 	public List<Translation> findAll();
-
 }

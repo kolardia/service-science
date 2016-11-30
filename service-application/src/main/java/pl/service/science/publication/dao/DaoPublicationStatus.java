@@ -8,7 +8,7 @@ import pl.service.science.publication.domain.PublicationStatus;
 @Repository
 public interface DaoPublicationStatus extends CrudRepository<PublicationStatus, Long> {
 
-	public PublicationStatus findById(int id);
+	public PublicationStatus findById(Long id);
 
 	public List<PublicationStatus> findAll();
 

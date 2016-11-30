@@ -17,35 +17,26 @@ public class PublicationStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "publication_status_id")
-	public int id;
+	public Long id;
 
 	@OneToOne
 	@JoinColumn(name = "status_translation_id")
-	public Translation nameTranslation;
+	public Translation statusName;
 
-	public PublicationStatus() {
-
-	}
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Translation getNameTranslation() {
-		return nameTranslation;
+	public Translation getStatusName() {
+		return statusName;
 	}
 
-	public void setNameTranslation(Translation nameTranslation) {
-		this.nameTranslation = nameTranslation;
-	}
-
-	@Override
-	public String toString() {
-		return "PublicationStatus [id=" + id + ", nameTranslation=" + nameTranslation + "]";
+	public void setStatusName(Translation statusName) {
+		this.statusName = statusName;
 	}
 
 }

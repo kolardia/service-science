@@ -24,6 +24,6 @@ public class SectionCenter {
 
 	@ManyToOne
 	@JoinColumn(name = "section_order_id")
-	public Section sectionOrder;
+	public Section subsection;
 
 }

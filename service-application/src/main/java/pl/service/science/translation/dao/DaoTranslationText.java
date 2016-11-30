@@ -3,13 +3,21 @@ package pl.service.science.translation.dao;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.service.science.translation.domain.TranslationText;
+
+import pl.service.science.translation.domain.Translation;
+import pl.service.science.translation.domain.Language;
+import pl.service.science.translation.domain.TextTranslation;
 
 @Repository
-public interface DaoTranslationText extends CrudRepository<TranslationText, Long> {
+public interface DaoTranslationText extends CrudRepository<TextTranslation, Long> {
 
-	public TranslationText findById(Long id);
+	public TextTranslation findById(Long id);
 
-	public List<TranslationText> findAll();
+	public List<TextTranslation> findAll();
 
+	public List<TextTranslation> findByTranslation(Translation translation);
+
+	public TextTranslation findByTranslationAndLanguage(Translation translation, Language language);
+
+	public TextTranslation findByText(String text);
 }

@@ -21,7 +21,7 @@ public class PublicationCategory {
 
 	@OneToOne
 	@JoinColumn(name = "category_translation_id")
-	public Translation nameTranslation;
+	public Translation categoryName;
 
 	public PublicationCategory() {
 
@@ -35,17 +35,12 @@ public class PublicationCategory {
 		this.id = id;
 	}
 
-	public Translation getNameTranslation() {
-		return nameTranslation;
+	public Translation getCategoryName() {
+		return categoryName;
 	}
 
-	public void setNameTranslation(Translation nameTranslation) {
-		this.nameTranslation = nameTranslation;
-	}
-
-	@Override
-	public String toString() {
-		return "PublicationCategory [id=" + id + ", nameTranslation=" + nameTranslation + "]";
+	public void setCategoryName(Translation categoryName) {
+		this.categoryName = categoryName;
 	}
 
 }
