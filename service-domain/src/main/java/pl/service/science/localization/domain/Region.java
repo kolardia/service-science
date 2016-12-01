@@ -1,16 +1,17 @@
 package pl.service.science.localization.domain;
 
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import pl.service.science.translation.domain.Translation;
 
 @Entity
@@ -33,7 +34,7 @@ public class Region {
 
 	// Cities in the area of the region
 	@OneToMany(mappedBy = "cityRegion")
-	public List<City> cities;
+	public List<City> city;
 
 	public Region() {
 
@@ -63,12 +64,12 @@ public class Region {
 		this.country = country;
 	}
 
-	public List<City> getCities() {
-		return cities;
+	public List<City> getCity() {
+		return city;
 	}
 
-	public void setCities(List<City> cities) {
-		this.cities = cities;
+	public void setCity(List<City> city) {
+		this.city = city;
 	}
 
 }

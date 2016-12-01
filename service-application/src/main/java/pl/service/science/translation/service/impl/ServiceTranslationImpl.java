@@ -83,4 +83,16 @@ public class ServiceTranslationImpl implements ServiceTranslation {
 
 	}
 
+	public Translation findText(String text, String languageCode) {
+
+		TextTranslation textTranslation = new TextTranslation();
+		Language language = new Language();
+
+		language = serviceLanguage.findByCode(languageCode);
+		textTranslation = serviceTextTranslation.findByTextAndLanguage(text, language);
+
+		return dao.findByTextTranslation(textTranslation);
+
+	}
+
 }

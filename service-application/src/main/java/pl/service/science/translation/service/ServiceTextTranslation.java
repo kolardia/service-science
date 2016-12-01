@@ -24,4 +24,6 @@ public interface ServiceTextTranslation {
 	public void delete(List<TextTranslation> text);
 
 	public void delete(TextTranslation text);
+
+	public TextTranslation findByTextAndLanguage(String text, Language language);
 }

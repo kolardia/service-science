@@ -20,4 +20,6 @@ public interface DaoTranslationText extends CrudRepository<TextTranslation, Long
 	public TextTranslation findByTranslationAndLanguage(Translation translation, Language language);
 
 	public TextTranslation findByText(String text);
+
+	public TextTranslation findByTextAndLanguage(String text, Language language);
 }

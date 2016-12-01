@@ -21,4 +21,6 @@ public interface ServiceTranslation {
 
 	public Translation updateText(Translation translation, String text, String languageCode);
 
+	Translation findText(String text, String languageCode);
+
 }

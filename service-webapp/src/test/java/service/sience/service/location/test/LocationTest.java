@@ -1,5 +1,6 @@
 package service.sience.service.location.test;
 
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +15,7 @@ import pl.service.science.localization.domain.Region;
 import pl.service.science.localization.service.ServiceCity;
 import pl.service.science.localization.service.ServiceCountry;
 import pl.service.science.localization.service.ServiceRegion;
-import pl.service.science.translation.domain.Translation;
-import pl.service.science.translation.service.ServiceTextTranslation;
+import pl.service.science.translation.service.ServiceTranslation;
 
 @FixMethodOrder(MethodSorters.JVM)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,10 +23,10 @@ import pl.service.science.translation.service.ServiceTextTranslation;
 public class LocationTest {
 
 	@Autowired
-	protected ServiceCountry serviceCountry;
+	protected ServiceTranslation serviceTranslation;
 
 	@Autowired
-	protected ServiceTextTranslation serviceText;
+	protected ServiceCountry serviceCountry;
 
 	@Autowired
 	protected ServiceRegion serviceRegion;
@@ -38,27 +38,25 @@ public class LocationTest {
 	public void location() {
 
 		Country country = new Country();
-		country.setCountry(serviceCountry.insert(new Translation()));
-
-		serviceCountry.save(country);
-
-		serviceCountry.newText(country.getCountry(), "Polska", "PL");
+		country = serviceCountry.findOrSave("Polska", "PL");
 
 		Region region = new Region();
+		region = serviceRegion.findOrSave("Wielkopolska", "PL");
 		region.setCountry(country);
-		region.setRegion(serviceRegion.insert(new Translation()));
-
 		serviceRegion.save(region);
 
-		serviceCountry.newText(region.getRegion(), "Wielkopolska", "PL");
-
 		City city = new City();
-		city.setCity(serviceCity.insert(new Translation()));
+		city = serviceCity.findOrSave("Poznań", "PL");
 		city.setCityRegion(region);
-
 		serviceCity.save(city);
-		serviceCity.newText(city.getCity(), "Poznan", "PL");
+
+		Assert.assertEquals(serviceRegion.findById(region.getId()).getId(),
+				serviceRegion.findByCountry(country).getId());
+
+		Assert.assertEquals(serviceRegion.findById(region.getId()).getId(), serviceRegion.findByCity(city).getId());
+
+		Assert.assertEquals(serviceRegion.findByRegion(serviceTranslation.findText("Wielkopolska", "PL")).getId(),
+				serviceRegion.findByCity(city).getId());
 
 	}
-
 }

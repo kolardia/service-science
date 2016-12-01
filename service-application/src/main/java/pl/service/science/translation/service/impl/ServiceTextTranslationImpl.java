@@ -24,24 +24,28 @@ public class ServiceTextTranslationImpl implements ServiceTextTranslation {
 	public TextTranslation findByTranslationAndLanguage(Translation translation, Language language) {
 		return dao.findByTranslationAndLanguage(translation, language);
 	}
-	
-	public TextTranslation findByText(String text){
+
+	public TextTranslation findByText(String text) {
 		return dao.findByText(text);
 	}
 
-	public void save(TextTranslation text){
+	public void save(TextTranslation text) {
 		dao.save(text);
 	}
-	
-	public List<TextTranslation> findByTranslation(Translation translation){
+
+	public List<TextTranslation> findByTranslation(Translation translation) {
 		return dao.findByTranslation(translation);
 	}
-	
-	public void delete(List <TextTranslation> text){
+
+	public void delete(List<TextTranslation> text) {
 		dao.delete(text);
 	}
-	
-	public void delete(TextTranslation text){
+
+	public void delete(TextTranslation text) {
 		dao.delete(text);
+	}
+
+	public TextTranslation findByTextAndLanguage(String text, Language language) {
+		return dao.findByTextAndLanguage(text, language);
 	}
 }

@@ -35,4 +35,31 @@ public class ServiceCountryImpl implements ServiceCountry {
 	public void newText(Translation translation, String text, String code) {
 		serviceTranslation.newText(translation, text, code);
 	}
+
+	public Country findByCountry(Translation translation) {
+		return dao.findByCountry(translation);
+	}
+
+	public Country findOrSave(String countryName, String languageCode) {
+
+		Translation translation = new Translation();
+		translation = serviceTranslation.findText(countryName, languageCode);
+
+		if (translation == null) {
+			Country country = new Country();
+
+			country.setCountry(this.insert(new Translation()));
+
+			dao.save(country);
+
+			this.newText(country.getCountry(), countryName, languageCode);
+			return country;
+
+		} else {
+
+			translation = serviceTranslation.findText(countryName, languageCode);
+
+			return dao.findByCountry(translation);
+		}
+	}
 }
