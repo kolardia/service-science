@@ -1,13 +1,17 @@
 package pl.service.science.localization.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import pl.service.science.translation.domain.Translation;
 
 @Entity
@@ -24,8 +28,8 @@ public class Country {
 	public Translation country;
 
 	// Country which is divided into regions
-	@OneToOne(mappedBy = "country")
-	public Region region;
+	@OneToMany(mappedBy = "country")
+	public List <Region> region;
 
 	public Long getId() {
 		return id;

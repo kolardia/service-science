@@ -45,7 +45,11 @@ public class ServiceCountryImpl implements ServiceCountry {
 		Translation translation = new Translation();
 		translation = serviceTranslation.findText(countryName, languageCode);
 
-		if (translation == null) {
+		if (translation != null) {
+
+			return dao.findByCountry(translation);
+
+		} else {
 			Country country = new Country();
 
 			country.setCountry(this.insert(new Translation()));
@@ -53,13 +57,8 @@ public class ServiceCountryImpl implements ServiceCountry {
 			dao.save(country);
 
 			this.newText(country.getCountry(), countryName, languageCode);
-			return country;
+			return dao.findById(country.getId());
 
-		} else {
-
-			translation = serviceTranslation.findText(countryName, languageCode);
-
-			return dao.findByCountry(translation);
 		}
 	}
 }

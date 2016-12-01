@@ -21,6 +21,6 @@ public interface DaoRegion extends CrudRepository<Region, Long> {
 
 	public Region findByCity(City city);
 
-	public Region findByCountry(Country country);
+	public List <Region> findByCountry(Country country);
 
 }

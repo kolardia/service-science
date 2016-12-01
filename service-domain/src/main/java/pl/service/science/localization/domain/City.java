@@ -41,8 +41,8 @@ public class City {
 	@OneToMany(mappedBy = "sectonLocation")
 	public List<SectionLocation> cities;
 
-	@OneToOne(mappedBy = "cityOfResidence")
-	public User cityOfResidence;
+	@OneToMany(mappedBy = "cityOfResidence")
+	public List<User> cityOfResidence;
 
 	public City() {
 
@@ -79,13 +79,4 @@ public class City {
 	public void setCities(List<SectionLocation> cities) {
 		this.cities = cities;
 	}
-
-	public User getCityOfResidence() {
-		return cityOfResidence;
-	}
-
-	public void setCityOfResidence(User cityOfResidence) {
-		this.cityOfResidence = cityOfResidence;
-	}
-
 }

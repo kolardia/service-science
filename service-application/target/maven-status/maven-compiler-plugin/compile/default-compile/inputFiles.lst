@@ -12,9 +12,11 @@
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/translation/service/impl/ServiceTextTranslationImpl.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/publication/dao/DaoPublicationStatus.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/translation/service/impl/ServiceTranslationImpl.java
+/home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/authorization/service/impl/ServiceUserImpl.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/publication/dao/DaoPublication.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/translation/service/ServiceTextTranslation.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/translation/service/ServiceTranslation.java
+/home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/authorization/dao/DaoUser.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/publication/service/ServicePublicationCategory.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/localization/service/ServiceRegion.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/publication/service/impl/ServicePublicationImpl.java
@@ -25,3 +27,4 @@
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/publication/service/impl/ServicePublicationCategoryImpl.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/localization/service/impl/ServiceCityImpl.java
 /home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/translation/dao/DaoTranslation.java
+/home/kolardia/workspace/pl.service/service-application/src/main/java/pl/service/science/authorization/service/ServiceUser.java

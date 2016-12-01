@@ -1,5 +1,7 @@
 package pl.service.science.localization.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import pl.service.science.localization.domain.City;
@@ -24,6 +26,6 @@ public interface ServiceRegion {
 
 	public Region findByCity(City city);
 
-	public Region findByCountry(Country country);
+	public List <Region> findByCountry(Country country);
 
 }

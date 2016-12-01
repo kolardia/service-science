@@ -1,5 +1,7 @@
 package pl.service.science.localization.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,7 +66,7 @@ public class ServiceRegionImpl implements ServiceRegion {
 		return dao.findByCity(city);
 	}
 
-	public Region findByCountry(Country country) {
+	public List <Region> findByCountry(Country country) {
 		return dao.findByCountry(country);
 	}
 	
