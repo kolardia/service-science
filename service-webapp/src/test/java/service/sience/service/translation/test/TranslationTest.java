@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.service.science.translation.domain.Translation;
+import pl.service.science.translation.service.ServiceLanguage;
 import pl.service.science.translation.service.ServiceTextTranslation;
 import pl.service.science.translation.service.ServiceTranslation;
 
@@ -25,6 +26,9 @@ public class TranslationTest {
 
 	@Autowired
 	ServiceTextTranslation serviceText;
+
+	@Autowired
+	ServiceLanguage serviceLanguage;
 
 	@Test /* Insert, update, delete */
 	public void testPlTranslation() {

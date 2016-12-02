@@ -22,12 +22,6 @@ public class ServiceCityImpl implements ServiceCity {
 		return dao.findById(id);
 	}
 
-	public Translation insert(Translation translation) {
-		serviceTranslation.save(translation);
-
-		return translation;
-	}
-
 	public void save(City city) {
 		dao.save(city);
 	}
@@ -41,21 +35,21 @@ public class ServiceCityImpl implements ServiceCity {
 		Translation translation = new Translation();
 		translation = serviceTranslation.findText(countryName, languageCode);
 
-		if (translation == null) {
-			City city = new City();
+		if (translation != null) {
 
-			city.setCity(this.insert(new Translation()));
-
-			dao.save(city);
-
-			this.newText(city.getCity(), countryName, languageCode);
-			return city;
+			return dao.findByCity(translation);
 
 		} else {
 
-			translation = serviceTranslation.findText(countryName, languageCode);
+			City city = new City();
+			city.setCity(serviceTranslation.save(new Translation())); 
+			
+			dao.save(city);
 
-			return dao.findByCity(translation);
+			this.newText(city.getCity(), countryName, languageCode);
+			
+			return dao.findById(city.getId());
+
 		}
 	}
 }

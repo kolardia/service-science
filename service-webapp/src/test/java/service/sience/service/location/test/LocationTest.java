@@ -11,9 +11,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.service.science.localization.domain.City;
 import pl.service.science.localization.domain.Country;
+import pl.service.science.localization.domain.Location;
 import pl.service.science.localization.domain.Region;
 import pl.service.science.localization.service.ServiceCity;
 import pl.service.science.localization.service.ServiceCountry;
+import pl.service.science.localization.service.ServiceLocation;
 import pl.service.science.localization.service.ServiceRegion;
 import pl.service.science.translation.service.ServiceLanguage;
 import pl.service.science.translation.service.ServiceTextTranslation;
@@ -42,6 +44,19 @@ public class LocationTest {
 	@Autowired
 	protected ServiceCity serviceCity;
 
+	@Autowired
+	protected ServiceLocation serviceLocation;
+
+	@Test
+	public void location() {
+
+		Location location = new Location();
+		location.setCity(null);
+		location.setRegon(serviceLocation.findOrSaveRegion("PL", "Wielkopolske", "Polska"));
+		location.setPostalAddress("os. Sobieskiego 78/5");
+		serviceLocation.save(location);
+	}
+
 	@Test
 	public void saveLocation() {
 
@@ -56,16 +71,7 @@ public class LocationTest {
 			region.setCountry(country);
 			serviceRegion.save(region);
 
-			City city = new City();
-			city = serviceCity.findOrSave("Poznan", "PL");
-			city.setCityRegion(region);
-			serviceCity.save(city);
-
-			Assert.assertEquals(serviceRegion.findById(region.getId()).getId(), serviceRegion.findByCity(city).getId());
-
-			Assert.assertEquals(serviceRegion.findByRegion(serviceTranslation.findText("Wielkopolskie", "PL")).getId(),
-					serviceRegion.findByCity(city).getId());
-
+			Assert.assertEquals(country.getId(), serviceCountry.findByRegion(region).getId());
 		}
 	}
 
@@ -123,7 +129,7 @@ public class LocationTest {
 	}
 
 	@Test
-	public void locationPart() {
+	public void locationPartCountry() {
 
 		Country country1 = new Country();
 		country1 = serviceCountry.findOrSave("Polska", "PL");
@@ -134,36 +140,21 @@ public class LocationTest {
 		region1.setCountry(country1);
 		serviceRegion.save(region1);
 
+		Assert.assertEquals(country1.getId(), serviceCountry.findByRegion(region1).getId());
+
 		Region region2 = new Region();
 		region2 = serviceRegion.findOrSave("Wielkopolskie", "PL");
 		region2.setCountry(country1);
 		serviceRegion.save(region2);
+
+		Assert.assertEquals(country1.getId(), serviceCountry.findByRegion(region2).getId());
 
 		Region region3 = new Region();
 		region3 = serviceRegion.findOrSave("Mazowieckie", "PL");
 		region3.setCountry(country1);
 		serviceRegion.save(region3);
 
-		City city1 = new City();
-		city1 = serviceCity.findOrSave("Nysa", "PL");
-		city1.setCityRegion(region1);
-		serviceCity.save(city1);
-		Assert.assertEquals(serviceRegion.findByRegion(serviceTranslation.findText("Opolskie", "PL")).getId(),
-				serviceRegion.findByCity(city1).getId());
-
-		City city2 = new City();
-		city2 = serviceCity.findOrSave("Opole", "PL");
-		city2.setCityRegion(region1);
-		serviceCity.save(city2);
-		Assert.assertEquals(serviceRegion.findByRegion(serviceTranslation.findText("Opolskie", "PL")).getId(),
-				serviceRegion.findByCity(city2).getId());
-
-		City city3 = new City();
-		city3 = serviceCity.findOrSave("Prudnik", "PL");
-		city3.setCityRegion(region1);
-		serviceCity.save(city3);
-		Assert.assertEquals(serviceRegion.findByRegion(serviceTranslation.findText("Opolskie", "PL")).getId(),
-				serviceRegion.findByCity(city3).getId());
+		Assert.assertEquals(country1.getId(), serviceCountry.findByRegion(region3).getId());
 
 	}
 }

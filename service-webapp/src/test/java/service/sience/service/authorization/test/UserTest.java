@@ -30,8 +30,8 @@ public class UserTest {
 		user.setEmail("m.senderecka@gmail.com");
 		user.setEnabled(true);
 		user.setPassword("password");
-		user.setCityOfResidence(serviceUser.findOrSaveLocation("Polska", "Wielkopolskie", "Poznan", "PL"));
-
+		user.setAddressOfResidence(null);
+	
 		serviceUser.save(user);
 		Assert.assertNotNull(serviceUser.findByEmail("m.senderecka@gmail.com"));
 	}
@@ -39,6 +39,7 @@ public class UserTest {
 	@Test // this user exists --> update user
 	public void updateUser() {
 
+		
 		User user = new User();
 		user = serviceUser.ifExistFindByEmail("m.senderecka@gmail.com");
 
@@ -46,8 +47,8 @@ public class UserTest {
 		user.setEmail("kolardia@gmail.com");
 		user.setEnabled(true);
 		user.setPassword("password");
-		user.setCityOfResidence(serviceUser.findOrSaveLocation("Polska", "Wielkopolskie", "Poznan", "PL"));
-
+		user.setAddressOfResidence(null);
+		
 		serviceUser.save(user);
 		Assert.assertNotNull(serviceUser.findByEmail("kolardia@gmail.com"));
 		Assert.assertNull(serviceUser.findByEmail("m.senderecka@gmail.com"));

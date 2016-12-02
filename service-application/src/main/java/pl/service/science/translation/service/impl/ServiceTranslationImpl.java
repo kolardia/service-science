@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.service.science.localization.domain.City;
 import pl.service.science.translation.dao.DaoTranslation;
 import pl.service.science.translation.domain.Language;
 import pl.service.science.translation.domain.TextTranslation;
@@ -31,13 +32,17 @@ public class ServiceTranslationImpl implements ServiceTranslation {
 	public Translation findById(Long id) {
 		return dao.findById(id);
 	}
+	
+	public Translation findByCity(City city){
+		return dao.findByCityTranslation(city);
+	}
 
 	public List<Translation> findAll() {
 		return dao.findAll();
 	}
 
-	public void save(Translation transaltion) {
-		dao.save(transaltion);
+	public Translation save(Translation transaltion) {
+		return dao.save(transaltion);
 	}
 
 	public void delete(Translation translation) {

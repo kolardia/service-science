@@ -8,14 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import pl.service.science.section.domain.SectionLocation;
 import pl.service.science.translation.domain.Translation;
-import pl.service.science.user.domain.User;
 
 /**
  * @author kolardia
@@ -34,15 +31,8 @@ public class City {
 	@JoinColumn(name = "city_translation_id")
 	public Translation city;
 
-	@ManyToOne
-	@JoinColumn(name = "city_region_id")
-	public Region cityRegion;
-
-	@OneToMany(mappedBy = "sectonLocation")
-	public List<SectionLocation> cities;
-
-	@OneToMany(mappedBy = "cityOfResidence")
-	public List<User> cityOfResidence;
+	@OneToMany(mappedBy = "city")
+	public List<Location> cities;
 
 	public City() {
 
@@ -64,19 +54,4 @@ public class City {
 		this.city = city;
 	}
 
-	public Region getCityRegion() {
-		return cityRegion;
-	}
-
-	public void setCityRegion(Region cityRegion) {
-		this.cityRegion = cityRegion;
-	}
-
-	public List<SectionLocation> getCities() {
-		return cities;
-	}
-
-	public void setCities(List<SectionLocation> cities) {
-		this.cities = cities;
-	}
 }

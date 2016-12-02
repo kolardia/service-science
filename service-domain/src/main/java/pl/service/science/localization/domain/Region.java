@@ -33,9 +33,9 @@ public class Region {
 	@JoinColumn(name = "country_id")
 	public Country country;
 
+	@OneToMany(mappedBy = "region")
+	public List<Region> regions;
 	// Cities in the area of the region
-	@OneToMany(mappedBy = "cityRegion")
-	public List<City> city;
 
 	public Region() {
 
@@ -63,14 +63,6 @@ public class Region {
 
 	public void setCountry(Country country) {
 		this.country = country;
-	}
-
-	public List<City> getCity() {
-		return city;
-	}
-
-	public void setCity(List<City> city) {
-		this.city = city;
 	}
 
 }

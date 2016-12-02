@@ -10,4 +10,6 @@ public interface ServiceLanguage {
 	public Language findById(Long id);
 
 	public Language findByCode(String code);
+
+	public void save(Language language);
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import pl.service.science.localization.dao.DaoCountry;
 import pl.service.science.localization.domain.Country;
+import pl.service.science.localization.domain.Region;
 import pl.service.science.localization.service.ServiceCountry;
 import pl.service.science.translation.domain.Translation;
 import pl.service.science.translation.service.ServiceTranslation;
@@ -22,14 +23,12 @@ public class ServiceCountryImpl implements ServiceCountry {
 		return dao.findById(id);
 	}
 
+	public Country findByRegion(Region region){
+		return dao.findByRegion(region);
+	}
+	
 	public void save(Country country) {
 		dao.save(country);
-	}
-
-	public Translation insert(Translation translation) {
-		serviceTranslation.save(translation);
-
-		return translation;
 	}
 
 	public void newText(Translation translation, String text, String code) {
@@ -51,12 +50,12 @@ public class ServiceCountryImpl implements ServiceCountry {
 
 		} else {
 			Country country = new Country();
-
-			country.setCountry(this.insert(new Translation()));
+			country.setCountry(serviceTranslation.save(new Translation()));
 
 			dao.save(country);
 
 			this.newText(country.getCountry(), countryName, languageCode);
+			
 			return dao.findById(country.getId());
 
 		}

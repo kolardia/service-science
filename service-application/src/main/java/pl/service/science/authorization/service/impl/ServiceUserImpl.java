@@ -5,9 +5,6 @@ import org.springframework.stereotype.Service;
 
 import pl.service.science.authorization.dao.DaoUser;
 import pl.service.science.authorization.service.ServiceUser;
-import pl.service.science.localization.domain.City;
-import pl.service.science.localization.domain.Country;
-import pl.service.science.localization.domain.Region;
 import pl.service.science.localization.service.ServiceCity;
 import pl.service.science.localization.service.ServiceCountry;
 import pl.service.science.localization.service.ServiceRegion;
@@ -56,22 +53,4 @@ public class ServiceUserImpl implements ServiceUser {
 		dao.delete(user);
 	}
 
-	public City findOrSaveLocation(String countryName, String regionName, String cityName, String codeLanguage) {
-
-		Country country = new Country();
-		country = serviceCountry.findOrSave(countryName, codeLanguage);
-		serviceCountry.save(country);
-
-		Region region = new Region();
-		region = serviceRegion.findOrSave(regionName, codeLanguage);
-		region.setCountry(country);
-		serviceRegion.save(region);
-
-		City city = new City();
-		city = serviceCity.findOrSave(cityName, codeLanguage);
-		city.setCityRegion(region);
-		serviceCity.save(city);
-
-		return serviceCity.findById(city.getId());
-	}
 }

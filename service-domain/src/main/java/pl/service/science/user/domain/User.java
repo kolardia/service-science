@@ -6,10 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import pl.service.science.localization.domain.City;
+import pl.service.science.localization.domain.Location;
 
 @Entity
 @Table(name = "user")
@@ -23,18 +23,26 @@ public class User {
 	@Column(name = "user_email")
 	public String email;
 
+	public Location getAddressOfResidence() {
+		return addressOfResidence;
+	}
+
+	public void setAddressOfResidence(Location addressOfResidence) {
+		this.addressOfResidence = addressOfResidence;
+	}
+
 	@Column(name = "user_name")
 	public String name;
 
 	@Column(name = "user_password")
 	public String password;
 
-	@ManyToOne
-	@JoinColumn(name = "user_aadress_city")
-	public City cityOfResidence;
-
 	@Column(name = "user_enabled")
 	public Boolean enabled;
+	
+	@OneToOne
+	@JoinColumn(name = "user_location")
+	public Location addressOfResidence;
 
 	public Long getId() {
 		return id;
@@ -68,13 +76,6 @@ public class User {
 		this.password = password;
 	}
 
-	public City getCityOfResidence() {
-		return cityOfResidence;
-	}
-
-	public void setCityOfResidence(City cityOfResidence) {
-		this.cityOfResidence = cityOfResidence;
-	}
 
 	public Boolean getEnabled() {
 		return enabled;

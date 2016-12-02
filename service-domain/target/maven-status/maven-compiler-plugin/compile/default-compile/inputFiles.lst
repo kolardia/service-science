@@ -3,7 +3,6 @@
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/section/domain/SectionType.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/localization/domain/City.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/user/domain/AuthorizationStatus.java
-/home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/section/domain/SectionLocation.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/section/domain/SectionCenter.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/section/domain/Section.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/translation/domain/Translation.java
@@ -13,6 +12,7 @@
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/translation/domain/Language.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/publication/domain/Publication.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/application/domain/ContestEntryForm.java
+/home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/localization/domain/Location.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/user/domain/User.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/localization/domain/Region.java
 /home/kolardia/workspace/pl.service/service-domain/src/main/java/pl/service/science/user/domain/Role.java
