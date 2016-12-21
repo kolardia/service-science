@@ -13,6 +13,36 @@
 </script>
 </head>
 <body>
+	<spring:message code="admin.editor.profile.menu.role" var="menuRole" />
+	<spring:message code="admin.editor.profile.menu.edit" var="menuEdit" />
+	<spring:message code="admin.editor.profile.menu.language"
+		var="menuLanguage" />
+	<spring:message code="admin.editor.profile.menu.deactivation"
+		var="menuDeactivation" />
+
+	<spring:message
+		code="admin.editor.profile.menu.language.dropdown.show.pl"
+		var="LanguageShowPL" />
+	<spring:message
+		code="admin.editor.profile.menu.language.dropdown.show.en"
+		var="LanguageShowEN" />
+
+	<spring:message code="admin.editor.profile.table.name" var="tableName" />
+	<spring:message code="admin.editor.profile.table.surname"
+		var="tableSurname" />
+	<spring:message code="admin.editor.profile.table.mail" var="tableEmail" />
+	<spring:message code="admin.editor.profile.table.phone"
+		var="tablePhone" />
+	<spring:message code="admin.editor.profile.table.address"
+		var="tableAddress" />
+	<spring:message code="admin.editor.profile.table.city" var="tableCity" />
+	<spring:message code="admin.editor.profile.table.province"
+		var="tableProvince" />
+	<spring:message code="admin.editor.profile.table.country"
+		var="tableCountry" />
+	<spring:message code="admin.editor.profile.table.account"
+		var="tableAccount" />
+
 	<div class="row" style="margin-bottom: 5px; margin-top: 10px">
 		<div class=col-md-7>
 			<div class="row">
@@ -20,30 +50,39 @@
 
 					<div class="btn-group btn-group-justified" role="group"
 						aria-label="...">
-						<div style="color: #4E84AB; text-align:center;" class="btn-group" role="group">
+						<div style="color: #4E84AB; text-align: center;" class="btn-group"
+							role="group">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-							<b>Rola:</b> Redaktor
+							<b>${menuRole}:</b> Redaktor
 						</div>
 						<div class="btn-group" role="group">
 							<button type="button" class="btn btn-default"
 								style="border-color: #FFF">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								Edytuj profil
+								${menuEdit}
 							</button>
 						</div>
 
 						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-default"
-								style="border-color: #FFF">
-								<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-								Jęyk
-							</button>
+							<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle"
+									style="border-color: #FFF" type="button" id="dropdownMenu1"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="true">
+									<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+									${menuLanguage}
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownUser">
+									<li><a href="#"><b>PL</b> ${LanguageShowPL}</a></li>
+									<li><a href="#"><b>EN</b> ${LanguageShowEN}</a></li>
+								</ul>
+							</div>
 						</div>
 						<div class="btn-group" role="group">
 							<button type="button" class="btn btn-default"
 								style="border-color: #FFF">
 								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-								Dezaktywacja
+								${menuDeactivation}
 							</button>
 						</div>
 					</div>
@@ -87,41 +126,45 @@
 					<td>
 						<table class="table table-bordered" style="width: 100%">
 							<tr>
-								<td style="border: 1px solid #FFF;"><b>Nazwa</b></td>
-								<td style="border: 1px solid #FFF">Monika Senderecka</td>
+								<td style="border: 1px solid #FFF;"><b>${tableName}</b></td>
+								<td style="border: 1px solid #FFF">Monike</td>
 							</tr>
 							<tr>
-								<td style="border: 1px solid #FFF"><b>Email</b></td>
+								<td style="border: 1px solid #FFF;"><b>${tableSurname}</b></td>
+								<td style="border: 1px solid #FFF">Senderecka</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid #FFF"><b>${tableEmail}</b></td>
 								<td style="border: 1px solid #FFF">kolardia@gmail.com</td>
 							</tr>
 							<tr>
-								<td style="border: 1px solid #FFF"><b>Kraj</b></td>
-								<td style="border: 1px solid #FFF">Polska</td>
+								<td style="border: 1px solid #FFF"><b>${tablePhone}</b></td>
+								<td style="border: 1px solid #FFF">884-382-856</td>
 							</tr>
 							<tr>
-								<td style="border: 1px solid #FFF"><b>Misto</b></td>
-								<td style="border: 1px solid #FFF">Poznań</td>
-							</tr>
-							<tr>
-								<td style="border: 1px solid #FFF"><b>Województwo</b></td>
-								<td style="border: 1px solid #FFF">wielkopolskie</td>
-							</tr>
-							<tr>
-								<td style="border: 1px solid #FFF"><b>Adress</b></td>
+								<td style="border: 1px solid #FFF"><b>${tableName}</b></td>
 								<td style="border: 1px solid #FFF">ul. Dombrowskiego</td>
 							</tr>
 							<tr>
-								<td style="border: 1px solid #FFF"><b>Konto</b></td>
-								<td style="border: 1px solid #FFF">aktywne</td>
+								<td style="border: 1px solid #FFF"><b>${tableCity}</b></td>
+								<td style="border: 1px solid #FFF">Poznań</td>
 							</tr>
 							<tr>
-								<td style="border: 1px solid #FFF"><b>Konto</b></td>
-								<td style="border: 1px solid #FFF">aktywne</td>
+								<td style="border: 1px solid #FFF"><b>${tableProvince}</b></td>
+								<td style="border: 1px solid #FFF">wielkopolskie</td>
 							</tr>
+
 							<tr>
-								<td style="border: 1px solid #FFF"><b>Konto</b></td>
+								<td style="border: 1px solid #FFF"><b>${tableCountry}</b></td>
+								<td style="border: 1px solid #FFF">Polska</td>
+							</tr>
+
+
+							<tr>
+								<td style="border: 1px solid #FFF"><b>${tableAccount}</b></td>
 								<td style="border: 1px solid #FFF">aktywne</td>
 							</tr>
+
 						</table>
 					</td>
 				<tr>

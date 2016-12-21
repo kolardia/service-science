@@ -6,13 +6,31 @@
 <head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<style>
+a.list-group-item, button.list-group-item {
+	color: #62A9DD;
+}
+</style>
+
 </head>
+<spring:message code="admin.editor.help.title" var="title" />
+<spring:message code="admin.editor.help.introduction" var="introduction" />
+<spring:message code="admin.editor.help.subtitle" var="subtitle" />
+<spring:message code="admin.editor.help.archives" var="archives" />
+<spring:message code="admin.editor.help.publications" var="publications" />
+<spring:message code="admin.editor.help.profile" var="profile" />
+<spring:message code="admin.editor.help.description.archives"
+	var="descriptionArchives" />
+<spring:message code="admin.editor.help.description.publications"
+	var="descriptionPublications" />
+<spring:message code="admin.editor.help.description.profile"
+	var="descriptionProfile" />
 <body>
 	<div role="tabpanel" class="tab-pane" id="help" style="padding: 15px">
 		<div class="row" style="margin-bottom: 5px; margin-top: 10px">
 			<div class="col-md-6">
 				<h4 style="color: black">
-					<b>Pomoc w obsłudze serwisu</b>
+					<b>${title}</b>
 				</h4>
 			</div>
 			<div class="col-md-3 pull-right text-center"
@@ -23,26 +41,31 @@
 				</p>
 			</div>
 		</div>
-		<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-			accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae</p>
+
+		<p>${introduction}</p>
 		<p>
-			<b>Sed ut perspiciatis unde omnis accusantium doloremque
-				laudantium, totam rem </b>
+			<b>${subtitle} </b>
 		</p>
-		<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-			accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-			ab illo inventore veritatis et quasi architecto beatae vitae dicta
-			sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-			aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-			eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-			qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-			sed quia non numquam eius modi tempora incidunt ut labore et dolore
-			magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
-			nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-			aliquid ex ea commodi consequatur? Quis autem vel eum iure
-			reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-			consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-			pariatur?"</p>
+		<div class="list-group">
+			<button type="button" class="list-group-item">
+
+				<p>
+
+					<b> ${publications} </b> ${descriptionPublications}
+				</p>
+			</button>
+			<button type="button" class="list-group-item">
+				<p>
+
+					<b> ${archives} </b> ${descriptionArchives}
+				</p>
+			</button>
+			<button type="button" class="list-group-item">
+				<p>
+					<b> ${profile} </b> ${descriptionProfile}
+				</p>
+			</button>
+		</div>
 
 	</div>
 </body>

@@ -97,11 +97,6 @@ li.navInBloc {
 							<ul class="dropdown-menu" aria-labelledby="dropdownUser">
 								<li><a href="#"><span class="glyphicon glyphicon-lock"
 										aria-hidden="true"></span> ${logout}</a></li>
-								<li><a href="#"><span
-										class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-										${preferences}</a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-star"
-										aria-hidden="true"></span> ${help}</a></li>
 							</ul>
 						</div>
 					</div>

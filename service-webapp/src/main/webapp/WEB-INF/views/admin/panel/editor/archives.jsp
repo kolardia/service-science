@@ -11,7 +11,10 @@
 </script>
 </head>
 <body>
-
+<spring:message code="admin.editor.archives.menu.add" var="menuAdd" />
+<spring:message code="admin.editor.archives.menu.search.archive" var="menuSearchArchive" />
+<spring:message code="admin.editor.archives.menu.search.from.the.date" var="menuSearchFromDate" />
+<spring:message code="admin.editor.archives.menu.search.up.to.the.date" var="menuSearchUpToDate" />
 
 	<div class="row" style="margin-bottom: 5px; margin-top: 10px">
 
@@ -21,13 +24,13 @@
 
 			<div class="input-group input-group-sm">
 				<input type="text" class="form-control"
-					placeholder="xxxxxxxxxxxxxxxxxxxxxxxx"> <span
+					placeholder="${menuSearchFromDate }"> <span
 					class="input-group-btn">
 					<button id="btnSearchResults" class="btn btn-default" type="button">
 						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 					</button>
 				</span> <input type="text" class="form-control"
-					placeholder="xxxxxxxxxxxxxxxxxxxxxxxx">
+					placeholder="${menuSearchUpToDate }">
 			</div>
 
 		</div>
@@ -39,7 +42,7 @@
 					<button id="btnNew" type="button" class="btn btn-default"
 						style="border-color: #FFF">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-						dodaj archiwum
+						${menuAdd}
 					</button>
 				</div>
 
@@ -52,7 +55,7 @@
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</button>
 				</span> <input type="text" class="form-control"
-					placeholder="xxxxxxxxxxxxxxxxxxxxxxxx">
+					placeholder="${menuSearchArchive}">
 			</div>
 		</div>
 
