@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="service-webapp-0.0.1-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/details"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/forms"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editor/publications/list"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/service/cooperation"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/service/cooperation/list"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editor/publications"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editorialPanel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/servicePanel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/servicePanel/cooperationPanel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editorialPanel/helpPanel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editorialPanel/archivesPanel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editorialPanel/profilePanel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editorialPanel/publicationsPanel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editorialPanel/archivesPanel/list"/>
+        <dependent-module archiveName="service-application-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service-application/service-application">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="service-domain-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service-domain/service-domain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="service-webapp"/>
+        <property name="java-output-path" value="/service-webapp/target/classes"/>
+    </wb-module>
+</project-modules>

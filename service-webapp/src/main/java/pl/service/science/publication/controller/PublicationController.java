@@ -1,0 +1,118 @@
+package pl.service.science.publication.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import pl.service.science.publication.domain.Publication;
+import pl.service.science.publication.forms.ContestDTO;
+import pl.service.science.publication.service.ServicePublication;
+import pl.service.science.translation.dao.DaoLanguage;
+import pl.service.science.translation.dao.DaoTranslationText;
+import pl.service.science.translation.domain.Translation;
+import pl.service.science.translation.domain.TextTranslation;
+import pl.service.science.translation.service.ServiceTranslation;
+
+@Controller
+public class PublicationController {
+
+	final static Logger logger = Logger.getLogger(PublicationController.class);
+
+	// @Autowired
+	// protected ServicePublication service;
+	@Autowired
+	protected ServicePublication service;
+
+	@Autowired
+	ServiceTranslation serviceTranslation;
+
+	@Autowired
+	DaoTranslationText serviceTranslationText;
+
+	@Autowired
+	DaoLanguage serviceLanguage;
+
+	@RequestMapping("/")
+	public String showIndex(HttpServletRequest request, Model model) {
+		// Publication contest = new Publication();
+		// Locale locale = RequestContextUtils.getLocale(request);
+		// String language = locale.getLanguage();
+
+		TextTranslation translationText = new TextTranslation();
+
+		model.addAttribute("translation", translationText);
+		model.addAttribute("collectionTranslation", serviceTranslationText.findAll());
+
+		return "index";
+	}
+
+	@RequestMapping("/publication/{id}")
+	public String detailPublication(@PathVariable("id") Long id, Model model) {
+
+		// Publication contestTemp = new Publication();
+		// contestTemp = service.findById(id);
+
+		// PublicationCategory categoryTemp = contestTemp.getCategory();
+
+		// logger.info("contestDao.getPublication(id): " + contestTemp +
+		// contestTemp.getTitle() + contestTemp.getContents());
+		// model.addAttribute("title", contestTemp.getTitle());
+		// model.addAttribute("contents", contestTemp.getContents());
+		// model.addAttribute("category", categoryTemp.getName());
+
+		return "details/contest";
+	}
+
+	@RequestMapping("/publication/add")
+	public String addPublication(Model model) {
+
+		model.addAttribute("info", "PUBLICATION");
+		return "forms/contest";
+	}
+
+	@RequestMapping("publication/form")
+	public String showFormPublication(@ModelAttribute("form") @Valid ContestDTO form, BindingResult result,
+			Model model2) {
+		if (result.hasErrors()) {
+
+			model2.addAttribute("info", "form not normal!");
+
+			return "forms/contest";
+		} else {
+
+			Translation tIdTitle = new Translation();
+			serviceTranslation.save(tIdTitle);
+
+			TextTranslation titleTranslation = new TextTranslation();
+			titleTranslation.setLanguage(serviceLanguage.findById(new Long(1)));
+			titleTranslation.setTranslation(tIdTitle);
+			titleTranslation.setText(form.getTitle());
+			serviceTranslationText.save(titleTranslation);
+
+			Translation tIdContents = new Translation();
+			serviceTranslation.save(tIdContents);
+
+			TextTranslation contentsTranslation = new TextTranslation();
+			contentsTranslation.setLanguage(serviceLanguage.findById(new Long(1)));
+			contentsTranslation.setTranslation(tIdContents);
+			contentsTranslation.setText(form.getContents());
+			serviceTranslationText.save(contentsTranslation);
+
+			Publication contest = new Publication();
+
+			contest.setTitle(tIdTitle);
+			contest.setContents(tIdContents);
+
+			service.save(contest);
+
+			return "redirect:/";
+
+		}
+	}
+}
