@@ -36,7 +36,7 @@ li.navInBloc {
 		<div class="container-fluid">
 			<!--MENU : Show a main menu.-->
 			<div class="row">
-				<div class=" bg-nav-menu" style="margin-top: 35px;">
+				<div class=" bg-nav-menu" style="margin-top: 30px;">
 					<!--NAV 1: Show a language navigation-->
 					<spring:url value="/panel/?language=pl" var="pl" />
 					<spring:url value="/panel/?language=en" var="en" />
@@ -108,7 +108,7 @@ li.navInBloc {
 
 
 				<div class="col-md-11"
-					style="padding-left: 35px; margin-left: auto; margin-right: auto; margin-top: 25px;">
+					style="padding-left: 35px; margin-left: auto; margin-right: auto; margin-top: 10px;">
 
 						<div class="collapse" id="collapseSekcje">
 

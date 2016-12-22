@@ -10,12 +10,12 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/forms"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editor/publications"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editor"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/service"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editor/publications/list"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/service/cooperation"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/service/cooperation/list"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editor/publications"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editorialPanel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/servicePanel"/>
         <dependent-module archiveName="service-application-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service-application/service-application">
             <dependency-type>uses</dependency-type>
         </dependent-module>

@@ -89,7 +89,7 @@ li.navInBloc {
 			<div class="col-md-9 ">
 
 
-				<div id="pagePanel"><jsp:include page="panel/editor.jsp" /></div>
+				<div id="pagePanel"><jsp:include page="panel/editorialNavigation.jsp" /></div>
 				
 			</div>
 			<!--col-sm-9-->
@@ -99,10 +99,10 @@ li.navInBloc {
 	</div>
 
 	<div id="servicePanel">
-		<jsp:include page="panel/service.jsp" /></div>
+		<jsp:include page="panel/serviceNavigation.jsp" /></div>
 
 	<div id="editorPanel">
-		<jsp:include page="panel/editor.jsp" />
+		<jsp:include page="panel/editorialNavigation.jsp" />
 	</div>
 </body>
 </html>

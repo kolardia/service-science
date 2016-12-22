@@ -8,41 +8,52 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
+	<spring:message code="admin.service.base.address.menu.contact"
+		var="menuContact" />
+	<spring:message code="admin.service.base.address.menu.organizer"
+		var="menuOrganizer" />
+	<spring:message code="admin.service.base.address.menu.editors"
+		var="menuEditors" />
+	<spring:message code="admin.service.base.address.menu.participants"
+		var="menuParticipants" />
+		<spring:message code="admin.service.base.address.menu.search"
+		var="menuSearch" />
+
 	<div role="tabpanel" class="tab-pane" id="baseAdrress">
 		<div class="row" style="margin-bottom: 5px; margin-top: 10px">
 
 			<div class="col-md-7">
 				<div class="btn-group btn-group-justified" role="group"
 					aria-label="...">
+
 					<div aria-controls="section" class="btn-group" role="tab">
 						<a href="#x" type="button" class="btn btn-default"
 							data-toggle="tab" style="border-color: #FFF"><span
 							class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-							Organizator </a>
+							${menuOrganizer} </a>
+
+					</div>
+
+
+					<div aria-controls="section" class="btn-group" role="tab">
+						<a href="#z" type="button" class="btn btn-default"
+							data-toggle="tab" style="border-color: #FFF"><span
+							class="glyphicon  glyphicon-envelope" aria-hidden="true"></span>
+							${menuEditors} </a>
 
 					</div>
 					<div aria-controls="section" class="btn-group" role="tab">
 						<a href="#y" type="button" class="btn btn-default"
 							data-toggle="tab" style="border-color: #FFF"><span
 							class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-							Administracja </a>
+							${menuParticipants}  </a> <!-- or Important contacts -->
 
 					</div>
-
-					<div aria-controls="section" class="btn-group" role="tab">
-						<a href="#z" type="button" class="btn btn-default"
-							data-toggle="tab" style="border-color: #FFF"><span
-							class="glyphicon  glyphicon-envelope" aria-hidden="true"></span>
-							Redaktorzy </a>
-
-					</div>
-
 					<div aria-controls="section" class="btn-group" role="tab">
 						<a href="#section" type="button" class="btn btn-default"
 							data-toggle="tab" style="border-color: #FFF"><span
 							class="glyphicon  glyphicon-plus" aria-hidden="true"></span>
-							Dodaj kontakt </a>
-
+							${menuContact}  </a>
 					</div>
 				</div>
 			</div>
@@ -53,7 +64,7 @@
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 					</span> <input type="text" class="form-control"
-						placeholder="xxxxxxxxxxxxxxxxxxxxxxxx">
+						placeholder="${menuSearch}">
 				</div>
 			</div>
 		</div>

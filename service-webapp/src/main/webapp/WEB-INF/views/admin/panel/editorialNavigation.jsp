@@ -43,23 +43,23 @@
 			<div class="tab-content">
 				<!--admin.panel.editor.publications-->
 				<div role="tabpanel" class="tab-pane active" id="publications">
-					<jsp:include page="editor/publications.jsp" />
+					<jsp:include page="editorialPanel/publicationsMenu.jsp" />
 				</div>
 
 				<!--admin.panel.editor.archives-->
 				<div role="tabpanel" class="tab-pane" id="archives">
 
-					<jsp:include page="editor/archives.jsp" />
+					<jsp:include page="editorialPanel/archivesMenu.jsp" />
 				</div>
 
 				<!--admin.panel.editor.profile-->
 				<div role="tabpanel" class="tab-pane" id="profile">
-					<jsp:include page="editor/profile.jsp" />
+					<jsp:include page="editorialPanel/profileMenu.jsp" />
 				</div>
 
 				<!--admin.panel.editor.help-->
 				<div role="tabpanel" class="tab-pane" id="help">
-					<jsp:include page="editor/help.jsp" /></div>
+					<jsp:include page="editorialPanel/helpMenu.jsp" /></div>
 
 
 			</div>

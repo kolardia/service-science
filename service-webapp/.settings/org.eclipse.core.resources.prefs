@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/webapp/WEB-INF/views/admin/panel.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/admin/panel/service.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/admin/panel/service/cooperation.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/admin/panel/service/help.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/panel/serviceNavigation.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/panel/servicePanel/cooperationMenu.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/panel/servicePanel/helpMenu.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/panelMain.jsp=UTF-8

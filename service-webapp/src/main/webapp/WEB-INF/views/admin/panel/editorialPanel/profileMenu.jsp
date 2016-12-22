@@ -15,11 +15,10 @@
 <body>
 	<spring:message code="admin.editor.profile.menu.role" var="menuRole" />
 	<spring:message code="admin.editor.profile.menu.edit" var="menuEdit" />
-	<spring:message code="admin.editor.profile.menu.language"
-		var="menuLanguage" />
 	<spring:message code="admin.editor.profile.menu.deactivation"
 		var="menuDeactivation" />
-
+	<spring:message code="admin.editor.profile.menu.language"
+		var="menuLanguage" />
 	<spring:message
 		code="admin.editor.profile.menu.language.dropdown.show.pl"
 		var="LanguageShowPL" />
@@ -142,7 +141,7 @@
 								<td style="border: 1px solid #FFF">884-382-856</td>
 							</tr>
 							<tr>
-								<td style="border: 1px solid #FFF"><b>${tableName}</b></td>
+								<td style="border: 1px solid #FFF"><b>${tableAddress}</b></td>
 								<td style="border: 1px solid #FFF">ul. Dombrowskiego</td>
 							</tr>
 							<tr>

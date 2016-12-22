@@ -21,15 +21,24 @@ a.list-group-item, button.list-group-item {
 <spring:message code="admin.service.help.section" var="section" />
 <spring:message code="admin.service.help.description.section"
 	var="descriptionSection" />
-	
-<spring:message code="admin.service.help.publications"
-	var="publications" />
-<spring:message code="admin.service.help.profile" var="profile" />
-<spring:message code="admin.service.help.description.archives"
-	var="descriptionArchives" />
 
-<spring:message code="admin.service.help.description.profile"
-	var="descriptionProfile" />
+<spring:message code="admin.service.help.news" var="news" />
+<spring:message code="admin.service.help.description.news"
+	var="descriptionNews" />
+
+<spring:message code="admin.service.help.resources" var="resources" />
+<spring:message code="admin.service.help.description.resources"
+	var="descriptionResources" />
+
+<spring:message code="admin.service.help.base.adrress" var="baseAdrress" />
+<spring:message code="admin.service.help.description.base.adrress"
+	var="descriptionBaseAdrress" />
+
+<spring:message code="admin.service.help.cooperation" var="cooperation" />
+<spring:message code="admin.service.help.description.cooperation"
+	var="descriptionCooperation" />
+
+
 <body>
 	<div role="tabpanel" class="tab-pane" id="help" style="padding: 15px">
 		<div class="row" style="margin-bottom: 5px; margin-top: 10px">
@@ -56,18 +65,23 @@ a.list-group-item, button.list-group-item {
 
 				<p>
 
-					<b> ${section} </b> ${descriptionPublications}
+					<b> ${section} </b> ${descriptionSection}
 				</p>
 			</button>
 			<button type="button" class="list-group-item">
 				<p>
 
-					<b> ${archives} </b> ${descriptionArchives}
+					<b> ${news} </b> ${descriptionNews}
 				</p>
 			</button>
 			<button type="button" class="list-group-item">
 				<p>
-					<b> ${profile} </b> ${descriptionProfile}
+					<b> ${cooperation} </b> ${descriptionCooperation}
+				</p>
+			</button>
+			<button type="button" class="list-group-item">
+				<p>
+					<b> ${baseAdrress} </b> ${descriptionBaseAdrress}
 				</p>
 			</button>
 		</div>

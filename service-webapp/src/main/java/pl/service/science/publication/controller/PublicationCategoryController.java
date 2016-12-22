@@ -50,7 +50,7 @@ public class PublicationCategoryController {
 
 		model.addAttribute("category", category);
 		model.addAttribute("collectionCategory", serviceCategory.findAll());
-		return "admin/panel";
+		return "admin/panelMain";
 	}
 
 	@RequestMapping("/category/{id}")

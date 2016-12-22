@@ -8,6 +8,21 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
+	<spring:message code="admin.service.news.menu.organizer"
+		var="menuOrganizer" />
+	<spring:message code="admin.service.news.menu.editors"
+		var="menuEditors" />
+	<spring:message code="admin.service.news.menu.announcement"
+		var="menuAnnouncement" />
+	<spring:message code="admin.service.news.menu.important"
+		var="menuImportant" />
+	<spring:message code="admin.service.news.search.from.the.date"
+		var="searchFromTheDate" />
+	<spring:message code="admin.service.news.search.up.to.the.date"
+		var="searchUpToDate" />
+
+
+
 	<div class="row" style="margin-bottom: 5px; margin-top: 10px">
 		<div class="col-md-7">
 			<div class="btn-group btn-group-justified" role="group"
@@ -16,41 +31,45 @@
 					<button type="button" class="btn btn-default"
 						style="border-color: #FFF">
 						<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-						Organizator
+						${menuOrganizer}
 					</button>
 				</div>
 				<div class="btn-group" role="group">
 					<button type="button" class="btn btn-default"
 						style="border-color: #FFF">
 						<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-						Redaktorzy
+						${menuEditors}
 					</button>
 				</div>
 				<div class="btn-group" role="group">
 					<button type="button" class="btn btn-default"
 						style="border-color: #FFF">
 						<span class="glyphicon  glyphicon-plus" aria-hidden="true"></span>
-						Ogloszenie
+						${menuAnnouncement}
 					</button>
 				</div>
 				<div class="btn-group" role="group">
 					<button type="button" class="btn btn-default"
 						style="border-color: #FFF">
-						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-						Kalendarz
+						<span class="glyphicon glyphicon-exclamation-sign"
+							aria-hidden="true"></span> ${menuImportant}
 					</button>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-5 pull-right">
+		<div class="col-md-5 ">
+
 			<div class="input-group input-group-sm">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				<input type="text" class="form-control"
+					placeholder="${searchFromTheDate}"> <span
+					class="input-group-btn">
+					<button id="btnSearchResults" class="btn btn-default" type="button">
+						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 					</button>
 				</span> <input type="text" class="form-control"
-					placeholder="ZnajdÃÂº partnera lub sponsora aby uzyskaÃÂ do niego dostÃÂp...">
+					placeholder="${searchUpToDate}">
 			</div>
+
 		</div>
 	</div>
 	<!-- Wykaz tabel -->

@@ -44,6 +44,15 @@
 </head>
 <body>
 	<!-- PANEL: COPPERATION -->
+	<spring:message code="admin.panel.service.cooperation.partners"
+		var="partners" />
+	<spring:message code="admin.panel.service.cooperation.media.patrons"
+		var="mediaPatrons" />
+	<spring:message code="admin.panel.service.cooperation.sponsors"
+		var="sponsors" />
+	<spring:message code="admin.panel.service.cooperation.add" var="add" />
+	<spring:message code="admin.panel.service.cooperation.search" var="search" />
+
 	<div class="row" style="margin-bottom: 5px; margin-top: 10px">
 
 		<div class="col-md-7">
@@ -54,7 +63,7 @@
 					<button id="btnNew" type="button" class="btn btn-default"
 						style="border-color: #FFF">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-						Dodaj
+						${add}
 					</button>
 				</div>
 
@@ -62,7 +71,7 @@
 					<button id="btnPartners" type="button" class="btn btn-default"
 						style="border-color: #FFF">
 						<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-						Partnerzy
+						${partners}
 					</button>
 				</div>
 
@@ -70,14 +79,14 @@
 					<button id="btnSponsors" type="button" class="btn btn-default"
 						style="border-color: #FFF">
 						<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-						Sponsorzy
+						${sponsors}
 					</button>
 				</div>
 				<div class="btn-group" role="group">
 					<button id="btnMediaPartners" type="button" class="btn btn-default"
 						style="border-color: #FFF">
 						<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-						Patroni medialni
+						${mediaPatrons}
 					</button>
 				</div>
 
@@ -90,7 +99,7 @@
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</button>
 				</span> <input type="text" class="form-control"
-					placeholder="xxxxxxxxxxxxxxxxxxxxxxxx">
+					placeholder="${search}">
 			</div>
 		</div>
 	</div>
@@ -99,20 +108,20 @@
 	<div class="panel panel-default"></div>
 
 	<div id="panelSearchResults"><jsp:include
-			page="cooperation/list/searchResults.jsp" /></div>
+			page="cooperationPanel/list/searchResults.jsp" /></div>
 
 	<div id="panelNew">
-		<jsp:include page="cooperation/new.jsp" />
+		<jsp:include page="cooperationPanel/new.jsp" />
 	</div>
 
 	<div id="panelPartners">
-		<jsp:include page="cooperation/list/partners.jsp" /></div>
+		<jsp:include page="cooperationPanel/list/partners.jsp" /></div>
 
 	<div id="panelSponsors"><jsp:include
-			page="cooperation/list/sponsors.jsp" /></div>
+			page="cooperationPanel/list/sponsors.jsp" /></div>
 
 	<div id="panelMediaPartners">
-		<jsp:include page="cooperation/list/mediaPartners.jsp" /></div>
+		<jsp:include page="cooperationPanel/list/mediaPartners.jsp" /></div>
 
 
 
