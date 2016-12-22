@@ -42,10 +42,10 @@ public class PublicationCategoryController {
 		return "index";
 
 	}
-
+	
 	@RequestMapping("/panel")
 	public String showPanel(Model model) {
-
+		model.addAttribute("info", "form not normal!");
 		PublicationCategory category = new PublicationCategory();
 
 		model.addAttribute("category", category);

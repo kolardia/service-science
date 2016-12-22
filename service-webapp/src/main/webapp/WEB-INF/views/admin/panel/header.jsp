@@ -27,6 +27,39 @@ ul.navLogoSerwis {
 
 li.navInBloc {
 	display: inline-block;
+	}
+	
+/*HELP PAGE*/
+a.list-group-item, button.list-group-item {
+	color: #62A9DD;
+}
+
+span.HBtnBack:hover {
+	color: #62A9DD;
+}
+
+EHInitialField {
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
+.HTitle {
+	color: black
+}
+
+.HInstructionBox {
+	text-align: right;
+	margin-top: -2px;
+}
+
+.HelpPage {
+	padding: 15px
+}
+
+a {
+	color: rgba(76, 158, 217, 0.83);
+}
+/*END: HELP PAGE*/
 }
 </style>
 </head>

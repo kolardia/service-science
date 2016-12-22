@@ -6,11 +6,6 @@
 <head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<style>
-a.list-group-item, button.list-group-item {
-	color: #62A9DD;
-}
-</style>
 
 </head>
 <spring:message code="admin.service.help.title" var="title" />
@@ -40,19 +35,18 @@ a.list-group-item, button.list-group-item {
 
 
 <body>
-	<div role="tabpanel" class="tab-pane" id="help" style="padding: 15px">
-		<div class="row" style="margin-bottom: 5px; margin-top: 10px">
+	<div role="tabpanel" class="tab-pane HelpPage">
+		<div class="row EHInitialField">
 			<div class="col-md-6">
-				<h4 style="color: black">
-					<b>${title}</b>
+				<h4 class="HTitle">
+					<span id="SHBtnBack"
+						class="glyphicon glyphicon-arrow-left HBtnBack" aria-hidden="true"></span>
+					<b> ${title}</b>
 				</h4>
 			</div>
-			<div class="col-md-3 pull-right text-center"
-				style="text-align: right; color: #C0C0CA; margin-top: -2px">
-				<p class="text-ogloszenie">
-					<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span><span
-						style="color: rgba(76, 158, 217, 0.83);"> Instrukcja.pdf</span>
-				</p>
+			<div class="col-md-3 pull-right text-center HInstructionBox">
+				<a><span class="glyphicon glyphicon-floppy-save"
+					aria-hidden="true">Instrukcja.pdf</span></a>
 			</div>
 		</div>
 

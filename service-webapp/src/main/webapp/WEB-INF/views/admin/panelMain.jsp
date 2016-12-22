@@ -49,6 +49,7 @@ li.navInBloc {
 </style>
 </head>
 <body>
+	<spring:url value="/" var="btnEditor" />
 	<div id="contents">
 		<jsp:include page="panel/header.jsp" />
 
@@ -72,10 +73,10 @@ li.navInBloc {
 						<spring:message code="admi.nav.service" var="service" />
 						<div class="btn-group" role="group" aria-label="menuSection"
 							style="margin-bottom: 25px;">
-							<button id="btnEditor" type="button" class="btn btn-default">
-								<span class=" glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								${editorialWork}
-							</button>
+							<a id="btnEditor" type="button" class="btn btn-default"
+								onClick="location.href='${btnEditor}'"><span
+								class=" glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								${editorialWork} </a>
 							<button id="btnService" type="button" class="btn btn-default">
 								<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 								${service}
@@ -89,8 +90,9 @@ li.navInBloc {
 			<div class="col-md-9 ">
 
 
-				<div id="pagePanel"><jsp:include page="panel/editorialNavigation.jsp" /></div>
-				
+				<div id="pagePanel"><jsp:include
+						page="panel/editorialNavigation.jsp" /></div>
+
 			</div>
 			<!--col-sm-9-->
 		</div>
