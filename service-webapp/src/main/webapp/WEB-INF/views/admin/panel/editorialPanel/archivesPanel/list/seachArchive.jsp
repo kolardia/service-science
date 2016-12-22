@@ -12,7 +12,7 @@
 
 		<p
 			style="font-size: 14px; margin-left: 15px; font-weight: 400; line-height: 1.42857; margin-top: -2px">
-			Wykaz sekcji: <span style="color: #C0C0CA;">partnerzy</span>
+			Wykaz archiwum: <span style="color: #C0C0CA;">x</span>
 		</p>
 		<div class="col-md-3 pull-right">
 			<nav style="margin-bottom: -17px; margin-top: -30px">

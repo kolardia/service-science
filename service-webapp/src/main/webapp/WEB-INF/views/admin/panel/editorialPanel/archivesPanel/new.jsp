@@ -12,7 +12,7 @@
 
 		<p
 			style="font-size: 14px; margin-left: 15px; font-weight: 400; line-height: 1.42857; margin-top: -2px">
-			Nowa sekcja: <span style="color: #C0C0CA;">tymczasowa</span>
+			Nowe archiwum: <span style="color: #C0C0CA;">x</span>
 		</p>
 	</div>
 </body>

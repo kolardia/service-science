@@ -96,11 +96,11 @@
 		</div>
 	</div>
 	<div class="panel panel-default"></div>
-	<div id="EAPage">EAAllBox</div>
+	<div id="EAPage"><jsp:include page="archivesPanel/list/allArchives.jsp" /></div>
 	<div id="EAAllBox"><jsp:include page="archivesPanel/list/allArchives.jsp" /></div>
-	<div id="EADateBox">EADateBox</div>
-	<div id="EASeachBox">EASeachBox</div>
-	<div id="EANewBox">EANewBox</div>
-	<div id="EADetailsBox">EADetailsBox</div>
+	<div id="EADateBox"><jsp:include page="archivesPanel/list/dateArchive.jsp" /></div>
+	<div id="EASeachBox"><jsp:include page="archivesPanel/list/seachArchive.jsp" /></div>
+	<div id="EANewBox"><jsp:include page="archivesPanel/new.jsp" /></div>
+	<div id="EADetailsBox"><jsp:include page="archivesPanel/details.jsp" /></div>
 
 </body>
