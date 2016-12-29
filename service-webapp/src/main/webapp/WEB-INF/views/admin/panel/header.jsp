@@ -1,68 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!DOCTYPE html>
-<html>
+
 <head>
-<meta charset="utf-8">
-<!-- Theme Made By www.w3schools.com - No Copyright -->
+<spring:url value="/resources/core/css/admin-panel.css" var="coreCss" />
+<spring:url value="/resources/core/css/bootstrap.min.css"
+	var="bootstrapCss" />
+<link href="${bootstrapCss}" rel="stylesheet" />
+<link href="${coreCss}" rel="stylesheet" />
 <title>service</title>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-	
-</script>
-<style>
-ul.navLogoSerwis {
-	list-style-type: none;
-}
-
-li.navInBloc {
-	display: inline-block;
-	}
-	
-/*HELP PAGE*/
-a.list-group-item, button.list-group-item {
-	color: #62A9DD;
-}
-
-span.HBtnBack:hover {
-	color: #62A9DD;
-}
-
-EHInitialField {
-	margin-bottom: 5px;
-	margin-top: 10px;
-}
-
-.HTitle {
-	color: black
-}
-
-.HInstructionBox {
-	text-align: right;
-	margin-top: -2px;
-}
-
-.HelpPage {
-	padding: 15px
-}
-
-a {
-	color: rgba(76, 158, 217, 0.83);
-}
-/*END: HELP PAGE*/
-}
-</style>
 </head>
+
 <body>
 	<nav>
 		<!-- container-fluid-->
@@ -86,7 +34,7 @@ a {
 					<!--NAV 2:  Search an editorial section.-->
 					<spring:message code="admin.header.nav.search.section"
 						var="searchSection" />
-					<div class="col-md-4"
+					<div class="col-md-4 col-sm-4 "
 						style="padding-left: 15px; padding-right: 0px;">
 						<div class="input-group">
 							<span class="input-group-btn">
@@ -101,7 +49,7 @@ a {
 					<!--NAV 3: Show an editorial section.-->
 					<spring:message code="admin.header.nav.show.section"
 						var="showSection" />
-					<div class="col-md-4"
+					<div class="col-md-4 col-sm-4"
 						style="padding-left: 15px; padding-right: 0px;">
 						<div class="input-group" style="padding-left: 0px;">
 							<button class="btn btn-default dropdown-toggle" type="button"
@@ -119,13 +67,13 @@ a {
 					<spring:message code="admin.header.nav.preferences"
 						var="preferences" />
 					<spring:message code="admin.header.nav.help" var="help" />
-					<div class="col-md-2 pull-right input-group">
+					<div id="login" class="col-md-2 pull-right input-group">
 						<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button"
 								id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="true">
-								<span class="glyphicon glyphicon-user"></span>
-								kolardia@gmail.com <span class="caret"></span>
+								<span class="glyphicon glyphicon-user"></span> <span id="email">kolardia@gmail.com</span>
+								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" aria-labelledby="dropdownUser">
 								<li><a href="#"><span class="glyphicon glyphicon-lock"
@@ -143,17 +91,20 @@ a {
 				<div class="col-md-11"
 					style="padding-left: 35px; margin-left: auto; margin-right: auto; margin-top: 10px;">
 
-						<div class="collapse" id="collapseSekcje">
+					<div class="collapse" id="collapseSekcje">
 
-							<div class="list-group">
-								<button type="button" class="list-group-item"
-								style="border: 1px solid rgb(255, 255, 255); color:#4E84AB">
-								<b>Sed ut perspiciatis unde omnis iste natus:</b>  error sit voluptatem accusantium doloremque laudantium, totam rem aperiam
+						<div class="list-group">
+							<button type="button" class="list-group-item"
+								style="border: 1px solid rgb(255, 255, 255); color: #4E84AB">
+								<b>Sed ut perspiciatis unde omnis iste natus:</b> error sit
+								voluptatem accusantium doloremque laudantium, totam rem aperiam
 							</button>
 
 							<button type="button" class="list-group-item"
-								style="border: 1px solid rgb(255, 255, 255); color:#4E84AB">
-								<b>dolor sit amet, consectetur, adipisci velit:</b> dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaera
+								style="border: 1px solid rgb(255, 255, 255); color: #4E84AB">
+								<b>dolor sit amet, consectetur, adipisci velit:</b> dolor sit
+								amet, consectetur, adipisci velit, sed quia non numquam eius
+								modi tempora incidunt ut labore et dolore magnam aliquam quaera
 							</button>
 
 						</div>
@@ -166,4 +117,3 @@ a {
 			<!--END container-->
 		</div>
 	</nav>
-</body>

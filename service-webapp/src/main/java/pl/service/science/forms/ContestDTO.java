@@ -1,4 +1,4 @@
-package pl.service.science.publication.forms;
+package pl.service.science.forms;
 
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;

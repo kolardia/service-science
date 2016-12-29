@@ -1,6 +1,7 @@
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/forms/PublicationCategoryDTO.java
 /home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/PublicationController.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/TranslationController.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/PublicationStatusController.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/forms/PublicationCategoryDTO.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/ArchiveController.java
 /home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/PublicationCategoryController.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/forms/ContestDTO.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/forms/ContestDTO.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/authorization/controller/UsersController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/authorization/controller/SectionsController.java

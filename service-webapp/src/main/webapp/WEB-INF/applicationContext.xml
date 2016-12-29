@@ -14,55 +14,61 @@
  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
  http://www.springframework.org/schema/context 
  http://www.springframework.org/schema/context/spring-context-4.0.xsd">
-    <context:component-scan base-package="pl.service.*" /> 
-    <jpa:repositories base-package="pl.service.*"/>
-    <context:annotation-config /> 
-	<tx:annotation-driven/> 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<context:component-scan base-package="pl.service.*" />
+	<jpa:repositories base-package="pl.service.*" />
+	<context:annotation-config />
+	<tx:annotation-driven />
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/service" />
 		<property name="username" value="root" />
 		<property name="password" value="apaszka@Akaszy" />
 	</bean>
-	
+
 	<bean id="entityManagerFactory"
-	 class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-	    <property name="dataSource" ref="dataSource" />
-	    <property name="packagesToScan" value="pl.service.*" />
-	    <property name="jpaVendorAdapter">
-	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-	            <property name="showSql" value="false" />
-	            <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
-	        </bean>
-	    </property>
-	    <property name="jpaProperties">
-	        <props>
-	            <prop key="hibernate.hbm2ddl.auto">update</prop>
-	        </props>
-	    </property>
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="pl.service.*" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="false" />
+				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
 	</bean>
-	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
-	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-	    <property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	<!-- I18N BEGIN -->
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-    <property name="basename" value="i18n/messages"></property>
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="i18n/messages"></property>
 	</bean>
 	<!-- Declare the Interceptor -->
 	<mvc:interceptors>
-	   <bean id="localeChangeInterceptor"
-		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-		<property name="paramName" value="language" />
-	</bean>
+		<bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="language" />
+		</bean>
 	</mvc:interceptors>
 	<!-- Declare the Resolver -->
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		<property name="cookieName" value="podcastpediaPreferredLanguage"/>
-	    <property name="defaultLocale" value="pl" />
-	    <property name="cookieMaxAge" value="604800"/>
-	</bean>	
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieName" value="podcastpediaPreferredLanguage" />
+		<property name="defaultLocale" value="pl" />
+		<property name="cookieMaxAge" value="604800" />
+	</bean>
 	<!-- I18N END -->
-		
+	<mvc:annotation-driven />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>

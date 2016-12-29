@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html>
-<html>
-<head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-</head>
-<body>
 	<spring:message code="admin.service.news.menu.organizer"
 		var="menuOrganizer" />
 	<spring:message code="admin.service.news.menu.editors"
@@ -78,7 +71,7 @@
 		<div class="col-md-6">
 			<p
 				style="font-size: 14px; margin-left: 15px; font-weight: 400; line-height: 1.42857; margin-top: -2px">
-				OgÃÂoszenia: <span style="color: #C0C0CA;">organizatora</span>
+				Ogłoszenia: <span style="color: #C0C0CA;">organizatora</span>
 			</p>
 		</div>
 		<div class="col-md-3"
@@ -112,9 +105,9 @@
 					regulaminu konkursu</p>
 				<div class="thumbnail">
 					<p class="text-ogloszenie">
-						<b>ProszÃÂ zapoznaÃÂ siÃÂ z nowym regulaminem, wytyczne
-							dotyczÃÂ zmian kryteriÃÂ³w wieku odnaÃÂnie etapÃÂ³w
-							rekrutacji. </b>
+						<b>s qui ratione voluptatem sequi nesciunt. Neque porro
+							quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur
+						</b>
 					</p>
 					<p class="text-ogloszenie">
 						<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span><span
@@ -126,7 +119,7 @@
 				</div>
 				<p
 					style="color: rgb(128, 125, 125); text-align: right; margin-right: 10px;">
-					czytaj wiÃÂcej...</p>
+					czytaj więcej...</p>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3">
@@ -136,9 +129,9 @@
 					regulaminu konkursu</p>
 				<div class="thumbnail">
 					<p class="text-ogloszenie">
-						<b>ProszÃÂ zapoznaÃÂ siÃÂ z nowym regulaminem, wytyczne
-							dotyczÃÂ zmian kryteriÃÂ³w wieku odnaÃÂnie etapÃÂ³w
-							rekrutacji. </b>
+						<b>s qui ratione voluptatem sequi nesciunt. Neque porro
+							quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur
+						</b>
 					</p>
 					<p class="text-ogloszenie">
 						<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span><span
@@ -150,7 +143,7 @@
 				</div>
 				<p
 					style="color: rgb(128, 125, 125); text-align: right; margin-right: 10px;">
-					czytaj wiÃÂcej...</p>
+					czytaj więcej...</p>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3">
@@ -160,9 +153,9 @@
 					regulaminu konkursu</p>
 				<div class="thumbnail">
 					<p class="text-ogloszenie">
-						<b>ProszÃÂ zapoznaÃÂ siÃÂ z nowym regulaminem, wytyczne
-							dotyczÃÂ zmian kryteriÃÂ³w wieku odnaÃÂnie etapÃÂ³w
-							rekrutacji. </b>
+						<b>s qui ratione voluptatem sequi nesciunt. Neque porro
+							quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur
+						</b>
 					</p>
 					<p class="text-ogloszenie">
 						<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span><span
@@ -174,7 +167,7 @@
 				</div>
 				<p
 					style="color: rgb(128, 125, 125); text-align: right; margin-right: 10px;">
-					czytaj wiÃÂcej...</p>
+					czytaj więcej...</p>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3">
@@ -184,9 +177,9 @@
 					regulaminu konkursu</p>
 				<div class="thumbnail">
 					<p class="text-ogloszenie">
-						<b>ProszÃÂ zapoznaÃÂ siÃÂ z nowym regulaminem, wytyczne
-							dotyczÃÂ zmian kryteriÃÂ³w wieku odnaÃÂnie etapÃÂ³w
-							rekrutacji. </b>
+						<b>s qui ratione voluptatem sequi nesciunt. Neque porro
+							quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur
+						</b>
 					</p>
 					<p class="text-ogloszenie">
 						<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span><span
@@ -198,8 +191,7 @@
 				</div>
 				<p
 					style="color: rgb(128, 125, 125); text-align: right; margin-right: 10px;">
-					czytaj wiÃÂcej...</p>
+					czytaj więcej...</p>
 			</div>
 		</div>
 	</div>
-</body>

@@ -10,8 +10,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import pl.service.science.forms.ContestDTO;
 import pl.service.science.publication.domain.Publication;
-import pl.service.science.publication.forms.ContestDTO;
 import pl.service.science.publication.service.ServicePublication;
 import pl.service.science.translation.dao.DaoLanguage;
 import pl.service.science.translation.dao.DaoTranslationText;
@@ -38,6 +39,13 @@ public class PublicationController {
 	@Autowired
 	DaoLanguage serviceLanguage;
 
+	@RequestMapping("/published")
+	public String published(HttpServletRequest request, Model model) {
+
+		return "admin/panel/editorialPanel/publicationsPanel/list/published";
+	}
+	
+	
 	@RequestMapping("/")
 	public String showIndex(HttpServletRequest request, Model model) {
 		// Publication contest = new Publication();

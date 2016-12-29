@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pl.service.science.forms.PublicationCategoryDTO;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.domain.PublicationCategory;
-import pl.service.science.publication.forms.PublicationCategoryDTO;
 import pl.service.science.publication.service.ServicePublication;
 import pl.service.science.publication.service.ServicePublicationCategory;
 import pl.service.science.translation.dao.DaoTranslationText;
@@ -40,19 +40,31 @@ public class PublicationCategoryController {
 		model.addAttribute("translation", serviceTranslationText.findByTranslation(publication.getTitle()));
 		model.addAttribute("collectionPublication", service.findAll());
 		return "index";
-
 	}
 	
 	@RequestMapping("/panel")
 	public String showPanel(Model model) {
-		model.addAttribute("info", "form not normal!");
-		PublicationCategory category = new PublicationCategory();
-
-		model.addAttribute("category", category);
-		model.addAttribute("collectionCategory", serviceCategory.findAll());
+		model.addAttribute("info", "profile panel!");
 		return "admin/panelMain";
 	}
+	
+	@RequestMapping("/panel/editor/publications")
+	public String publication(Model model) {
+		model.addAttribute("info", "editor panel!");
+		return "admin/panel/editorialNavigation";
+	}
+	@RequestMapping("/panel/editor/profile/")
+	public String profile(Model model) {
+		model.addAttribute("info", "editor panel!");
+		return "admin/panel/editorialNavigation";
+	}
 
+	@RequestMapping("/example")
+	public String example(Model model) {
+		model.addAttribute("info", "profile panel!");
+		return "example";
+	}
+	
 	@RequestMapping("/category/{id}")
 	public String detailCategory(@PathVariable("id") Long id, Model model) {
 
