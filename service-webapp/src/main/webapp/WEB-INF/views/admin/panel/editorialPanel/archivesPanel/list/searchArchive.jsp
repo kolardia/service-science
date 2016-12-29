@@ -13,13 +13,11 @@
 	var="archiveInfo" />
 <spring:message code="admin.editor.archives.table.button.delete"
 	var="archiveDelete" />
-<spring:message code="admin.editor.archives.info.select.all"
-	var="infoAll" />
-<spring:message code="admin.editor.archives.info.publication"
-	var="infoElement" />
+<spring:message code="admin.editor.archives.info.select.title"
+	var="infoSelectTitle" />
 
 <p class="info">
-	${infoAll}: <span class="info"> ${infoElement}</span>
+	${infoSelectTitle}: <span class="info">${info}</span>
 </p>
 <table class="table list">
 	<thead>

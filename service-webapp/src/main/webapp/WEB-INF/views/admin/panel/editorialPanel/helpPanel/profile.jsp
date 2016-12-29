@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html>
-<html>
-<head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-</head>
-<body>
-	<div role="tabpanel" class="tab-pane" id="help-profile">
+<div role="tabpanel" class="tab-pane" id="help-profile">
 
-		<p>help- profile</p>
-	</div>
-</body>
+	<p>help- profile</p>
+</div>

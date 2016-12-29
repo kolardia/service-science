@@ -1,18 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html>
-<html>
-<head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-	$(document).ready(function() {
+	<spring:url value="/resources/core/images/gallery.png" var="gallery" />
 
-	});
-</script>
-</head>
-<body>
 	<spring:message code="admin.service.section.menu.add.gallery"
 		var="menuAddGallery" />
 	<spring:message code="admin.service.section.menu.edit.gallery"
@@ -74,13 +64,13 @@
 						<div class="btn-group" role="group">
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle"
-									style="border-color: #FFF" type="button" id="dropdownMenu1"
+									style="border-color: #FFF" type="button" id="dropdownSection"
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="true">
 									<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
 									${menuLanguage}
 								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownUser">
+								<ul class="dropdown-menu" aria-labelledby="dropdownSection">
 									<li><a href="#"><b>PL</b> ${LanguageShowPL}</a></li>
 									<li><a href="#"><b>EN</b> ${LanguageShowEN}</a></li>
 								</ul>
@@ -108,29 +98,28 @@
 								quia consequuntur magni dolores eos qui ratione voluptatem sequi
 								nesciunt. Neque</p>
 						</div>
-						<div class=col-md-3>
+						<div class="col-md-3 col-sm-3">
 							<img
-								src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR16I42iegPHlJBz0ULjhGuN4bJoihE4jfR_ERmjG0KTVokKt-7"
+								src="${gallery}"
 								alt="..." class="img-thumbnail">
 						</div>
-						<div class=col-md-3>
+						<div class="col-md-3 col-sm-3">
 							<img
-								src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR16I42iegPHlJBz0ULjhGuN4bJoihE4jfR_ERmjG0KTVokKt-7"
+								src="${gallery}"
 								alt="..." class="img-thumbnail">
 						</div>
-						<div class=col-md-3>
+						<div class="col-md-3 col-sm-3">
 							<img
-								src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR16I42iegPHlJBz0ULjhGuN4bJoihE4jfR_ERmjG0KTVokKt-7"
+								src="${gallery}"
 								alt="..." class="img-thumbnail">
 						</div>
-						<div class=col-md-3>
+						<div class="col-md-3 col-sm-3">
 							<img
-								src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR16I42iegPHlJBz0ULjhGuN4bJoihE4jfR_ERmjG0KTVokKt-7"
+								src="${gallery}"
 								alt="..." class="img-thumbnail">
 						</div>
-
 					</div>
-
+					<br />
 				</div>
 				<!-- col-md-12 -->
 
@@ -142,8 +131,8 @@
 		<div class="col-md-5">
 
 			<div class="panel-group" id="accordion" role="tablist"
-				aria-multiselectable="true" style="margin-top:-5px;">	
-					<div class="panel panel-default">
+				aria-multiselectable="true" style="margin-top: -5px;">
+				<div class="panel panel-default">
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title">
 							<a role="button" data-toggle="collapse" data-parent="#accordion"
@@ -155,7 +144,7 @@
 					<div id="collapseOne" class="panel-collapse collapse in"
 						role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							<table class="table table-bordered" style="width: 100%; ">
+							<table class="table table-bordered" style="width: 100%;">
 								<tr>
 									<td style="border: 1px solid #FFF"><b>${tablePhone}</b></td>
 									<td style="border: 1px solid #FFF">884-382-856</td>
@@ -273,4 +262,3 @@
 
 	</div>
 	<!-- row panel -->
-<body>

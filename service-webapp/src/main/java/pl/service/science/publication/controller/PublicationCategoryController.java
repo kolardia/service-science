@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pl.service.science.forms.PublicationCategoryDTO;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.domain.PublicationCategory;
-import pl.service.science.publication.forms.PublicationCategoryDTO;
 import pl.service.science.publication.service.ServicePublication;
 import pl.service.science.publication.service.ServicePublicationCategory;
 import pl.service.science.translation.dao.DaoTranslationText;
@@ -41,34 +41,30 @@ public class PublicationCategoryController {
 		model.addAttribute("collectionPublication", service.findAll());
 		return "index";
 	}
-	@RequestMapping("/panel/editor")
-	public String showEditorPanel(Model model) {
-		model.addAttribute("info", "editor panel!");
-		return "admin/panelMain";
-	}
 	
-	
-	@RequestMapping("/panel/editor/publications")
-	public String showEPublicationsPanel(Model model) {
-		model.addAttribute("info", "editor panel!");
-		return "admin/panelMain";
-	}
-	@RequestMapping("/panel/editor/profile")
-	public String showEProfilePanel(Model model) {
+	@RequestMapping("/panel")
+	public String showPanel(Model model) {
 		model.addAttribute("info", "profile panel!");
 		return "admin/panelMain";
 	}
-	@RequestMapping("/panel/editor/archives")
-	public String showEArchives(Model model) {
-		model.addAttribute("info", "archives panel!");
-		return "admin/panelMain";
-	}
 	
-	@RequestMapping("/panel/service")
-	public String showServicePanel(Model model) {
-		return "admin/panelMain";
+	@RequestMapping("/panel/editor/publications")
+	public String publication(Model model) {
+		model.addAttribute("info", "editor panel!");
+		return "admin/panel/editorialNavigation";
+	}
+	@RequestMapping("/panel/editor/profile/")
+	public String profile(Model model) {
+		model.addAttribute("info", "editor panel!");
+		return "admin/panel/editorialNavigation";
 	}
 
+	@RequestMapping("/example")
+	public String example(Model model) {
+		model.addAttribute("info", "profile panel!");
+		return "example";
+	}
+	
 	@RequestMapping("/category/{id}")
 	public String detailCategory(@PathVariable("id") Long id, Model model) {
 

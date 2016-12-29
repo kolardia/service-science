@@ -1,35 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html>
-<html>
-<head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-</head>
-<body>
-	<div>
+<spring:message code="admin.editor.archives.table.date"
+	var="archiveDate" />
+<spring:message code="admin.editor.archives.table.title"
+	var="archiveTitle" />
+<spring:message code="admin.editor.archives.table.language"
+	var="archiveLanguage" />
+<spring:message code="admin.editor.archives.table.action"
+	var="archiveAction" />
+<spring:message code="admin.editor.archives.table.button.info"
+	var="archiveInfo" />
+<spring:message code="admin.editor.archives.table.button.delete"
+	var="archiveDelete" />
+<spring:message code="admin.editor.archives.info.select.date"
+	var="infoSelectDate" />
 
-		<p
-			style="font-size: 14px; margin-left: 15px; font-weight: 400; line-height: 1.42857; margin-top: -2px">
-			Wybrane archiwumm po dacie: <span style="color: #C0C0CA;">x</span>
-		</p>
-		<div class="col-md-3 pull-right">
-			<nav style="margin-bottom: -17px; margin-top: -30px">
-				<ul class="pagination pagination-sm">
-					<li><a href="#" aria-label="Previous" style="color: #757575">
-							<span aria-hidden="true">&laquo;</span>
-					</a></li>
-					<li><a href="#" style="color: #757575">1</a></li>
-					<li><a href="#" style="color: #757575">2</a></li>
-					<li><a href="#" style="color: #757575">3</a></li>
-					<li><a href="#" style="color: #757575">4</a></li>
-					<li><a href="#" style="color: #757575">5</a></li>
-					<li><a href="#" aria-label="Next" style="color: #757575">
-							<span aria-hidden="true">&raquo;</span>
-					</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</body>
+<p class="info">
+	${infoSelectDate}:<span class="info"> ${info}</span>
+</p>
+<table class="table list">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>${archiveDate}</th>
+			<th>${archiveTitle}</th>
+			<th>${archiveAction}</th>
+		</tr>
+	</thead>
+	<tr class="accent">
+		<td>1</td>
+		<td>12.12.2015</td>
+		<td>Tytul publikacji -zazwyczaj długi</td>
+		<td>
+			<button class="btn buttonLink btn-info "
+				onclick="location.href='${userUrl}'">${archiveInfo}</button>
+			<button class="btn buttonLink btn-success "
+				onclick="location.href='${userUrl}'">${archiveDelete}</button>
+		</td>
+	</tr>
+</table>
