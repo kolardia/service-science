@@ -9,24 +9,41 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * The TextTranslation mapping  on a database for table name: "text_translation"
+ * @author kolardia
+ *
+ */
 @Entity
 @Table(name = "text_translation")
 public class TextTranslation {
 
+	/**
+	 * The mapping on a database is a generating automatic for primary key; column name: "text_translation_id"
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "text_translation_id")
 	public Long id;
 
+	/**
+	 * The mapping on a database is many-to-one; the resulting value will be not null
+	 */
 	@ManyToOne
 	@JoinColumn(name = "language_id", nullable = false)
 	public Language language;
 
+	/**
+	 * The mapping on a database is many-to-one; column name: "translation_id"
+	 */
 	@ManyToOne
-	@JoinColumn(name = "translation_id")
+	@JoinColumn(name = "translation_id", nullable = false)
 	public Translation translation;
 
-	@Column(name = "text_translation")
+	/**
+	 * The mapping  on a database for column name: "text_translation"
+	 */
+	@Column(name = "text_translation", nullable = false)
 	public String text;
 
 	public Long getId() {

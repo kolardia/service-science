@@ -1,27 +1,56 @@
 package pl.service.science.translation.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.service.science.translation.dao.DaoLanguage;
+import pl.service.science.translation.dao.LanguageDAO;
 import pl.service.science.translation.domain.Language;
-import pl.service.science.translation.service.ServiceLanguage;
+import pl.service.science.translation.service.LanguageService;
+import pl.service.science.translation.service.TranslationTextService;
 
 @Service
-public class ServiceLanguageImpl implements ServiceLanguage {
+public class ServiceLanguageImpl implements LanguageService {
 
 	@Autowired
-	protected DaoLanguage dao;
+	protected LanguageDAO dao;
+
+	@Autowired
+	protected TranslationTextService serviceText;
 
 	public Language findById(Long id) {
+		
 		return dao.findById(id);
 	}
-
-	public Language findByCode(String code) {
-		return dao.findByCode(code);
+	
+	public List<String> selectAllCodes(){
+		
+		List<String> codes = new ArrayList<String>();
+		 
+			for (Language language :  dao.findAll()) {
+				codes.add(language.getCode());
+			}
+		
+		return codes;
 	}
 
-	public void save(Language language) {
-		dao.save(language);
+	public Language adaptCode(String code) {
+
+		if (dao.findByCode(code.toLowerCase()) == null) {
+			Language language = new Language();
+			language.setCode(code.toLowerCase());
+			dao.save(language);
+		}
+
+		return dao.findByCode(code.toLowerCase());
 	}
+
+	public void removeLanguageAlongWithTexts(Language language) {
+
+		serviceText.delete(serviceText.findByLanguage(language));
+		dao.delete(language);
+	}
+
 }

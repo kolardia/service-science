@@ -1,0 +1,10 @@
+pl.service.science.authorization.domain
+pl.service.science.authorization.service
+pl.service.science.localization.domain
+pl.service.science.localization.service
+pl.service.science.publication.domain
+pl.service.science.publication.service
+pl.service.science.section.domain
+pl.service.science.section.service
+pl.service.science.translation.domain
+pl.service.science.translation.service

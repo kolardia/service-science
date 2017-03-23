@@ -23,12 +23,11 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editorialPanel/publicationsPanel"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editorialPanel/archivesPanel/list"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp/WEB-INF/views/admin/panel/editor"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp/resources"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp/resources/core"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp/resources/core/css"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp/resources/core/js"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp/resources/core/fonts"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp/resources/core/images"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/static"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/static/fonts"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/static/images"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/static/js"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/static/css"/>
         <dependent-module archiveName="service-application-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service-application/service-application">
             <dependency-type>uses</dependency-type>
         </dependent-module>

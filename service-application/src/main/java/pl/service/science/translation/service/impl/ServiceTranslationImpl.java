@@ -1,33 +1,34 @@
 package pl.service.science.translation.service.impl;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.service.science.localization.domain.City;
-import pl.service.science.translation.dao.DaoTranslation;
+import pl.service.science.translation.dao.TranslationDAO;
 import pl.service.science.translation.domain.Language;
 import pl.service.science.translation.domain.TextTranslation;
 import pl.service.science.translation.domain.Translation;
-import pl.service.science.translation.service.ServiceLanguage;
-import pl.service.science.translation.service.ServiceTextTranslation;
-import pl.service.science.translation.service.ServiceTranslation;
+import pl.service.science.translation.service.LanguageService;
+import pl.service.science.translation.service.TranslationTextService;
+import pl.service.science.translation.service.TranslationService;
 
 @Service
-public class ServiceTranslationImpl implements ServiceTranslation {
+public class ServiceTranslationImpl implements TranslationService {
 
 	final static Logger logger = Logger.getLogger(ServiceTranslationImpl.class);
 
 	@Autowired
-	DaoTranslation dao;
+	TranslationDAO dao;
 
 	@Autowired
-	ServiceLanguage serviceLanguage;
+	LanguageService serviceLanguage;
 
 	@Autowired
-	ServiceTextTranslation serviceTextTranslation;
+	TranslationTextService serviceTextTranslation;
 
 	public Translation findById(Long id) {
 		return dao.findById(id);
@@ -49,11 +50,12 @@ public class ServiceTranslationImpl implements ServiceTranslation {
 		dao.delete(translation);
 	}
 
-	public Translation newText(Translation translation, String text, String languageCode) {
+	public Translation newTextTranslationForObject(Translation translation, String text, String languageCode) {
 
 		TextTranslation textTranslation = new TextTranslation();
+		
 
-		textTranslation.setLanguage(serviceLanguage.findByCode(languageCode));
+		textTranslation.setLanguage(serviceLanguage.adaptCode(languageCode));
 		textTranslation.setTranslation(translation);
 		textTranslation.setText(text);
 
@@ -63,13 +65,13 @@ public class ServiceTranslationImpl implements ServiceTranslation {
 		return translation;
 	}
 
-	public Translation updateText(Translation translation, String text, String languageCode) {
+	public Translation updateTextTranslationForObject(Translation translation, String text, String languageCode) {
 
 		TextTranslation textTranslation = new TextTranslation();
 		Language language = new Language();
 
-		language = serviceLanguage.findByCode(languageCode);
-		textTranslation = serviceTextTranslation.findByTranslationAndLanguage(translation, language);
+		language = serviceLanguage.adaptCode(languageCode);
+		textTranslation = serviceTextTranslation.checkingOrSetBlank(translation, language);
 		textTranslation.setText(text);
 
 		serviceTextTranslation.save(textTranslation);
@@ -78,7 +80,7 @@ public class ServiceTranslationImpl implements ServiceTranslation {
 
 	}
 
-	public void deleteTranslationParts(Translation translation) {
+	public void removeTranslationAlongWithAllTexts(Translation translation) {
 
 		List<TextTranslation> text = serviceTextTranslation.findByTranslation(translation);
 
@@ -88,16 +90,32 @@ public class ServiceTranslationImpl implements ServiceTranslation {
 
 	}
 
-	public Translation findText(String text, String languageCode) {
+	public Translation selectTextTranslation(String text, String languageCode) {
 
 		TextTranslation textTranslation = new TextTranslation();
 		Language language = new Language();
 
-		language = serviceLanguage.findByCode(languageCode);
+		language = serviceLanguage.adaptCode(languageCode);
 		textTranslation = serviceTextTranslation.findByTextAndLanguage(text, language);
 
 		return dao.findByTextTranslation(textTranslation);
 
+	}
+	// settingTextString
+	public String CheckingTextTranslation(Translation translation, Locale locale) {
+		
+		String langLocale = locale.getLanguage();
+
+		Language language = serviceLanguage.adaptCode(langLocale);
+
+		for (TextTranslation textTranslation : serviceTextTranslation.findByTranslation(translation)) {
+
+			if (textTranslation.getLanguage().getId() == language.getId()) {
+
+				return serviceTextTranslation.checkingOrSetBlank(translation, language).getText();
+			}
+		}
+		return null;
 	}
 
 }

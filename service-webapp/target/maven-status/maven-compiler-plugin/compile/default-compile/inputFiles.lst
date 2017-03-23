@@ -1,7 +1,10 @@
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/forms/PublicationCategoryDTO.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/PublicationController.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/ArchiveController.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/publication/controller/PublicationCategoryController.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/forms/ContestDTO.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/authorization/controller/UsersController.java
-/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/authorization/controller/SectionsController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/controller/authorization/SectionsController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/DTO/ProfileDTO.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/DTO/SelectDTO.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/controller/authorization/ProfileController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/controller/publication/PublicationCategoryController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/controller/publication/PublicationController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/controller/publication/ArchiveController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/DTO/ContestDTO.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/pl/service/science/controller/authorization/UsersController.java
+/home/kolardia/workspace/pl.service/service-webapp/src/main/java/DTO/PublicationCategoryDTO.java

@@ -1,5 +1,7 @@
 package service.sience.service.translation.test;
 
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,43 +10,97 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import pl.service.science.translation.domain.Language;
-import pl.service.science.translation.service.ServiceLanguage;
+import pl.service.science.translation.dao.LanguageDAO;
+import pl.service.science.translation.dao.TranslationDAO;
+import pl.service.science.translation.dao.TranslationTextDAO;
+import pl.service.science.translation.domain.TextTranslation;
+import pl.service.science.translation.domain.Translation;
+import pl.service.science.translation.service.LanguageService;
+import pl.service.science.translation.service.TranslationService;
+import pl.service.science.translation.service.TranslationTextService;
 
+/**
+ * @author kolardia
+ * Testing LanguageService
+ *
+ */
 @FixMethodOrder(MethodSorters.JVM)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
 public class LanguageTest {
 
+	/**
+	 * Testing service
+	 */
 	@Autowired
-	protected ServiceLanguage serviceLanguage;
+	protected LanguageService serviceLanguage;
+
+	/**
+	 * Helper class of services for testing
+	 */
+	@Autowired
+	protected TranslationTextService serviceTextTranslation;
+
+	/**
+	 * Helper class of services for testing
+	 */
+	@Autowired
+	protected TranslationService serviceTranslation;
+
+	/**
+	 * Helper class of DTO for asserting and cleaning database
+	 */
+	@Autowired
+	 private LanguageDAO language;
+	 
+	/**
+	 * Helper class of DTO for asserting and cleaning database
+	 */
+	@Autowired
+	 private TranslationDAO translation;
+	
+	/**
+	 * Helper class of DTO for asserting and cleaning database
+	 */
+	@Autowired
+	 private TranslationTextDAO text;
+	
+	 @After public void cleanDatabase() {
+			
+		text.deleteAll();
+		language.deleteAll();
+		translation.deleteAll();
+        
+  }
+	
+	@Test
+	public void adaptCodeLanguage() {
+
+		serviceLanguage.adaptCode("PL");
+		serviceLanguage.adaptCode("EN");
+		serviceLanguage.adaptCode("JP");
+		serviceLanguage.adaptCode("DE");
+		
+		Assert.assertNotNull(language.findAll());
+	}
 
 	@Test
-	public void testLanguage() {
+	public void removeLanguage() {
 
-		Language languagePL = new Language();
-		languagePL.setId(new Long(1));
-		languagePL.setCode("PL");
+		for (int i = 0; i < 10; i++) {
 
-		serviceLanguage.save(languagePL);
+			TextTranslation text = new TextTranslation();
+			text.setLanguage(serviceLanguage.adaptCode("TEST"));
+			text.setTranslation(serviceTranslation.save(new Translation()));
+			text.setText("Test" + i);
+			serviceTextTranslation.save(text);
 
-		Language languageEN = new Language();
-		languageEN.setId(new Long(2));
-		languageEN.setCode("EN");
+			Assert.assertNotNull(serviceTextTranslation.findByTextAndLanguage(text.getText(), text.getLanguage()));
 
-		serviceLanguage.save(languageEN);
+		}
 
-		Language languageDE = new Language();
-		languageDE.setId(new Long(3));
-		languageDE.setCode("DE");
-
-		serviceLanguage.save(languageDE);
-
-		Language languageJP = new Language();
-		languageJP.setId(new Long(4));
-		languageJP.setCode("JP");
-
-		serviceLanguage.save(languageJP);
-
+		serviceLanguage.removeLanguageAlongWithTexts(serviceLanguage.adaptCode("TEST"));
+		Assert.assertNull(language.findByCode("TEST"));
 	}
+
 }

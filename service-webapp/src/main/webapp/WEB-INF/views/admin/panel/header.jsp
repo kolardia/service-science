@@ -3,8 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <head>
-<spring:url value="/resources/core/css/admin-panel.css" var="coreCss" />
-<spring:url value="/resources/core/css/bootstrap.min.css"
+<spring:url value="/static/css/admin-panel.css" var="coreCss" />
+<spring:url value="/static/css/bootstrap.min.css"
 	var="bootstrapCss" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />

@@ -3,21 +3,21 @@ package pl.service.science.localization.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.service.science.localization.dao.DaoCountry;
+import pl.service.science.localization.dao.CountryDAO;
 import pl.service.science.localization.domain.Country;
 import pl.service.science.localization.domain.Region;
-import pl.service.science.localization.service.ServiceCountry;
+import pl.service.science.localization.service.CountryService;
 import pl.service.science.translation.domain.Translation;
-import pl.service.science.translation.service.ServiceTranslation;
+import pl.service.science.translation.service.TranslationService;
 
 @Service
-public class ServiceCountryImpl implements ServiceCountry {
+public class ServiceCountryImpl implements CountryService {
 
 	@Autowired
-	protected DaoCountry dao;
+	protected CountryDAO dao;
 
 	@Autowired
-	protected ServiceTranslation serviceTranslation;
+	protected TranslationService serviceTranslation;
 
 	public Country findById(Long id) {
 		return dao.findById(id);
@@ -32,17 +32,17 @@ public class ServiceCountryImpl implements ServiceCountry {
 	}
 
 	public void newText(Translation translation, String text, String code) {
-		serviceTranslation.newText(translation, text, code);
+		serviceTranslation.newTextTranslationForObject(translation, text, code);
 	}
 
 	public Country findByCountry(Translation translation) {
 		return dao.findByCountry(translation);
 	}
 
-	public Country findOrSave(String countryName, String languageCode) {
+	public Country fineOrSaveCountry(String countryName, String languageCode) {
 
 		Translation translation = new Translation();
-		translation = serviceTranslation.findText(countryName, languageCode);
+		translation = serviceTranslation.selectTextTranslation(countryName, languageCode);
 
 		if (translation != null) {
 

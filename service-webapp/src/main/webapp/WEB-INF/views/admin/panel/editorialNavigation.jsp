@@ -59,10 +59,133 @@
 			<div role="tabpanel" class="tab-pane" id="help">
 				<jsp:include page="editorialPanel/helpMenu.jsp" /></div>
 
-
+			<h1>${info}</h1>
 		</div>
 		<!-- tab-content -->
 	</div>
 	<!-- panel-body -->
 </div>
 <!--content -->
+<script>
+	$(document).ready(function() {
+		
+		/*****************************************/
+		$.ajax({
+			url : "editor/archives/",
+			success : function(result) {
+				$("#archivesPanel").html(result);
+			}
+		});
+		$.ajax({
+			url : "editor/profile",
+			success : function(result) {
+				$("#profilePanel").html(result);
+			}
+		});
+
+		$.ajax({
+			url : "editor/published",
+			success : function(result) {
+				$("#publicationsPage").html(result);
+			}
+		});
+		/*****************************************/
+		$("#btnEANew").click(function() {
+			$.ajax({
+				url : "editor/archives/add",
+				success : function(result) {
+					$("#archivesPanel").html(result);
+				}
+			});
+		});
+		$("#btnEADate").click(function() {
+			$.ajax({
+				url : "editor/archives/search-date",
+				success : function(result) {
+					$("#archivesPanel").html(result);
+				}
+			});
+		});
+		$("#btnEASeach").click(function() {
+			$.ajax({
+				url : "editor/archives/search-title",
+				success : function(result) {
+					$("#archivesPanel").html(result);
+				}
+			});
+		});
+		$("#btnEAAllEn").click(function() {
+			$.ajax({
+				url : "editor/archives/en",
+				success : function(result) {
+					$("#archivesPanel").html(result);
+				}
+			});
+		});
+		$("#btnEAAllPl").click(function() {
+			$.ajax({
+				url : "editor/archives/pl",
+				success : function(result) {
+					$("#archivesPanel").html(result);
+				}
+			});
+		});
+		/*****************************************/
+		$("#btnEPPublished").click(function() {
+			$.ajax({
+				url : "editor/published",
+				success : function(result) {
+					$("#publicationsPage").html(result);
+				}
+			});
+		});
+		$("#btnEPAdd").click(function() {
+			$.ajax({
+				url : "editor/archives/add",
+				success : function(result) {
+					$("#publicationsPage").html(result);
+				}
+			});
+		});
+		$("#btnEPSketches").click(function() {
+			$.ajax({
+				url : "editor/published/sketches",
+				success : function(result) {
+					$("#publicationsPage").html(result);
+				}
+			});
+		});
+		$("#btnEPType").click(function() {
+			$.ajax({
+				url : "editor/published/type",
+				success : function(result) {
+					$("#publicationsPage").html(result);
+				}
+			});
+		});
+		$("#btnEPSearchResults").click(function() {
+			$.ajax({
+				url : "editor/published/search",
+				success : function(result) {
+					$("#publicationsPage").html(result);
+				}
+			});
+		});
+		$("#btnEPAllPl").click(function() {
+			$.ajax({
+				url : "editor/published/pl",
+				success : function(result) {
+					$("#publicationsPage").html(result);
+				}
+			});
+		});
+		$("#btnEPAllEn").click(function() {
+			$.ajax({
+				url : "editor/published/en",
+				success : function(result) {
+					$("#publicationsPage").html(result);
+				}
+			});
+		});
+	});
+</script>

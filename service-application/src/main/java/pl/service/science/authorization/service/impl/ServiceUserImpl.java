@@ -1,51 +1,53 @@
 package pl.service.science.authorization.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.service.science.authorization.dao.DaoUser;
-import pl.service.science.authorization.service.ServiceUser;
-import pl.service.science.localization.service.ServiceCity;
-import pl.service.science.localization.service.ServiceCountry;
-import pl.service.science.localization.service.ServiceRegion;
-import pl.service.science.translation.service.ServiceTranslation;
-import pl.service.science.user.domain.User;
+import pl.service.science.authorization.dao.UserDAO;
+import pl.service.science.authorization.domain.User;
+import pl.service.science.authorization.service.UserService;
+import pl.service.science.localization.service.CityService;
+import pl.service.science.localization.service.CountryService;
+import pl.service.science.localization.service.RegionService;
+import pl.service.science.translation.service.TranslationService;
 
 @Service
-public class ServiceUserImpl implements ServiceUser {
+public class ServiceUserImpl implements UserService {
 
 	@Autowired
-	protected DaoUser dao;
+	protected UserDAO dao;
 
 	@Autowired
-	protected ServiceTranslation serviceTranslation;
+	protected TranslationService serviceTranslation;
 
 	@Autowired
-	protected ServiceCountry serviceCountry;
+	protected CountryService serviceCountry;
 
 	@Autowired
-	protected ServiceRegion serviceRegion;
+	protected RegionService serviceRegion;
 
 	@Autowired
-	protected ServiceCity serviceCity;
+	protected CityService serviceCity;
 
 	public User findById(Long id) {
 		return dao.findById(id);
+	}
+	
+	public List<User> findAll(){
+		return dao.findAll();
 	}
 
 	public void save(User user) {
 		dao.save(user);
 	}
-
-	public User ifExistFindByEmail(String email) {
+	
+	public User CheckingUser(String email) {
 		if (dao.findByEmail(email) == null) {
 			User user = new User();
 			return user;
 		}
-		return dao.findByEmail(email);
-	}
-
-	public User findByEmail(String email) {
 		return dao.findByEmail(email);
 	}
 

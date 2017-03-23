@@ -19,7 +19,9 @@ public class JDBCPublicationDAO {
 		String sql = "INSERT INTO Publication" + "(id, title, contents) VALUES (?, ?, ?)";
 
 		Connection conn = null;
-
+		
+		
+		
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);

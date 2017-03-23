@@ -1,6 +1,7 @@
 package pl.service.science.section.domain;
 
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import pl.service.science.authorization.domain.Authorization;
 import pl.service.science.localization.domain.Location;
 import pl.service.science.translation.domain.Translation;
 
@@ -23,9 +25,15 @@ public class Section {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "section_id")
 	public Long id;
+	
+	@Column(name = "section_email")
+	public String email;
 
 	@Column(name = "section_enabled")
 	public Boolean enabled;
+	
+	@Column(name = "section_phone")
+	public String phone;
 
 	@OneToOne
 	@JoinColumn(name = "section_translation_id")
@@ -33,7 +41,7 @@ public class Section {
 
 	@ManyToOne
 	@JoinColumn(name = "section_type_id")
-	public SectionType type;
+	public Type type;
 
 	@OneToOne
 	@JoinColumn(name = "description_translation_id")
@@ -43,11 +51,14 @@ public class Section {
 	@JoinColumn(name = "location_id")
 	public Location location;
 
-	@OneToMany(mappedBy = "sectionCenter")
-	public List<SectionCenter> center;
-
+	@OneToOne
+	public Center center;
+	
 	@OneToMany(mappedBy = "subsection")
-	public List<SectionCenter> subsection;
+	public List<Center> subsection;
+	
+	@OneToMany(mappedBy = "section")
+	public List <Authorization> sectionAutorization;
 
 	public Long getId() {
 		return id;
@@ -73,11 +84,11 @@ public class Section {
 		this.section = section;
 	}
 
-	public SectionType getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(SectionType type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
@@ -95,6 +106,14 @@ public class Section {
 
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

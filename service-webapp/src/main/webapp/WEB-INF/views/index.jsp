@@ -15,40 +15,8 @@
 </head>
 <body>
 
-	<spring:url value="/?language=en" var="en" />
-	<spring:url value="/?language=pl" var="pl" />
-	*
-	<a href="${en}">English</a>* *
-	<a href="${pl}">Polski</a>*
-	<br />
+ffhtedetyrfutfsytdfsuytfy<br>
 
-	<spring:url value="/publication/add" var="publicationAdd" />
-	<spring:url value="/category/add" var="categoryAdd" />
-	*
-	<a href="${publicationAdd}">Add publication</a>* *
-	<a href="${categoryAdd}">Add category</a>*
-	<br />
-	<spring:url value="/category" var="categoryUrl" />
-	*
-	<a href="${categoryUrl}">Category</a>*
-	<spring:url value="/" var="publicationUrl" />
-	*
-	<a href="${publicationUrl}">Publication</a>*
-	<h1>
-		<strong>${message}</strong>
-	</h1>
-	<strong>${title}</strong>
-	<br />
-	<strong>${context}</strong>
-
-	<c:forEach varStatus="status" var="publication"
-		items="${collectionPublication}">
-		publicaton: ${publication.id}: ${translation.text}<br />
-	</c:forEach>
-
-
-	<h1>
-		<strong>${info}</strong>
-	</h1>
+${asd}
 </body>
 </html>

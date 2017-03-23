@@ -8,7 +8,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <jsp:include page="panel/header.jsp" />
-<spring:url value="/resources/core/images/logo.jpeg" var="logo" />
+<spring:url value="/static/images/logo.jpeg" var="logo" />
 	<div id="contents">
 		<div class="row"
 			style="margin-top: 25px; margin-right: 20px; margin-left: 20px;">

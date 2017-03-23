@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <p
 	style="font-size: 14px; margin-left: 10px; font-weight: 400; line-height: 1.42857; margin-top: -2px">
-	${selectedPublications}: <span style="color: #C0C0CA;">${publishedPublications}</span>
+	${selectedPublications}:${info} <span style="color: #C0C0CA;">${publishedPublications}</span>
 </p>
 <table class="table" style="margin-left: 20px; width: 95%;">
 	<thead style="color: #C0C0C0;">

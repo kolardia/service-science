@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import pl.service.science.translation.domain.Translation;
 
 /**
+ * The City mapping  on a database for table name: "city"
  * @author kolardia
  *
  */
@@ -22,15 +23,24 @@ import pl.service.science.translation.domain.Translation;
 @Table(name = "city")
 public class City {
 
+	/**
+	 * The mapping on a database is a generating automatic for primary key; column name: "city_id"
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "city_id")
 	Long id;
 
+	/**
+	 * The mapping on a database is one-to-one; column name: "city_translation_id"
+	 */
 	@OneToOne
 	@JoinColumn(name = "city_translation_id")
 	public Translation city;
 
+	/**
+	 * The mapping on a database is one-to-many
+	 */
 	@OneToMany(mappedBy = "city")
 	public List<Location> cities;
 

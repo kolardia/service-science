@@ -5,11 +5,11 @@ import java.util.Locale;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.service.science.publication.dao.DaoPublication;
+import pl.service.science.publication.dao.PublicationDAO;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.service.ServicePublication;
 import pl.service.science.translation.domain.Translation;
-import pl.service.science.translation.service.ServiceTranslation;
+import pl.service.science.translation.service.TranslationService;
 
 @Service
 public class ServicePublicationImpl implements ServicePublication {
@@ -17,10 +17,10 @@ public class ServicePublicationImpl implements ServicePublication {
 	final static Logger logger = Logger.getLogger(ServicePublication.class);
 
 	@Autowired
-	protected DaoPublication dao;
+	protected PublicationDAO dao;
 
 	@Autowired
-	ServiceTranslation serviceTranslation;
+	TranslationService serviceTranslation;
 
 	public Publication findById(Long id) {
 		return dao.findById(id);
@@ -41,14 +41,14 @@ public class ServicePublicationImpl implements ServicePublication {
 
 	public void deleteAllPublicationParts(Publication poublication){
 		this.delete(poublication.getId());
-		serviceTranslation.deleteTranslationParts(poublication.getTitle());
-		serviceTranslation.deleteTranslationParts(poublication.getContents());
+		serviceTranslation.removeTranslationAlongWithAllTexts(poublication.getTitle());
+		serviceTranslation.removeTranslationAlongWithAllTexts(poublication.getContents());
 	}
 	
 	
 	public void saveText(Translation translation, String text, String code) {
 	
-		serviceTranslation.newText(translation, text, code);
+		serviceTranslation.newTextTranslationForObject(translation, text, code);
 	}
 	
 	public Translation insert(Translation translation){

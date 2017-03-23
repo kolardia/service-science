@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <spring:message code="admin.editor.archives.table.date"
 	var="archiveDate" />
 <spring:message code="admin.editor.archives.table.title"
@@ -30,15 +32,17 @@
 			<th>${archiveAction}</th>
 		</tr>
 	</thead>
-	<tr class="accent">
-		<td>1</td>
-		<td>12.12.2015</td>
-		<td>Tytul publikacji -zazwyczaj długi</td>
-		<td>
-			<button class="btn buttonLink btn-info "
-				onclick="location.href='${userUrl}'">${archiveInfo}</button>
-			<button class="btn buttonLink btn-success "
-				onclick="location.href='${userUrl}'">${archiveDelete}</button>
-		</td>
-	</tr>
+	<c:forEach varStatus="status" var="element" items="${collection}">
+		<tr class="accent">
+			<td>1</td>
+			<td>${element.date}</td>
+			<td>${element.title}</td>
+			<td>
+				<button class="btn buttonLink btn-info "
+					onclick="location.href='${userUrl}'">${archiveInfo}</button>
+				<button class="btn buttonLink btn-success "
+					onclick="location.href='${userUrl}'">${archiveDelete}</button>
+			</td>
+		</tr>
+	</c:forEach>
 </table>

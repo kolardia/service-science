@@ -5,21 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.service.science.localization.dao.DaoRegion;
+import pl.service.science.localization.dao.RegionDAO;
 import pl.service.science.localization.domain.Country;
 import pl.service.science.localization.domain.Region;
-import pl.service.science.localization.service.ServiceRegion;
+import pl.service.science.localization.service.RegionService;
 import pl.service.science.translation.domain.Translation;
-import pl.service.science.translation.service.ServiceTranslation;
+import pl.service.science.translation.service.TranslationService;
 
 @Service
-public class ServiceRegionImpl implements ServiceRegion {
+public class ServiceRegionImpl implements RegionService {
 
 	@Autowired
-	protected DaoRegion dao;
+	protected RegionDAO dao;
 
 	@Autowired
-	protected ServiceTranslation serviceTranslation;
+	protected TranslationService serviceTranslation;
 
 	public Region findById(Long id) {
 		return dao.findById(id);
@@ -30,13 +30,13 @@ public class ServiceRegionImpl implements ServiceRegion {
 	}
 
 	public void newText(Translation translation, String text, String languageCode) {
-		serviceTranslation.newText(translation, text, languageCode);
+		serviceTranslation.newTextTranslationForObject(translation, text, languageCode);
 	}
 
-	public Region findOrSave(String countryName, String languageCode) {
+	public Region fineOrSaveRegion(String countryName, String languageCode) {
 
 		Translation translation = new Translation();
-		translation = serviceTranslation.findText(countryName, languageCode);
+		translation = serviceTranslation.selectTextTranslation(countryName, languageCode);
 
 		if (translation != null) {
 		

@@ -3,6 +3,7 @@ package service.sience.service.translation.test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import org.junit.After;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,82 +12,104 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import pl.service.science.translation.dao.LanguageDAO;
+import pl.service.science.translation.dao.TranslationDAO;
+import pl.service.science.translation.dao.TranslationTextDAO;
 import pl.service.science.translation.domain.Translation;
-import pl.service.science.translation.service.ServiceLanguage;
-import pl.service.science.translation.service.ServiceTextTranslation;
-import pl.service.science.translation.service.ServiceTranslation;
+import pl.service.science.translation.service.LanguageService;
+import pl.service.science.translation.service.TranslationTextService;
+import pl.service.science.translation.service.TranslationService;
 
 @FixMethodOrder(MethodSorters.JVM)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
 public class TranslationTest {
 
+	/**
+	 * Testing service
+	 */
 	@Autowired
-	ServiceTranslation service;
+	protected TranslationService service;
 
+	/**
+	 * Testing service
+	 */
 	@Autowired
-	ServiceTextTranslation serviceText;
+	protected TranslationTextService serviceText;
 
+	/**
+	 * Helper class of services for testing
+	 */
 	@Autowired
-	ServiceLanguage serviceLanguage;
+	protected LanguageService serviceLanguage;
 
-	@Test /* Insert, update, delete */
-	public void testPlTranslation() {
+	/**
+	 * Helper class of DTO for cleaning database
+	 */
+	@Autowired
+	 private LanguageDAO language;
+	 
+	/**
+	 * Helper class of DTO for cleaning database
+	 */
+	@Autowired
+	 private TranslationDAO translation;
+	
+	/**
+	 * Helper class of DTO for cleaning database
+	 */
+	@Autowired
+	 private TranslationTextDAO text;
+	
+	 @After public void cleanDatabase() {
+			
+			text.deleteAll();
+			language.deleteAll();
+			translation.deleteAll();
+	   }
+	 
+	@Test
+	public void oneLanguageOfTranslation() {
 
-		Translation plTranslation = new Translation();
-		service.save(plTranslation);
+		Translation Translation = new Translation();
+		service.save(Translation);
 
-		plTranslation = service.newText(plTranslation, "polski tekst", "PL");
+		Translation = service.newTextTranslationForObject(Translation, "polski tekst", "PL");
 		assertNotNull(serviceText.findByText("polski tekst"));
 
-		service.updateText(plTranslation, "poprawiony- polski tekst", "PL");
+		service.updateTextTranslationForObject(Translation, "poprawiony- polski tekst", "PL");
 		assertNotNull(serviceText.findByText("poprawiony- polski tekst"));
 
-		service.deleteTranslationParts(plTranslation);
 		assertNull(serviceText.findByText("polski tekst"));
-		assertNull(serviceText.findByText("poprawiony- polski tekst"));
+		assertNotNull(serviceText.findByText("poprawiony- polski tekst"));
 	}
 
-	@Test /* Insert, update, delete */
-	public void testEnTranslation() {
-
-		Translation enTranslation = new Translation();
-		service.save(enTranslation);
-
-		enTranslation = service.newText(enTranslation, "english text", "EN");
-		assertNotNull(serviceText.findByText("english text"));
-
-		service.updateText(enTranslation, "corecttion- english text", "EN");
-		assertNotNull(serviceText.findByText("corecttion- english text"));
-
-		service.deleteTranslationParts(enTranslation);
-		assertNull(serviceText.findByText("english text"));
-		assertNull(serviceText.findByText("corecttion- english text"));
-	}
-
-	@Test /* Insert, update, delete */
+	@Test
 	public void resumeTestTranslation() {
 
 		Translation translation = new Translation();
 		service.save(translation);
 
-		translation = service.newText(translation, "english text", "EN");
+		translation = service.newTextTranslationForObject(translation, "english text", "EN");
 		assertNotNull(serviceText.findByText("english text"));
 
-		translation = service.newText(translation, "polski tekst", "PL");
+		translation = service.newTextTranslationForObject(translation, "polski tekst", "PL");
 		assertNotNull(serviceText.findByText("polski tekst"));
 
-		service.updateText(translation, "poprawiony- polski tekst", "PL");
+		service.updateTextTranslationForObject(translation, "poprawiony- polski tekst", "PL");
+		assertNull(serviceText.findByText("polski tekst"));
 		assertNotNull(serviceText.findByText("poprawiony- polski tekst"));
 
-		service.updateText(translation, "corecttion- english text", "EN");
+		service.updateTextTranslationForObject(translation, "corecttion- english text", "EN");
+		assertNull(serviceText.findByText("english text"));
 		assertNotNull(serviceText.findByText("corecttion- english text"));
 
-		service.deleteTranslationParts(translation);
+		service.removeTranslationAlongWithAllTexts(translation);
 		assertNull(service.findById(translation.getId()));
 		assertNull(serviceText.findByText("polski tekst"));
 		assertNull(serviceText.findByText("poprawiony- polski tekst"));
 		assertNull(serviceText.findByText("english text"));
 		assertNull(serviceText.findByText("corecttion- english text"));
 	}
+
 }

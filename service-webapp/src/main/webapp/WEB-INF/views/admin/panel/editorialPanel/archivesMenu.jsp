@@ -9,14 +9,32 @@
 	var="menuSearchFromDate" />
 <spring:message code="admin.editor.archives.menu.search.up.to.the.date"
 	var="menuSearchUpToDate" />
-<div class="row" style="margin-bottom: 5px; margin-top: 10px; padding-left:8px">
+<spring:message code="admin.editor.publications.menu.language"
+	var="menuLanguage" />
+<spring:message
+	code="admin.editor.archives.menu.language.dropdown.show.pl"
+	var="LanguageShowPL" />
+<spring:message
+	code="admin.editor.archives.menu.language.dropdown.show.en"
+	var="LanguageShowEN" />
+<div class="row"
+	style="margin-bottom: 5px; margin-top: 10px; padding-left: 8px">
 	<div class="col-md-3 col-sm-4 ">
 		<div class="btn-group" role="group">
-			<button id="btnEAAll" type="button" class="btn btn-default"
-				style="border-color: #FFF">
-				<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-				${menuAll}
-			</button>
+			<div class="dropdown">
+				<button class="btn btn-default dropdown-toggle"
+					style="border-color: #FFF" type="button" id="dropdownArchiva"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+					${menuLanguage}
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownPublications">
+					<li><a id="btnEAAllPl" href="#"><b>PL</b>
+							${LanguageShowPL}</a></li>
+					<li><a id="btnEAAllEn" href="#"><b>EN</b>
+							${LanguageShowEN}</a></li>
+				</ul>
+			</div>
 		</div>
 		<div class="btn-group" role="group">
 			<button id="btnEANew" type="button" class="btn btn-default"
@@ -54,45 +72,3 @@
 </div>
 <div class="panel panel-default"></div>
 <div id="archivesPanel"></div>
-<script>
-	$(document).ready(function() {
-		$.ajax({
-			url : "editor/archives",
-			success : function(result) {
-				$("#archivesPanel").html(result);
-			}
-		});
-		$("#btnEANew").click(function() {
-			$.ajax({
-				url : "editor/archives/add",
-				success : function(result) {
-					$("#archivesPanel").html(result);
-				}
-			});
-		});
-		$("#btnEADate").click(function() {
-			$.ajax({
-				url : "editor/archives/search-date",
-				success : function(result) {
-					$("#archivesPanel").html(result);
-				}
-			});
-		});
-		$("#btnEASeach").click(function() {
-			$.ajax({
-				url : "editor/archives/search-title",
-				success : function(result) {
-					$("#archivesPanel").html(result);
-				}
-			});
-		});
-		$("#btnEAAll").click(function() {
-			$.ajax({
-				url : "editor/archives",
-				success : function(result) {
-					$("#archivesPanel").html(result);
-				}
-			});
-		});
-	});
-</script>
