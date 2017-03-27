@@ -1,5 +1,6 @@
 package service.sience.service.location.test;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import pl.service.science.localization.domain.City;
 import pl.service.science.localization.domain.Country;
 import pl.service.science.localization.domain.Location;
 import pl.service.science.localization.domain.Region;
@@ -25,16 +27,7 @@ import pl.service.science.translation.service.TranslationService;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
 public class LocationTest {
 
-	/**
-	 * Geographical coordinates
-	 * 
-	 * Poznań 52.399N 16.900E
-	 * kalisz 51.770N 18.100E
-	 * toruń 53.020N 18.609E
-	 * 
-	 * lat
-	 * 	 *  Testing servic
-	 */
+	
 	@Autowired
 	protected LocationService serviceLocation;
 	@Autowired
@@ -44,8 +37,6 @@ public class LocationTest {
 	@Autowired
 	protected CityService serviceCity;
 
-
-	
 	@Autowired
 	protected LanguageService serviceLanguage;
 	@Autowired
@@ -57,49 +48,56 @@ public class LocationTest {
 	 * Helper class of DTO for cleaning database
 	 */
 
+	@After
+	public void cleanDatabase() {
+
+		for (Country country : serviceCountry.findAll()) {
+
+			serviceCountry.deleteWhithParts(country);
+		}
+		for (Region region : serviceRegion.findAll()) {
+
+			serviceRegion.deleteRegionWhithParts(region);
+		}
+		for (City city : serviceCity.findAll()) {
+
+			serviceCity.deleteCityWhithParts(city);
+		}
+
+	}
+
 	@Test
 	public void location() {
 
 		Location location = new Location();
 		location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
-		location.setPostalAddress("os. Sobieskiego 78/5");
+		location.setCity(serviceCity.findOrSaveCity("Poznań", "PL"));
+		location.setPostalAddress("Umultowska 87");
+		location.setLatitude("52.466909");
+		location.setLongitude("16.927859");
 		serviceLocation.save(location);
+
+		Assert.assertNotNull(serviceLocation.findById(location.getId()));
+		Assert.assertNotNull(serviceLocation.findById(location.getId()).getRegon());
+		Assert.assertNotNull(serviceLocation.findById(location.getId()).getCity());
+		serviceLocation.cleanAndDelete(location);
 	}
 
 	@Test
-	public void saveLocation() {
+	public void countryAssociatedWithRegion() {
 
-		for (int index = 0; index < 3; index++) {
+		serviceLocation.countryAssociatedWithRegion("PL", "Opolskie", "Polska");
 
-	
+		Region region = new Region();
+		region = serviceRegion.fineOrSaveRegion("Wielkopolskie", "PL");
+		serviceRegion.save(region);
 
-			Region region = new Region();
-			region = serviceRegion.fineOrSaveRegion("Wielkopolskie", "PL");
-			serviceRegion.save(region);
-			
-			Country country = new Country();
-			country = serviceCountry.fineOrSaveCountry("Polska", "PL");
-			country.setRegion(region);
-			serviceCountry.save(country);
+		Country country = new Country();
+		country = serviceCountry.fineOrSaveCountry("Polska", "PL");
+		country.setRegion(region);
+		serviceCountry.save(country);
 
-			Assert.assertEquals(country.getId(), serviceCountry.findByRegion(region).getId());
-		}
-	}
-
-
-	@Test
-	public void locationPartCountry() {
-
-		Region region1 = new Region();
-		region1 = serviceRegion.fineOrSaveRegion("Opolskie", "PL");
-		serviceRegion.save(region1);
-		
-		Country country1 = new Country();
-		country1 = serviceCountry.fineOrSaveCountry("Polska", "PL");
-		country1.setRegion(region1);
-		serviceCountry.save(country1);
-
-		Assert.assertEquals(country1.getId(), serviceCountry.findByRegion(region1).getId());
+		Assert.assertEquals(country.getId(), serviceCountry.findByRegion(region).getId());
 
 	}
 }

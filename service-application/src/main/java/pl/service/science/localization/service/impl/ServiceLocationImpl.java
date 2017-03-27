@@ -52,4 +52,13 @@ public class ServiceLocationImpl implements LocationService {
 		return serviceRegion.findById(region.getId());
 	}
 	
+	public void cleanAndDelete(Location location){
+		
+		location.setCity(null);
+		location.setRegon(null);;
+		
+		dao.save(location);
+		dao.delete(location);
+	}
+	
 }

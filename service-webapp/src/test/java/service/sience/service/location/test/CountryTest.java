@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.service.science.localization.domain.Country;
 import pl.service.science.localization.service.CountryService;
+import pl.service.science.localization.service.RegionService;
 import pl.service.science.translation.domain.Translation;
 import pl.service.science.translation.service.LanguageService;
 import pl.service.science.translation.service.TranslationService;
@@ -21,34 +22,37 @@ import pl.service.science.translation.service.TranslationTextService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
 public class CountryTest {
-	
+
 	@Autowired
 	protected CountryService serviceCountry;
 
 	@Autowired
 	protected TranslationService serviceTranslation;
-	
+
 	/**
 	 * Helper class for assert
 	 */
 	@Autowired
 	protected LanguageService serviceLanguage;
-	
+
 	/**
 	 * Helper class for assert
 	 */
 	@Autowired
 	protected TranslationTextService serviceTextTranslation;
-	
-	 @After public void cleanDatabase() {
-		 
-		 for (Country country: serviceCountry.findAll()){
-			 
-			 serviceCountry.deleteWhithParts(country);
-		 }
-		 
-	   }
-	
+
+	@Autowired
+	protected RegionService serviceRegion;
+
+	@After
+	public void cleanDatabase() {
+
+		for (Country country : serviceCountry.findAll()) {
+
+			serviceCountry.deleteWhithParts(country);
+		}
+	}
+
 	@Test
 	public void newCountry() {
 
@@ -83,7 +87,7 @@ public class CountryTest {
 			}
 			Assert.assertEquals(String.valueOf("country" + j), serviceTextTranslation
 					.findByTextAndLanguage(String.valueOf("country" + j), serviceLanguage.adaptCode("EN")).getText());
-		
+
 		}
 	}
 
