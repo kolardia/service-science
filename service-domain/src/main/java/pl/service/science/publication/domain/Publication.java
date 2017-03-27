@@ -17,88 +17,160 @@ import pl.service.science.authorization.domain.User;
 import pl.service.science.localization.domain.Location;
 import pl.service.science.translation.domain.Translation;
 
+/**
+ * Mapping a publication class in a database named table:  "publication"
+ * 
+ * @author Monika Senderecka
+ *
+ */
 @Entity
 @Table(name = "publication")
 public class Publication {
 
+	/**
+	 * The mapping on a database is a generating automatic for primary key; column name: "publication_id"
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "publication_id")
 	public Long id;
 	
+	/**
+	 * The mapping on a database for column name: "title_translation_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "title_translation_id")
 	public Translation title;
 	
+	/**
+	 * The mapping on a database for column name: "publication_enabled"
+	 */
 	@Column(name = "publication_enabled")
 	public Boolean enabled;
 	
+	/**
+	 * The mapping on a database for column name: "publication_type_id"; the mapping on a database is many-to-one
+	 */
 	@ManyToOne
 	@JoinColumn(name = "publication_type_id")
 	public Type type;
 
+	/**
+	 * The mapping on a database for column name: "publication_state_id"; the mapping on a database is many-to-one
+	 */
 	@ManyToOne
 	@JoinColumn(name = "publication_state_id")
 	public State state;
 
+	/**
+	 * The mapping on a database for column name: "contents_translation_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "contents_translation_id")
 	public Translation contents;
 
+	/**
+	 * The mapping on a database for column name: "category_id"; the mapping on a database is many-to-one
+	 */
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	public Category category;
 	
-	@OneToOne
+	/**
+	 * The mapping on a database for column name: "autorization_id"; the mapping on a database is one-to-one
+	 */
+	@ManyToOne
 	@JoinColumn(name = "autorization_id")
 	public Authorization autorization;
 	
+	/**
+	 * The mapping on a database for column name: "candidate_profile_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "candidate_profile_id")
 	public Translation candidateProfile;
 	
+	/**
+	 * The mapping on a database for column name: "purpose_of_event_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "purpose_of_event_id")
 	public Translation purposeOfEvent;
 	
+	/**
+	 * The mapping on a database for column name: "event_program_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "event_program_id")
 	public Translation eventProgram;
 	
+	/**
+	 * The mapping on a database for column name: "methodology_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "methodology_id")
 	public Translation methodology;
 	
+	/**
+	 * The mapping on a database for column name: "initial_requirements_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "initial_requirements_id")
 	public Translation initialRequirements;
 	
+	/**
+	 * The mapping on a database for column name: "price"
+	 */
 	@Column(name = "price")
 	public float price;
 
+	/**
+	 * The mapping on a database for column name: "number_of_seats"
+	 */
 	@Column(name = "number_of_seats")
 	public int numberOfSeats;
 	
+	/**
+	 * The mapping on a database for column name: "event_location_id"; the mapping on a database is many-to-one
+	 */
 	@ManyToOne
 	@JoinColumn(name = "event_location_id")
 	public Location eventLocation;
 	
+	/**
+	 * The mapping on a database for column name: "leader_id"; the mapping on a database is many-to-one
+	 */
 	@ManyToOne
 	@JoinColumn(name = "leader_id")
 	public User leader;
 	
+	/**
+	 * The mapping on a database for column name: "for_free"
+	 */
 	@Column(name = "for_free")
 	public Boolean forFree;
 	
+	/**
+	 * The mapping on a database for column name: "beginning_of_records"
+	 */
 	@Column(name = "beginning_of_records")
 	public Date beginningOfRecords;
 	
+	/**
+	 * The mapping on a database for column name: "end_of_records"
+	 */
 	@Column(name = "end_of_records")
 	public Date endOfRecords;
 	
+	/**
+	 * The mapping on a database for column name: "beginning_of_event"
+	 */
 	@Column(name = "beginning_of_event")
 	public Date beginningOfevent;
 	
+	/**
+	 * The mapping on a database for column name: "end_of_event"
+	 */
 	@Column(name = "end_of_event")
 	public Date endOfevent;
 
@@ -225,7 +297,7 @@ public class Publication {
 	public void setForFree(Boolean forFree) {
 		this.forFree = forFree;
 	}
-
+/*
 	public Date getBeginningOfRecords() {
 		return beginningOfRecords;
 	}
@@ -256,7 +328,7 @@ public class Publication {
 
 	public void setEndOfevent(Date endOfevent) {
 		this.endOfevent = endOfevent;
-	}
+	}*/
 
 	@Override
 	public String toString() {

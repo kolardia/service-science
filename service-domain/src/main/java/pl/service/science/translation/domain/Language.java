@@ -11,12 +11,13 @@ import javax.persistence.Table;
 
 /**
  * The Language mapping  on a database for table name: "language"
- * @author kolardia
+ * @author Monika Senderecka
  *
  */
 @Entity
 @Table(name = "language")
 public class Language {
+	
 	/**
 	 * The mapping on a database is a generating automatic for primary key; column name: "language_id"
 	 */

@@ -1,5 +1,7 @@
 package pl.service.science.localization.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import pl.service.science.localization.domain.Region;
 import pl.service.science.localization.service.CountryService;
 import pl.service.science.translation.domain.Translation;
 import pl.service.science.translation.service.TranslationService;
+import pl.service.science.translation.service.TranslationTextService;
 
 @Service
 public class ServiceCountryImpl implements CountryService {
@@ -18,6 +21,9 @@ public class ServiceCountryImpl implements CountryService {
 
 	@Autowired
 	protected TranslationService serviceTranslation;
+	
+	@Autowired
+	protected TranslationTextService serviceText;
 
 	public Country findById(Long id) {
 		return dao.findById(id);
@@ -32,17 +38,32 @@ public class ServiceCountryImpl implements CountryService {
 	}
 
 	public void newText(Translation translation, String text, String code) {
-		serviceTranslation.newTextTranslationForObject(translation, text, code);
+		serviceTranslation.newTranslationForObject(translation, text, code);
 	}
 
 	public Country findByCountry(Translation translation) {
 		return dao.findByCountry(translation);
 	}
+	
+	public List <Country> findAll(){
+		return dao.findAll();
+	}
 
+	public void deleteWhithParts(Country country) {
+		
+		Translation translation = new Translation();
+		translation = serviceTranslation.findById(country.getCountry().getId());
+		
+		dao.delete(country);
+		serviceText.delete(serviceText.findByTranslation(translation));
+		serviceTranslation.delete(translation);
+
+	}
+	
 	public Country fineOrSaveCountry(String countryName, String languageCode) {
 
 		Translation translation = new Translation();
-		translation = serviceTranslation.selectTextTranslation(countryName, languageCode);
+		translation = serviceTranslation.findTextTranslation(countryName, languageCode);
 
 		if (translation != null) {
 

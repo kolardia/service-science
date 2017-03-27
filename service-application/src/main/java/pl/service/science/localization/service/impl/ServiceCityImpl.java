@@ -1,5 +1,7 @@
 package pl.service.science.localization.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import pl.service.science.localization.service.CityService;
 import pl.service.science.translation.domain.TextTranslation;
 import pl.service.science.translation.domain.Translation;
 import pl.service.science.translation.service.TranslationTextService;
+import pl.service.science.translation.service.LanguageService;
 import pl.service.science.translation.service.TranslationService;
 
 @Service
@@ -22,6 +25,20 @@ public class ServiceCityImpl implements CityService {
 
 	@Autowired
 	protected TranslationTextService serviceText;
+	
+	@Autowired
+	protected LanguageService serviceLanguage;
+
+	public void deleteCityWhithParts(City city) {
+		
+		Translation translation = new Translation();
+		translation = serviceTranslation.findById(city.getCity().getId());
+		
+		dao.delete(city);
+		serviceText.delete(serviceText.findByTranslation(translation));
+		serviceTranslation.delete(translation);
+
+	}
 
 	public City findById(Long id) {
 		return dao.findById(id);
@@ -30,15 +47,19 @@ public class ServiceCityImpl implements CityService {
 	public void save(City city) {
 		dao.save(city);
 	}
+	
+	public List<City>findAll(){
+		return dao.findAll();
+	}
 
 	public void newText(Translation translation, String text, String languageCode) {
-		serviceTranslation.newTextTranslationForObject(translation, text, languageCode);
+		serviceTranslation.newTranslationForObject(translation, text, languageCode);
 	}
 
 	public City findOrSaveCity(String cityName, String languageCode) {
 
 		Translation translation = new Translation();
-		translation = serviceTranslation.selectTextTranslation(cityName, languageCode);
+		translation = serviceTranslation.findTextTranslation(cityName, languageCode);
 
 		if (translation != null) {
 
@@ -61,7 +82,7 @@ public class ServiceCityImpl implements CityService {
 			String newLanguageCode) {
 
 		Translation translation = new Translation();
-		translation = serviceTranslation.selectTextTranslation(cityName, languageCode);
+		translation = serviceTranslation.findTextTranslation(cityName, languageCode);
 
 		TextTranslation translationText = new TextTranslation();
 		translationText = serviceText.findByText(newTranslationText);

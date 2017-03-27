@@ -1,7 +1,14 @@
-/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/authorization/test/ControllerTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/authorization/test/ProfileTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/location/test/CountryTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/authorization/test/CenterSectionTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/authorization/test/LoadsTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/authorization/test/TypeTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/authorization/test/AuthorizationTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/location/test/RegionTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/translation/test/TranslationTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/location/test/CityTest.java
+/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/pubication/test/PublicationTest.java
 /home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/authorization/test/UserTest.java
 /home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/translation/test/LanguageTest.java
 /home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/authorization/test/SectionTest.java
-/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/translation/test/TranslationTest.java
-/home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/pubication/test/PublicationTest.java
 /home/kolardia/workspace/pl.service/service-webapp/src/test/java/service/sience/service/location/test/LocationTest.java

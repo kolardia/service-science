@@ -17,46 +17,84 @@ import pl.service.science.authorization.domain.Authorization;
 import pl.service.science.localization.domain.Location;
 import pl.service.science.translation.domain.Translation;
 
+/**
+ * Mapping the class in a database named table: "section"
+ * @author Monika Senderecka
+ *
+ */
 @Entity
 @Table(name = "section")
 public class Section {
 
+	/**
+	 * The mapping on a database is a generating automatic for primary key; column name: "section_id"
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "section_id")
 	public Long id;
 	
-	@Column(name = "section_email")
+	/**
+	 * The mapping on a database for column name: "section_email"; the resulting value will be not null
+	 */
+	@Column(name = "section_email", nullable = false)
 	public String email;
 
+	/**
+	 * The mapping on a database for column name: "section_enabled"
+	 */
 	@Column(name = "section_enabled")
 	public Boolean enabled;
 	
+	/**
+	 * The mapping on a database for column name: "section_phone"
+	 */
 	@Column(name = "section_phone")
 	public String phone;
 
+	/**
+	 * The mapping on a database for column name: "section_translation_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "section_translation_id")
 	public Translation section;
 
+	/**
+	 * The mapping on a database for column name: "section_type_id"; the mapping on a database is many-to-one
+	 */
 	@ManyToOne
 	@JoinColumn(name = "section_type_id")
 	public Type type;
 
+	/**
+	 * The mapping on a database for column name: "description_translation_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "description_translation_id")
 	public Translation description;
 
+	/**
+	 * The mapping on a database for column name: "location_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "location_id")
 	public Location location;
 
-	@OneToOne
+	/**
+	 * The mapping on a database is one-to-one
+	 */
+	@OneToOne(mappedBy = "sectionCenter")
 	public Center center;
 	
+	/**
+	 * The mapping on a database is one-to-many
+	 */
 	@OneToMany(mappedBy = "subsection")
 	public List<Center> subsection;
 	
+	/**
+	 * The mapping on a database is one-to-many
+	 */
 	@OneToMany(mappedBy = "section")
 	public List <Authorization> sectionAutorization;
 

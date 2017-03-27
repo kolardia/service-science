@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.service.science.section.domain.Section;
 
 /**
- * Interface for generic database operations on a repository for a section type.
+ * Interface for generic database operations on a repository for a section
  * @author kolardia
  *
  */
@@ -14,7 +14,7 @@ public interface SectionService {
 
 	/**
 	 * Find entity by a section id.
-	 * @param id
+	 * @param id Identifier
 	 * @return the entity with the given id or null if none found
 	 */
 	public Section findById(Long id);

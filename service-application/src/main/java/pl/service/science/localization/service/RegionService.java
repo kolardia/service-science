@@ -26,7 +26,7 @@ public interface RegionService {
 	public Region fineOrSaveRegion(String countryName, String languageCode);
 
 	/**
-	 * CRUD
+	 * 
 	 * @param country
 	 * 
 	 * @return
@@ -34,24 +34,27 @@ public interface RegionService {
 	public List<Region> findByCountry(Country country);
 	
 	/**
-	 * CRUD
+	 * 
 	 * @param id
 	 * @return
 	 */
 	public Region findById(Long id);
 
 	/**
-	 * CRUD
+	 * 
 	 * @param translation
 	 * @return
 	 */
 	public Region findByRegion(Translation translation);
 
 	/**
-	 * CRUD
+	 * 
 	 * @param region
 	 */
 	public void save(Region region);
 
+	public List<Region> findAll();
+	
+	public void deleteRegionWhithParts(Region region);
 
 }

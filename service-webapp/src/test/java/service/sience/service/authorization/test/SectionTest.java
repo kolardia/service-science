@@ -80,7 +80,7 @@ public class SectionTest {
 		
 				location.setId(section.getLocation().getId());
 				location.setPostalAddress("xadres 4/7");
-				location.setRegon(serviceLocation.findOrSaveRegionForCountry("PL", "Wielkopolske", "Polska"));
+			//	location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
 				location.setCity(serviceCity.findOrSaveCity("Poznan", "PL"));
 				serviceCity.addCityTranslation("Poznan", "PL", "Posen", "EN");
 				serviceLocation.save(location);
@@ -125,7 +125,7 @@ public class SectionTest {
 		
 				location.setId(section.getLocation().getId());
 				location.setPostalAddress("krakowska 4/7");
-				location.setRegon(serviceLocation.findOrSaveRegionForCountry("PL", "Wielkopolske", "Polska"));
+			//	location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
 				location.setCity(serviceCity.findOrSaveCity("Poznan", "PL"));
 				serviceCity.addCityTranslation("Poznan", "PL", "Posen", "EN");
 				serviceLocation.save(location);

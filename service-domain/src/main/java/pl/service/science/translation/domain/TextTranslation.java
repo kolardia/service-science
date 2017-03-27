@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * The TextTranslation mapping  on a database for table name: "text_translation"
- * @author kolardia
+ * Mapping the class in a database named table: "text_translation"
+ * @author Monika Senderecka
  *
  */
 @Entity

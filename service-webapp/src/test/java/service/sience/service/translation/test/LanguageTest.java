@@ -99,7 +99,7 @@ public class LanguageTest {
 
 		}
 
-		serviceLanguage.removeLanguageAlongWithTexts(serviceLanguage.adaptCode("TEST"));
+		serviceLanguage.removeLanguageWithTexts(serviceLanguage.adaptCode("TEST"));
 		Assert.assertNull(language.findByCode("TEST"));
 	}
 

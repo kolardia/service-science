@@ -1,5 +1,7 @@
 package pl.service.science.localization.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import pl.service.science.localization.domain.City;
@@ -7,7 +9,7 @@ import pl.service.science.translation.domain.Translation;
 
 /**
  * Interface for a database operations for a city type.
- * @author kolardia
+ * @author Monika Senderecka
  * 
  */
 
@@ -42,15 +44,20 @@ public interface CityService {
 	public City addCityTranslation(String cityName, String languageCode, String newTranslationText, String newLanguageCode);
 
 	/**
-	 * CRUD Find entity by a city type id
+	 * Find entity by a city type id
 	 * @param id
-	 * @return the entity with the given id or null if none found
+	 * @return the entity with the given id
 	 */
 	public City findById(Long id);
 	
 	/**
-	 * CRUD Saves a given entity for a city object
+	 * Saves a given entity for a city object
 	 * @param city
 	 */
 	public void save(City city);
+	
+	public void deleteCityWhithParts(City city);
+	
+	public List<City>findAll();
+	
 }

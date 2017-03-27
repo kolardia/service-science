@@ -11,6 +11,7 @@ import pl.service.science.localization.domain.Region;
 import pl.service.science.localization.service.RegionService;
 import pl.service.science.translation.domain.Translation;
 import pl.service.science.translation.service.TranslationService;
+import pl.service.science.translation.service.TranslationTextService;
 
 @Service
 public class ServiceRegionImpl implements RegionService {
@@ -20,6 +21,9 @@ public class ServiceRegionImpl implements RegionService {
 
 	@Autowired
 	protected TranslationService serviceTranslation;
+	
+	@Autowired
+	protected TranslationTextService serviceText;
 
 	public Region findById(Long id) {
 		return dao.findById(id);
@@ -29,17 +33,32 @@ public class ServiceRegionImpl implements RegionService {
 		dao.save(region);
 	}
 
-	public void newText(Translation translation, String text, String languageCode) {
-		serviceTranslation.newTextTranslationForObject(translation, text, languageCode);
+	public List<Region> findAll() {
+		return dao.findAll();
 	}
 
+	public void newText(Translation translation, String text, String languageCode) {
+		serviceTranslation.newTranslationForObject(translation, text, languageCode);
+	}
+
+	public void deleteRegionWhithParts(Region region) {
+		
+		Translation translation = new Translation();
+		translation = serviceTranslation.findById(region.getRegion().getId());
+		
+		dao.delete(region);
+		serviceText.delete(serviceText.findByTranslation(translation));
+		serviceTranslation.delete(translation);
+
+	}
+	
 	public Region fineOrSaveRegion(String countryName, String languageCode) {
 
 		Translation translation = new Translation();
-		translation = serviceTranslation.selectTextTranslation(countryName, languageCode);
+		translation = serviceTranslation.findTextTranslation(countryName, languageCode);
 
 		if (translation != null) {
-		
+
 			return dao.findByRegion(translation);
 
 		} else {
@@ -55,11 +74,11 @@ public class ServiceRegionImpl implements RegionService {
 		}
 	}
 
-	public List <Region> findByCountry(Country country) {
+	public List<Region> findByCountry(Country country) {
 		return dao.findByCountry(country);
 	}
-	
-	public Region findByRegion(Translation translation){
+
+	public Region findByRegion(Translation translation) {
 		return dao.findByRegion(translation);
 	}
 }

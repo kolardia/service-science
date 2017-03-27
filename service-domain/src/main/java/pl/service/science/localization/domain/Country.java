@@ -1,6 +1,5 @@
 package pl.service.science.localization.domain;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -42,8 +41,9 @@ public class Country {
 	 * The mapping on a database is one-to-many.
 	 * Country which is divided into regions
 	 */
-	@OneToMany(mappedBy = "country")
-	public List <Region> region;
+	@ManyToOne
+	@JoinColumn(name = "region_id")
+	public Region region;
 
 	public Long getId() {
 		return id;
@@ -60,4 +60,13 @@ public class Country {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+	
 }

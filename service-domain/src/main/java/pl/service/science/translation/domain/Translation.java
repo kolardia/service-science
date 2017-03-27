@@ -22,8 +22,8 @@ import pl.service.science.section.domain.Section;
 import pl.service.science.section.domain.Type;
 
 /**
- * The TextTranslation mapping  on a database for table name: "translation"
- * @author kolardia
+ * Mapping the class in a database named table: "translation"
+ * @author Monika Senderecka
  *
  */
 @Entity

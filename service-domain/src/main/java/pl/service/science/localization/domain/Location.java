@@ -18,7 +18,7 @@ import pl.service.science.publication.domain.Publication;
 import pl.service.science.section.domain.Section;
 
 /**
- * The Location mapping  on a database for table name: "location"
+ * The Location class mapping  on a database for table name: "location"
  * @author kolardia
  *
  */
@@ -39,6 +39,18 @@ public class Location {
 	 */
 	@Column(name = "address")
 	public String postalAddress;
+	
+	/**
+	 * Geographic latitude of location; the mapping on a database for column name: "location_longitude"
+	 */
+	@Column(name="location_longitude")
+	public String longitude;
+	
+	/**
+	 * Geographic latitude of location; the mapping on a database for column name: "location_latitude"
+	 */
+	@Column(name="location_latitude ")
+	public String latitude;
 
 	/**
 	 * The mapping on a database is one-to-one; column name: "city_id"
@@ -104,4 +116,45 @@ public class Location {
 	public void setCity(City city) {
 		this.city = city;
 	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public Section getSectionLocation() {
+		return sectionLocation;
+	}
+
+	public void setSectionLocation(Section sectionLocation) {
+		this.sectionLocation = sectionLocation;
+	}
+
+	public List<Publication> getEventsLocation() {
+		return eventsLocation;
+	}
+
+	public void setEventsLocation(List<Publication> eventsLocation) {
+		this.eventsLocation = eventsLocation;
+	}
+
+	public User getUserLocation() {
+		return userLocation;
+	}
+
+	public void setUserLocation(User userLocation) {
+		this.userLocation = userLocation;
+	}
+	
 }

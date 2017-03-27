@@ -17,6 +17,10 @@ public class ServiceSectionCenterImpl implements CenterService {
 	@Autowired
 	CenterDAO dao;
 	
+	public List<Center> findAll(){
+		return dao.findAll();
+	}
+	
 	public Center findById(Long id){
 		return dao.findById(id);
 	}
@@ -25,7 +29,18 @@ public class ServiceSectionCenterImpl implements CenterService {
 		return dao.findBySubsection(section);
 	}
 	
-	public Center findBySectionCenterAndSubsection(Section center, Section subsection){
+	public Center checkSectionAssociatedWithCenter(Section center, Section subsection){
+		
+		Center transaction = new Center();
+		
+		if (dao.findBySectionCenterAndSubsection(center, subsection) == null) {
+			transaction.setSectionCenter(center);
+			transaction.setSubsection(subsection);
+			dao.save(transaction);
+			
+			return transaction;
+		}
+		
 		return dao.findBySectionCenterAndSubsection(center, subsection);
 	}
 	

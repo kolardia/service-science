@@ -13,19 +13,34 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import pl.service.science.translation.domain.Translation;
 
+/**
+ * Mapping the class in a database named table: "publication_category"
+ * 
+ * @author Monika Senderecka
+ *
+ */
 @Entity
 @Table(name = "publication_category")
 public class Category {
 
+	/**
+	 * The mapping on a database is a generating automatic for primary key; column name: "publication_category_id"
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "publication_category_id")
 	public Long id;
 
+	/**
+	 * The mapping on a database for column name: "category_translation_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "category_translation_id")
 	public Translation categoryName;
 	
+	/**
+	 * The mapping on a database is one-to-many
+	 */
 	@OneToMany(mappedBy = "category")
 	List <Publication> publicationCategory;
 

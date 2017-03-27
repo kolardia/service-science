@@ -11,8 +11,28 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-<spring:url value="/static/js/bootstrap.min.js"
-	var="bootstrapJs" />
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQFhUzAPX-puoQPmUaAhBazmDZ84B5l24&callback=initMap">
+	
+</script>
+<script>
+	function initMap() {
+		var uluru = {
+			lat : 52.466909,
+			lng : 16.927859
+		};
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom : 15,
+			center : uluru
+		});
+		var marker = new google.maps.Marker({
+			position : uluru,
+			map : map
+		});
+	}
+</script>
+
+<spring:url value="/static/js/bootstrap.min.js" var="bootstrapJs" />
 
 <script src="${bootstrapJs}"></script>
 <script>

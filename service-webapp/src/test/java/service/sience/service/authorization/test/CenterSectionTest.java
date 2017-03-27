@@ -34,14 +34,10 @@ public class CenterSectionTest {
 		Section subsectionTemp = new Section();
 		centerTemp = serviceSection.findById(new Long(403));
 		subsectionTemp = serviceSection.findById(new Long(418));
-
-		if (serviceCenter.findBySectionCenterAndSubsection(centerTemp, subsectionTemp) == null) {
-			sectionCenter.setSectionCenter(serviceSection.findById(new Long(403)));
-			sectionCenter.setSubsection(serviceSection.findById(new Long(418)));
-			serviceCenter.save(sectionCenter);
-		}
 		
-		Assert.assertEquals(serviceCenter.findBySectionCenterAndSubsection(centerTemp, subsectionTemp).getId(), serviceCenter.findById(new Long(431)).getId());
+		serviceCenter.checkSectionAssociatedWithCenter(centerTemp, subsectionTemp);
+
+		Assert.assertEquals(serviceCenter.checkSectionAssociatedWithCenter(centerTemp, subsectionTemp).getId(), serviceCenter.findById(new Long(431)).getId());
 		Assert.assertNotNull(serviceSection.findById(new Long(403)));
 		Assert.assertNotNull(serviceSection.findById(new Long(418)));
 		Assert.assertNotNull(serviceCenter.findBySectionCenter(serviceSection.findById(new Long(403))));

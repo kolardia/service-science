@@ -12,6 +12,6 @@ public interface LocationService {
 
 	public void save(Location location);
 
-	public Region findOrSaveRegionForCountry(String LanguageCode, String nameRegion, String nameCountry);
+	public Region countryAssociatedWithRegion(String LanguageCode, String nameRegion, String nameCountry);
 	
 }

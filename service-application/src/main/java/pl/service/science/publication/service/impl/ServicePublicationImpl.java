@@ -41,14 +41,14 @@ public class ServicePublicationImpl implements ServicePublication {
 
 	public void deleteAllPublicationParts(Publication poublication){
 		this.delete(poublication.getId());
-		serviceTranslation.removeTranslationAlongWithAllTexts(poublication.getTitle());
-		serviceTranslation.removeTranslationAlongWithAllTexts(poublication.getContents());
+		serviceTranslation.removeTranslationWithTexts(poublication.getTitle());
+		serviceTranslation.removeTranslationWithTexts(poublication.getContents());
 	}
 	
 	
 	public void saveText(Translation translation, String text, String code) {
 	
-		serviceTranslation.newTextTranslationForObject(translation, text, code);
+		serviceTranslation.newTranslationForObject(translation, text, code);
 	}
 	
 	public Translation insert(Translation translation){

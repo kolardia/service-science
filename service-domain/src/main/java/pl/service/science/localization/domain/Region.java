@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -43,16 +42,9 @@ public class Region {
 	 * The mapping on a database is many-to-one; column name: "country_id"
 	 * Country which is divided into regions
 	 */
-	@ManyToOne
-	@JoinColumn(name = "country_id")
-	public Country country;
-
-	/**
-	 * The mapping on a database is one-to-many
-	 * Cities in the area of the region
-	 */
 	@OneToMany(mappedBy = "region")
-	public List<Region> regions;
+	public List<Country> country;
+
 
 	public Region() {
 
@@ -74,11 +66,11 @@ public class Region {
 		this.region = region;
 	}
 
-	public Country getCountry() {
+	public List<Country> getCountry() {
 		return country;
 	}
 
-	public void setCountry(Country country) {
+	public void setCountry(List<Country> country) {
 		this.country = country;
 	}
 

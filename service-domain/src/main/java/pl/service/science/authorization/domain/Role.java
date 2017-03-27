@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * The Role mapping  on a database for table name: "user_role"
+ * The Role class mapping  on a database for table name: "user_role"
  * @author kolardia
  *
  */

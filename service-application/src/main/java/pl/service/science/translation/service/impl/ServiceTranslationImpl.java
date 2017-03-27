@@ -50,7 +50,7 @@ public class ServiceTranslationImpl implements TranslationService {
 		dao.delete(translation);
 	}
 
-	public Translation newTextTranslationForObject(Translation translation, String text, String languageCode) {
+	public Translation newTranslationForObject(Translation translation, String text, String languageCode) {
 
 		TextTranslation textTranslation = new TextTranslation();
 		
@@ -65,7 +65,7 @@ public class ServiceTranslationImpl implements TranslationService {
 		return translation;
 	}
 
-	public Translation updateTextTranslationForObject(Translation translation, String text, String languageCode) {
+	public Translation updateTranslationForObject(Translation translation, String text, String languageCode) {
 
 		TextTranslation textTranslation = new TextTranslation();
 		Language language = new Language();
@@ -80,7 +80,7 @@ public class ServiceTranslationImpl implements TranslationService {
 
 	}
 
-	public void removeTranslationAlongWithAllTexts(Translation translation) {
+	public void removeTranslationWithTexts(Translation translation) {
 
 		List<TextTranslation> text = serviceTextTranslation.findByTranslation(translation);
 
@@ -90,7 +90,7 @@ public class ServiceTranslationImpl implements TranslationService {
 
 	}
 
-	public Translation selectTextTranslation(String text, String languageCode) {
+	public Translation findTextTranslation(String text, String languageCode) {
 
 		TextTranslation textTranslation = new TextTranslation();
 		Language language = new Language();
@@ -101,7 +101,7 @@ public class ServiceTranslationImpl implements TranslationService {
 		return dao.findByTextTranslation(textTranslation);
 
 	}
-	// settingTextString
+	
 	public String CheckingTextTranslation(Translation translation, Locale locale) {
 		
 		String langLocale = locale.getLanguage();

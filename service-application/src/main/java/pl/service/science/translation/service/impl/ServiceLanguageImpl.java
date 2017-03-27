@@ -25,7 +25,7 @@ public class ServiceLanguageImpl implements LanguageService {
 		return dao.findById(id);
 	}
 	
-	public List<String> selectAllCodes(){
+	public List<String> selectAllCode(){
 		
 		List<String> codes = new ArrayList<String>();
 		 
@@ -47,7 +47,7 @@ public class ServiceLanguageImpl implements LanguageService {
 		return dao.findByCode(code.toLowerCase());
 	}
 
-	public void removeLanguageAlongWithTexts(Language language) {
+	public void removeLanguageWithTexts(Language language) {
 
 		serviceText.delete(serviceText.findByLanguage(language));
 		dao.delete(language);

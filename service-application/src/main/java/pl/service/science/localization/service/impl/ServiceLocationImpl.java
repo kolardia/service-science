@@ -35,7 +35,7 @@ public class ServiceLocationImpl implements LocationService {
 		dao.save(location);
 	}
 
-	public Region findOrSaveRegionForCountry(String LanguageCode, String nameRegion, String nameCountry) {
+	public Region countryAssociatedWithRegion(String LanguageCode, String nameRegion, String nameCountry) {
 
 		Country country = new Country();
 		country = serviceCountry.fineOrSaveCountry(nameCountry, LanguageCode);
@@ -43,10 +43,10 @@ public class ServiceLocationImpl implements LocationService {
 		Region region = new Region();
 		region = serviceRegion.fineOrSaveRegion(nameRegion, LanguageCode);
 
-		if (region.getCountry() == null) {
-			region.setCountry(country);
+		if (country.getRegion() == null) {
+			country.setRegion(region);
 
-			serviceRegion.save(region);
+			serviceCountry.save(country);
 		}
 
 		return serviceRegion.findById(region.getId());

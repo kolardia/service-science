@@ -22,20 +22,20 @@ public interface UserService {
 	public User CheckingUser(String email);
 
 	/**
-	 * CRUD Find entity by a user id
+	 * Find entity by a user id
 	 * @param id Identifier
 	 * @return the entity with the given id
 	 */
 	public User findById(Long id);
 	
 	/**
-	 * CRUD Find all entity
+	 * Find all entity
 	 * @return A list of all users
 	 */
 	public List<User> findAll();
 	
 	/**
-	 * CRUD Saves a given entity for a user object
+	 * Saves a given entity for a user object
 	 * @param user Generated value for id
 	 */
 	public void save(User user);

@@ -17,7 +17,7 @@ import pl.service.science.publication.domain.Publication;
 
 /**
  *  The User mapping  on a database for table name: "user"
- * @author kolardia
+ * @author Monika Senderecka
  *
  */
 @Entity
@@ -51,7 +51,7 @@ public class User {
 	public String surname;
 	
 	/**
-	 * The mapping  on a database for column name: "user_surname"
+	 * The mapping  on a database for column name: "user_phone"
 	 */
 	@Column(name = "user_phone")
 	public String phone;
@@ -75,9 +75,15 @@ public class User {
 	@JoinColumn(name = "user_location")
 	public Location addressOfResidence;
 	
+	/**
+	 * The mapping on a database is one-to-many
+	 */
 	@OneToMany(mappedBy = "user")
 	public List <Authorization> user;
 	
+	/**
+	 * The mapping on a database is one-to-many
+	 */
 	@OneToMany(mappedBy = "leader")
 	public List <Publication> userLider;
 

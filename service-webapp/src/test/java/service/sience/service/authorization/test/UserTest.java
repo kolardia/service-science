@@ -53,7 +53,7 @@ public class UserTest {
 		
 		location.setId(user.getAddressOfResidence().getId());
 		location.setPostalAddress("Nowowiejskiego 6/7");
-		location.setRegon(serviceLocation.findOrSaveRegionForCountry("PL", "Wielkopolske", "Polska"));
+		location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
 		location.setCity(serviceCity.findOrSaveCity("Poznan", "PL"));
 		serviceCity.addCityTranslation("Poznan", "PL", "Posen", "EN");
 		serviceLocation.save(location);

@@ -15,11 +15,10 @@ import pl.service.science.translation.domain.Language;
 public interface LanguageService {
 	
 	/**
-	 * Code compliant with ISO 639-1 specifications 
-	 * @param code A language code 
-	 * The entity with the given language exists or a save language if none found
+	 * Code compliant with ISO 639-1 specifications;
 	 * Unification of the characters code
-	 * @return a language entity
+	 * @param code A language code 
+	 * @return The entity with the given language exists or a save language if none found
 	 */
 	public Language adaptCode(String code);
 	
@@ -27,16 +26,16 @@ public interface LanguageService {
 	 * Remove a language along with its translated texts
 	 * @param language
 	 */
-	public void removeLanguageAlongWithTexts(Language language) ;
+	public void removeLanguageWithTexts(Language language) ;
 	
 	/**
-	 * Selected all codes for languages
+	 * Select a list of all language codes
 	 * @return A list of all languages
 	 */
-	public List<String> selectAllCodes();
+	public List<String> selectAllCode();
 	
 	/**
-	 * CRUD Find entity by a Language id
+	 * Find entity by a Language id
 	 * @param id Identifier
 	 * @return the entity with the given id
 	 */

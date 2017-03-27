@@ -11,22 +11,34 @@ import javax.persistence.Table;
 
 import pl.service.science.translation.domain.Translation;
 
+/**
+ * Mapping the class in a database named table: "profile"
+ * 
+ * @author Monika Senderecka
+ *
+ */
 @Entity
 @Table(name = "profile")
 public class Profile {
 	
 	/**
-	 * The mapping on a database is a generating automatic for primary key; column name: "user_id"
+	 * The mapping on a database is a generating automatic for primary key; column name: "profile_id"
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "profile_id")
 	public Long id;
 	
+	/**
+	 * The mapping on a database is one-to-one; column name: "portfolio_translation_id"
+	 */
 	@OneToOne
 	@JoinColumn(name = "portfolio_translation_id")
 	public Translation portfolio;
 	
+	/**
+	 * The mapping on a database is one-to-one
+	 */
 	@OneToOne(mappedBy="profileAuthorization")
 	public Authorization profile;
 

@@ -38,7 +38,7 @@ public class TranslationTest {
 	protected TranslationTextService serviceText;
 
 	/**
-	 * Helper class of services for testing
+	 * Auxiliary class to be associated with the testing class.
 	 */
 	@Autowired
 	protected LanguageService serviceLanguage;
@@ -74,10 +74,10 @@ public class TranslationTest {
 		Translation Translation = new Translation();
 		service.save(Translation);
 
-		Translation = service.newTextTranslationForObject(Translation, "polski tekst", "PL");
+		Translation = service.newTranslationForObject(Translation, "polski tekst", "PL");
 		assertNotNull(serviceText.findByText("polski tekst"));
 
-		service.updateTextTranslationForObject(Translation, "poprawiony- polski tekst", "PL");
+		service.updateTranslationForObject(Translation, "poprawiony- polski tekst", "PL");
 		assertNotNull(serviceText.findByText("poprawiony- polski tekst"));
 
 		assertNull(serviceText.findByText("polski tekst"));
@@ -90,21 +90,21 @@ public class TranslationTest {
 		Translation translation = new Translation();
 		service.save(translation);
 
-		translation = service.newTextTranslationForObject(translation, "english text", "EN");
+		translation = service.newTranslationForObject(translation, "english text", "EN");
 		assertNotNull(serviceText.findByText("english text"));
 
-		translation = service.newTextTranslationForObject(translation, "polski tekst", "PL");
+		translation = service.newTranslationForObject(translation, "polski tekst", "PL");
 		assertNotNull(serviceText.findByText("polski tekst"));
 
-		service.updateTextTranslationForObject(translation, "poprawiony- polski tekst", "PL");
+		service.updateTranslationForObject(translation, "poprawiony- polski tekst", "PL");
 		assertNull(serviceText.findByText("polski tekst"));
 		assertNotNull(serviceText.findByText("poprawiony- polski tekst"));
 
-		service.updateTextTranslationForObject(translation, "corecttion- english text", "EN");
+		service.updateTranslationForObject(translation, "corecttion- english text", "EN");
 		assertNull(serviceText.findByText("english text"));
 		assertNotNull(serviceText.findByText("corecttion- english text"));
 
-		service.removeTranslationAlongWithAllTexts(translation);
+		service.removeTranslationWithTexts(translation);
 		assertNull(service.findById(translation.getId()));
 		assertNull(serviceText.findByText("polski tekst"));
 		assertNull(serviceText.findByText("poprawiony- polski tekst"));

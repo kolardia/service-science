@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import pl.service.science.translation.domain.Translation;
 
 /**
- * The City mapping  on a database for table name: "city"
+ * The City class mapping  on a database for table name: "city"
  * @author kolardia
  *
  */
@@ -30,6 +30,18 @@ public class City {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "city_id")
 	Long id;
+	
+	/**
+	 * Geographic longitude of city
+	 */
+	@Column(name="city_longitude")
+	public String longitude;
+	
+	/**
+	 * Geographic latitude of city
+	 */
+	@Column(name="city_latitude ")
+	public String latitude;
 
 	/**
 	 * The mapping on a database is one-to-one; column name: "city_translation_id"
@@ -64,4 +76,28 @@ public class City {
 		this.city = city;
 	}
 
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public List<Location> getCities() {
+		return cities;
+	}
+
+	public void setCities(List<Location> cities) {
+		this.cities = cities;
+	}
+	
 }

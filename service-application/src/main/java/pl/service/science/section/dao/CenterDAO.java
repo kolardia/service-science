@@ -14,6 +14,8 @@ public interface CenterDAO extends CrudRepository<Center, Long> {
 	
 	public Center findById(Long id);
 	
+	public List<Center> findAll();
+	
 	public Center findBySubsection(Section section);
 	
 	public Center findBySectionCenterAndSubsection(Section center, Section subsection);

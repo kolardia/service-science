@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import pl.service.science.section.domain.Type;
 
 /**
- * Interface for a database operations for a section type.
- * @author kolardia
+ * Interface for a database operations for a section type 
+ * @author Monika Senderecka
  *
  */
 @Service
@@ -16,7 +16,7 @@ public interface TypeService {
 
 	/**
 	 * Find entity by a section type id
-	 * @param id
+	 * @param id Identifier
 	 * @return the entity with the given id or null if none found
 	 */
 	public Type findById(Long id);
@@ -27,5 +27,9 @@ public interface TypeService {
 	 */
 	public void save(Type type);
 	
+	/**
+	 * List of entities from section types
+	 * @return The list consisting of a type entity
+	 */
 	public List<Type> findAll();
 }

@@ -14,19 +14,33 @@ import javax.persistence.Table;
 
 import pl.service.science.translation.domain.Translation;
 
+/**
+ * Mapping the class in a database named table: "section_type"
+ * @author Monika Senderecka
+ *
+ */
 @Entity
 @Table(name = "section_type")
 public class Type {
 
+	/**
+	 * The mapping on a database is a generating automatic for primary key; column name: "section_type_id"
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "section_type_id")
 	public Long id;
 
+	/**
+	 * The mapping on a database for column name: "type_translation_id"; the mapping on a database is one-to-one
+	 */
 	@OneToOne
 	@JoinColumn(name = "type_translation_id")
 	public Translation type;
 
+	/**
+	 * The mapping on a database is one-to-many
+	 */
 	@OneToMany(mappedBy = "type")
 	public List<Section> types;
 
