@@ -53,6 +53,10 @@ public class ServiceUserImpl implements UserService {
 		dao.save(user);
 	}
 
+	public User findByEmail(String email){
+		return dao.findByEmail(email);
+	}
+	
 	public User CheckingUser(String email) {
 		if (dao.findByEmail(email) == null) {
 			User user = new User();

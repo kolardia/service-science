@@ -34,6 +34,10 @@ public class ServiceSectionImpl implements SectionService {
 	public void save(Section section) {
 		dao.save(section);
 	}
+	
+	public Section findByEmail(String email){
+		return dao.findByEmail(email);
+	}
 
 	public Section checkingOrSetBlank(String email) {
 		if (dao.findByEmail(email) == null) {

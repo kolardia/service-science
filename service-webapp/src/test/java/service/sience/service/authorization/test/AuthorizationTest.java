@@ -136,22 +136,52 @@ public class AuthorizationTest {
 	public void authorization() {
 
 		Authorization authorization = new Authorization();
-		Profile profileTemp = new Profile();
-		User userTemp = serviceUser.CheckingUser("m.margaretka@gmail.com");
-		authorization.setSection(serviceSection.checkingOrSetBlank("wmi@uam.com"));
-		authorization.setUser(userTemp);
-		authorization.setAuthorization(serviceStatus.checkOrSaveStatusByLeadingLanguage("Redaktor", "PL"));
-		authorization.setEnabled(true);
-		
-		dao.save(authorization);
 
-		if (serviceRole.findByUserAndRola(userTemp, "REDAK") == null) {
-			Role role = new Role();
-			role.setRola("REDAK");
-			role.setUser(userTemp);
-			serviceRole.save(role);
+		if (serviceUser.findByEmail("m.margaretka@gmail.com") != null
+				|| serviceSection.findByEmail("wmi@uam.com") != null) {
+			
+			User userTemp = serviceUser.CheckingUser("m.margaretka@gmail.com");
+			Section sectionTemp = serviceSection.checkingOrSetBlank("wmi@uam.com");
+			Status statusTemp = serviceStatus.checkOrSaveStatusByLeadingLanguage("Redaktor", "PL");
+			
+			if(dao.findByUserAndSectionAndAuthorization(userTemp, sectionTemp, statusTemp) != null){
+				authorization = dao.findByUserAndSectionAndAuthorization(userTemp, sectionTemp, statusTemp);
+			}
+
+			Profile profileTemp = new Profile();
+			
+			authorization.setSection(sectionTemp);
+			authorization.setUser(userTemp);
+			authorization.setAuthorization(statusTemp);
+			authorization.setEnabled(true);
+			// Not required
+			serviceProfile.save(profileTemp);
+			authorization.setProfileAuthorization(profileTemp);
+			dao.save(authorization);
+
+			if (serviceRole.findByUserAndRola(userTemp, "REDAK") == null) {
+				Role role = new Role();
+				role.setRola("REDAK");
+				role.setUser(userTemp);
+				serviceRole.save(role);
+			}
+			
+			if (profileTemp != null || profileTemp.getPortfolio() == null) {
+				profileTemp.setPortfolio(serviceTranslation.save(new Translation()));
+				serviceProfile.save(profileTemp);
+			}
+
+			if (profileTemp != null || profileTemp.getPortfolio() != null) {
+				Locale locale = new Locale.Builder().setLanguage("pl").setRegion("PL").build();
+				Translation portfolio = serviceTranslation.findById(profileTemp.getPortfolio().getId());
+				if (serviceTranslation.CheckingTextTranslation(portfolio, locale) == null) {
+					serviceTranslation.newTranslationForObject(portfolio, "Piekny kwiat", "pl");
+				}
+
+				if (serviceTranslation.CheckingTextTranslation(portfolio, Locale.ENGLISH) == null) {
+					serviceTranslation.newTranslationForObject(portfolio, "A beautiful flower", "en");
+				}
+			}
 		}
-
-	
 	}
 }

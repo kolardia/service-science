@@ -46,4 +46,6 @@ public interface UserService {
 	 */
 	public void cleanAndDelete(User user);
 	
+	public User findByEmail(String email);
+	
 }

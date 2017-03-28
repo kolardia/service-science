@@ -37,4 +37,6 @@ public interface SectionService {
 	 * @param section
 	 */
 	public void cleanAndDelete(Section section);
+	
+	public Section findByEmail(String email);
 }
