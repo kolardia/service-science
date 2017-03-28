@@ -2,9 +2,11 @@ package pl.service.science.authorization.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +22,7 @@ public class Role {
 	 * The mapping on a database is a generating automatic for primary key; column name:  "user_role_id"
 	 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_role_id")
 	public Long id;
 
@@ -32,7 +35,7 @@ public class Role {
 	/**
 	 * The mapping on a database is one-to-one; column name: "user_id"
 	 */
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	public User user;
 

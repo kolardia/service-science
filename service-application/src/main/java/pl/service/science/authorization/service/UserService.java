@@ -36,8 +36,14 @@ public interface UserService {
 	
 	/**
 	 * Saves a given entity for a user object
-	 * @param user Generated value for id
+	 * @param user
 	 */
 	public void save(User user);
+	
+	/**
+	 * Clean and delete a given user
+	 * @param user
+	 */
+	public void cleanAndDelete(User user);
 	
 }

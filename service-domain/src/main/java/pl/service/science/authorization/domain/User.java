@@ -86,6 +86,9 @@ public class User {
 	 */
 	@OneToMany(mappedBy = "leader")
 	public List <Publication> userLider;
+	
+	@OneToMany(mappedBy= "user")
+	public List <Role> roles;
 
 	public Long getId() {
 		return id;
@@ -149,6 +152,14 @@ public class User {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 	
 }

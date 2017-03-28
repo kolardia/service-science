@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import pl.service.science.authorization.dao.UserDAO;
+import pl.service.science.authorization.domain.Role;
 import pl.service.science.authorization.domain.User;
+import pl.service.science.authorization.service.ServiceRole;
 import pl.service.science.authorization.service.UserService;
 import pl.service.science.localization.domain.Location;
 import pl.service.science.localization.service.CityService;
@@ -24,41 +27,67 @@ public class UserTest {
 	protected UserService serviceUser;
 	
 	@Autowired
+	protected ServiceRole serviceRole;
+	
+	@Autowired
 	protected LocationService serviceLocation;
 	
 	@Autowired
 	protected CityService serviceCity;
+	
+	/**
+	 * Helper class for assert
+	 */
+	@Autowired
+	private UserDAO userDao;
 
 
 	@Test // this user does not exist --> new user
 	public void newUser() {
 
-		Location location = new Location();
 		
 		User user = new User();
 		user = serviceUser.CheckingUser("m.senderecka@gmail.com");
 		
+		Boolean noUpdateTemp = true;
+
+		Location location = new Location();
+		// In the case of an update
+		if (user.getAddressOfResidence() != null) {
+			noUpdateTemp = false;
+			location = serviceLocation.findById(user.getAddressOfResidence().getId());
+			location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
+			location.setCity(serviceCity.findOrSaveCity("Poznań", "PL"));
+			location.setPostalAddress("ul. Sloneczna 7");
+			serviceLocation.save(location);
+		}
 		user.setName("Monika");
 		user.setSurname("Senderecka");
 		user.setPhone("608-987-934");
 		user.setEmail("m.senderecka@gmail.com");
 		user.setEnabled(true);
 		user.setPassword("password");
-		
-		if(user.getAddressOfResidence() == null){
+		// Not required
 		serviceLocation.save(location);
-		user.setAddressOfResidence(location);
-		}
+		user.setAddressOfResidence(serviceLocation.findById(location.getId()));
 		serviceUser.save(user);
+		if(serviceRole.findByUserAndRola(user, "USER") == null){
+			Role role = new Role();
+			role.setRola("USER");
+			role.setUser(user);
+			serviceRole.save(role);
+			}
+
+		// Introduction of a new one
+		if (user.getAddressOfResidence()!= null || noUpdateTemp) {
+			location = serviceLocation.findById(user.getAddressOfResidence().getId());
+			location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
+			location.setCity(serviceCity.findOrSaveCity("Poznań", "PL"));
+			location.setPostalAddress("ul. Sloneczna 7");
+			serviceLocation.save(location);
+		}
 		
-		location.setId(user.getAddressOfResidence().getId());
-		location.setPostalAddress("Nowowiejskiego 6/7");
-		location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
-		location.setCity(serviceCity.findOrSaveCity("Poznan", "PL"));
-		serviceCity.addCityTranslation("Poznan", "PL", "Posen", "EN");
-		serviceLocation.save(location);
-		
-		
+	
 		Assert.assertNotNull(serviceUser.CheckingUser("m.senderecka@gmail.com"));
 	}
 
@@ -68,17 +97,40 @@ public class UserTest {
 		
 		User user = new User();
 		user = serviceUser.CheckingUser("m.senderecka@gmail.com");
-
-		user.setName("Monika Senderecka");
 		user.setEmail("kolardia@gmail.com");
+		serviceUser.save(user);
+		Assert.assertNotNull(userDao.findByEmail("kolardia@gmail.com"));
+		Assert.assertNull(userDao.findByEmail("m.senderecka@gmail.com"));
+		user.setEmail("m.senderecka@gmail.com");
+		serviceUser.save(user);
+		serviceUser.cleanAndDelete(serviceUser.findById(user.getId()));
+		
+	}
+	
+	@Test // this user does not exist --> new user
+	public void adminUser() {
+
+		
+		User user = new User();
+		user = serviceUser.CheckingUser("m.margaretka@gmail.com");
+		
+		user.setName("Alicja");
+		user.setSurname("Margaretka");
+		user.setEmail("m.margaretka@gmail.com");
 		user.setEnabled(true);
 		user.setPassword("password");
-		user.setAddressOfResidence(null);
-		
+
 		serviceUser.save(user);
-		Assert.assertNotNull(serviceUser.CheckingUser("kolardia@gmail.com"));
-		Assert.assertNull(serviceUser.CheckingUser("m.senderecka@gmail.com"));
-		//serviceUser.delete(user);
+
+		if(serviceRole.findByUserAndRola(user, "ADMIN") == null){
+		Role role = new Role();
+		role.setRola("ADMIN");
+		role.setUser(user);
+		serviceRole.save(role);
+		Assert.assertEquals(serviceRole.findById(role.getId()).getUser().getId(), userDao.findByEmail("m.margaretka@gmail.com").getId());
+		}
+		serviceUser.cleanAndDelete(serviceUser.findById(user.getId()));
+		
 		
 	}
 	
