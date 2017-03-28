@@ -20,8 +20,7 @@ public interface TypeService {
 	/**
 	 * Find entity by a section type id
 	 * @param id Identifier
-	 * @return the entity with the given id or null if none found
-	 */
+	 * @return the entity*/
 	public Type findById(Long id);
 
 	/**

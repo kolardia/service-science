@@ -24,16 +24,16 @@ public class ServiceTypeSectionImpl implements TypeService {
 		return dao.findById(id);
 	}
 
-	public Type checkOrSaveByLeadingLanguage(String name, String LanguageCode) {
+	public Type checkOrSaveByLeadingLanguage(String name, String languageCode) {
 
 		Translation translation = new Translation();
 
-		if (serviceTranslation.findTextTranslation(name, LanguageCode) == null) {
+		if (serviceTranslation.findTextTranslation(name, languageCode) == null) {
 			serviceTranslation.save(translation);
-			translation = serviceTranslation.newTranslationForObject(translation, name, LanguageCode);
+			translation = serviceTranslation.newTranslationForObject(translation, name, languageCode);
 
 		} else {
-			translation = serviceTranslation.findTextTranslation(name, LanguageCode);
+			translation = serviceTranslation.findTextTranslation(name, languageCode);
 		}
 
 		if (this.findByTranslation(translation) == null) {

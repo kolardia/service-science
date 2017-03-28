@@ -37,8 +37,6 @@ public class PublicationTest {
 
 		service.save(contest);
 
-	
-
 		//service.deleteAllPublicationParts(contest);
 	}
 }

@@ -1,5 +1,8 @@
 package service.sience.service.authorization.test;
 
+import java.util.Locale;
+
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,13 +14,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.service.science.authorization.dao.AuthorizationDAO;
 import pl.service.science.authorization.domain.Authorization;
 import pl.service.science.authorization.domain.Profile;
+import pl.service.science.authorization.domain.Role;
+import pl.service.science.authorization.domain.Status;
 import pl.service.science.authorization.domain.User;
 import pl.service.science.authorization.service.ProfileService;
+import pl.service.science.authorization.service.ServiceRole;
+import pl.service.science.authorization.service.StatusService;
 import pl.service.science.authorization.service.UserService;
 import pl.service.science.section.domain.Section;
+import pl.service.science.section.domain.Type;
 import pl.service.science.section.service.SectionService;
-import pl.service.science.translation.domain.Language;
-import pl.service.science.translation.domain.TextTranslation;
+import pl.service.science.section.service.TypeService;
 import pl.service.science.translation.domain.Translation;
 import pl.service.science.translation.service.LanguageService;
 import pl.service.science.translation.service.TranslationService;
@@ -30,11 +37,27 @@ public class AuthorizationTest {
 
 	@Autowired
 	AuthorizationDAO dao;
-	@Autowired
-	protected ProfileService serviceProfile;
 
 	@Autowired
-	protected TranslationService serviceTranslation;
+	protected SectionService serviceSection;
+
+	@Autowired
+	protected TypeService serviceType;
+
+	@Autowired
+	protected UserService serviceUser;
+
+	@Autowired
+	protected ServiceRole serviceRole;
+
+	@Autowired
+	public TranslationService serviceTranslation;
+
+	@Autowired
+	public StatusService serviceStatus;
+
+	@Autowired
+	protected ProfileService serviceProfile;
 
 	@Autowired
 	protected TranslationTextService serviceText;
@@ -42,43 +65,93 @@ public class AuthorizationTest {
 	@Autowired
 	protected LanguageService servicelanguage;
 
-	@Autowired
-	protected SectionService serviceSection;
+	@Before
+	public void Status() {
 
-	@Autowired
-	protected UserService serviceUser;
-
-	@Test
-	public void newAuto() {
-
-		Language language = new Language();
-		language = servicelanguage.adaptCode("PL");
-
-		TextTranslation text = new TextTranslation();
-
-		Authorization auto = new Authorization();
-		User user = new User();
-		Section section = new Section();
-		user = serviceUser.CheckingUser("m.senderecka@gmail.com");
-		section = serviceSection.findById(new Long(403));
-		auto.setSection(section);
-		auto.setUser(user);
-		auto.setEnabled(true);
-		Profile profile = new Profile();
-		if (auto.getProfileAuthorization() == null) {
-
-			profile.setPortfolio(serviceTranslation.save(new Translation()));
-			serviceProfile.save(profile);
-			auto.setProfileAuthorization(profile);
+		Status statusTemp = new Status();
+		statusTemp = serviceStatus.checkOrSaveStatusByLeadingLanguage("Uzytkownik", "PL");
+		if (serviceTranslation.CheckingTextTranslation(statusTemp.getAuthorizationStatus(), Locale.ENGLISH) == null) {
+			serviceTranslation.newTranslationForObject(statusTemp.getAuthorizationStatus(), "User", "en");
 		}
-		dao.save(auto);
 
-		text = serviceText.checkingOrSetBlank(profile.getPortfolio(), language);
-		text.setText("dgs hhshc dhghf xd");
-		serviceText.save(text);
+		statusTemp = serviceStatus.checkOrSaveStatusByLeadingLanguage("Organizator", "PL");
+		if (serviceTranslation.CheckingTextTranslation(statusTemp.getAuthorizationStatus(), Locale.ENGLISH) == null) {
+			serviceTranslation.newTranslationForObject(statusTemp.getAuthorizationStatus(), "Organizer", "en");
+		}
+
+		statusTemp = serviceStatus.checkOrSaveStatusByLeadingLanguage("Redaktor", "PL");
+		if (serviceTranslation.CheckingTextTranslation(statusTemp.getAuthorizationStatus(), Locale.ENGLISH) == null) {
+			serviceTranslation.newTranslationForObject(statusTemp.getAuthorizationStatus(), "Editorial", "en");
+		}
+
+		statusTemp = serviceStatus.checkOrSaveStatusByLeadingLanguage("Partner", "PL");
+		if (serviceTranslation.CheckingTextTranslation(statusTemp.getAuthorizationStatus(), Locale.ENGLISH) == null) {
+			serviceTranslation.newTranslationForObject(statusTemp.getAuthorizationStatus(), "Partner", "en");
+		}
+
+		statusTemp = serviceStatus.checkOrSaveStatusByLeadingLanguage("Patron Medialny", "PL");
+		if (serviceTranslation.CheckingTextTranslation(statusTemp.getAuthorizationStatus(), Locale.ENGLISH) == null) {
+			serviceTranslation.newTranslationForObject(statusTemp.getAuthorizationStatus(), "Media patron", "en");
+		}
+
+		statusTemp = serviceStatus.checkOrSaveStatusByLeadingLanguage("Sponsor", "PL");
+		if (serviceTranslation.CheckingTextTranslation(statusTemp.getAuthorizationStatus(), Locale.ENGLISH) == null) {
+			serviceTranslation.newTranslationForObject(statusTemp.getAuthorizationStatus(), "Sponsor", "en");
+		}
+
+	}
+
+	@Before
+	public void section() {
+
+		Type typeTemp = serviceType.checkOrSaveByLeadingLanguage("Instytut", "PL");
+		Section section = new Section();
+		section = serviceSection.checkingOrSetBlank("wmi@uam.com");
+		section.setEmail("wmi@uam.com");
+		section.setPhone("887-098-543");
+		section.setEnabled(true);
+		section.setType(serviceType.findById(typeTemp.getId()));
+		serviceSection.save(section);
+
+		User user = new User();
+		user = serviceUser.CheckingUser("m.margaretka@gmail.com");
+		user.setName("Alicja");
+		user.setSurname("Margaretka");
+		user.setEmail("m.margaretka@gmail.com");
+		user.setEnabled(true);
+		user.setPassword("password");
+
+		serviceUser.save(user);
+
+		if (serviceRole.findByUserAndRola(user, "ADMIN") == null) {
+			Role role = new Role();
+			role.setRola("ADMIN");
+			role.setUser(user);
+			serviceRole.save(role);
+		}
+
 	}
 
 	@Test
-	public void newStatus() {
+	public void authorization() {
+
+		Authorization authorization = new Authorization();
+		Profile profileTemp = new Profile();
+		User userTemp = serviceUser.CheckingUser("m.margaretka@gmail.com");
+		authorization.setSection(serviceSection.checkingOrSetBlank("wmi@uam.com"));
+		authorization.setUser(userTemp);
+		authorization.setAuthorization(serviceStatus.checkOrSaveStatusByLeadingLanguage("Redaktor", "PL"));
+		authorization.setEnabled(true);
+		
+		dao.save(authorization);
+
+		if (serviceRole.findByUserAndRola(userTemp, "REDAK") == null) {
+			Role role = new Role();
+			role.setRola("REDAK");
+			role.setUser(userTemp);
+			serviceRole.save(role);
+		}
+
+	
 	}
 }
