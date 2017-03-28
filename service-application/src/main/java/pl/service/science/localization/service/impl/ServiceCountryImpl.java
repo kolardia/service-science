@@ -84,7 +84,7 @@ public class ServiceCountryImpl implements CountryService {
 
 			dao.save(country);
 
-			this.newText(country.getCountry(), countryName, languageCode);
+			serviceTranslation.newTranslationForObject(country.getCountry(), countryName, languageCode);
 
 			return dao.findById(country.getId());
 

@@ -68,7 +68,7 @@ public class ServiceRegionImpl implements RegionService {
 
 			dao.save(region);
 
-			this.newText(region.getRegion(), countryName, languageCode);
+			serviceTranslation.newTranslationForObject(region.getRegion(), countryName, languageCode);
 
 			return dao.findById(region.getId());
 		}

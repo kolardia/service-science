@@ -31,8 +31,8 @@ public class ServiceLocationImpl implements LocationService {
 		return dao.findById(id);
 	}
 
-	public void save(Location location) {
-		dao.save(location);
+	public Location save(Location location) {
+		return dao.save(location);
 	}
 
 	public Region countryAssociatedWithRegion(String LanguageCode, String nameRegion, String nameCountry) {

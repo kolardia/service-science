@@ -60,7 +60,7 @@ public class ServiceTranslationImpl implements TranslationService {
 		textTranslation.setText(text);
 
 		serviceTextTranslation.save(textTranslation);
-		logger.info("save text translation object: " + textTranslation.toString());
+		logger.info("***save text translation object: " + textTranslation.toString());
 
 		return translation;
 	}

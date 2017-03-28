@@ -19,7 +19,7 @@ public interface LocationService {
 	 * Saves a given entity for a location object
 	 * @param location
 	 */
-	public void save(Location location);
+	public Location save(Location location);
 
 	/**
 	 * Check out the leading language (the issue of contractual) does objects exist and does objects are related; 

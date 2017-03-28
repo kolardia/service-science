@@ -1,5 +1,7 @@
 package service.sience.service.authorization.test;
 
+import java.util.Locale;
+
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -14,11 +16,6 @@ import pl.service.science.localization.service.CityService;
 import pl.service.science.localization.service.LocationService;
 import pl.service.science.section.domain.Section;
 import pl.service.science.section.service.SectionService;
-import pl.service.science.section.service.TypeService;
-import pl.service.science.translation.domain.Language;
-import pl.service.science.translation.domain.TextTranslation;
-import pl.service.science.translation.service.LanguageService;
-import pl.service.science.translation.service.TranslationTextService;
 import pl.service.science.translation.service.TranslationService;
 
 @FixMethodOrder(MethodSorters.JVM)
@@ -30,117 +27,122 @@ public class SectionTest {
 	protected SectionService serviceSection;
 
 	@Autowired
-	protected LocationService serviceSectionLocation;
-
-	@Autowired
-	protected TypeService serviceSectionType;
-
-	@Autowired
 	protected TranslationService serviceTranslation;
-	
-	@Autowired
-	protected TranslationTextService serviceText;
-	
-	@Autowired
-	protected LanguageService servicelanguage;
-	
+
 	@Autowired
 	protected LocationService serviceLocation;
-	
+
 	@Autowired
 	protected CityService serviceCity;
 	
-	@Autowired
-	protected TypeService servicetype;
-	
 	@Test
-	public void nullSection() {
+	public void simpleSection(){
 		
-		TextTranslation text = new TextTranslation();
 		Location location = new Location();
-		
-		Language language = new Language();
-		language = servicelanguage.adaptCode("PL");
+		location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
+		location.setCity(serviceCity.findOrSaveCity("Poznań", "PL"));
+		location.setPostalAddress("Umultowska 87");
+		location.setLatitude("52.466909");
+		location.setLongitude("16.927859");
+		serviceLocation.save(location);
 		
 		Section section = new Section();
-		section	= serviceSection.ifExistfindByEmail("x@gmail.pl");
-		
-		if(section != null){
-	
-			section.setEmail("x@gmail.pl");
-			section.setEnabled(true);
-			servicetype.findAll();
-			section.setType(servicetype.findById(new Long(509)));
-			
-			if(section.getLocation() == null){
-				serviceLocation.save(location);
-				section.setLocation(location);
-				}
-			serviceSection.save(section);
-		
-				location.setId(section.getLocation().getId());
-				location.setPostalAddress("xadres 4/7");
-			//	location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
-				location.setCity(serviceCity.findOrSaveCity("Poznan", "PL"));
-				serviceCity.addCityTranslation("Poznan", "PL", "Posen", "EN");
-				serviceLocation.save(location);
-			
-			text = serviceText.checkingOrSetBlank(section.getSection(), language);
-			text.setText("ROSMANN");
-			serviceText.save(text);
-			
-			text = serviceText.checkingOrSetBlank(section.getDescription(), language);
-			text.setText("marka kosmetykow");
-			serviceText.save(text);
-		}	
-			
+		section = serviceSection.checkingOrSetBlank("wmi@uam.com");
+		section.setEmail("wmi@uam.com");
+		section.setPhone("887-098-543");
+		section.setEnabled(true);
+		section.setLocation(serviceLocation.findById(location.getId()));
+		serviceSection.save(section);
 		
 		Assert.assertNotNull(serviceSection.findById(section.getId()));
-
+		Assert.assertNotNull(serviceSection.findById(section.getId()).getDescription());
+		Assert.assertNotNull(serviceSection.findById(section.getId()).getLocation());
+		Assert.assertEquals(serviceSection.findById(section.getId()).getEmail(), "wmi@uam.com" );
+		Assert.assertEquals(serviceSection.findById(section.getId()).getPhone(), "887-098-543" );
+		
+		Assert.assertNotNull(serviceLocation.findById(location.getId()));
+		Assert.assertNotNull(serviceLocation.findById(location.getId()).getCity());
+		Assert.assertNotNull(serviceLocation.findById(location.getId()).getRegon());
+		Assert.assertEquals(serviceLocation.findById(location.getId()).getLongitude(), "16.927859" );
+		Assert.assertEquals(serviceLocation.findById(location.getId()).getPostalAddress(), "Umultowska 87" );
+		
+		serviceSection.cleanAndDelete(section);
+		
+		Assert.assertNull(serviceLocation.findById(location.getId()));
+		Assert.assertNull(serviceSection.findById(section.getId()));
+		
 	}
+
 	@Test
-	public void saveOrUpdateSection() {
+	public void section() {
 		
-		TextTranslation text = new TextTranslation();
-		Location location = new Location();
-		
-		Language language = new Language();
-		language = servicelanguage.adaptCode("PL");
-		
+		Boolean noUpdateTemp = true;
 		Section section = new Section();
-		section	= serviceSection.ifExistfindByEmail("lego@gmail.pl");
+		section = serviceSection.checkingOrSetBlank("wmi@uam.com");
 		
-		if(section != null){
-	
-			section.setEmail("lego@gmail.pl");
-			section.setEnabled(true);
-			servicetype.findAll();
-			section.setType(servicetype.findById(new Long(509)));
-			
-			if(section.getLocation() == null){
-				serviceLocation.save(location);
-				section.setLocation(location);
-				}
-			serviceSection.save(section);
+		Location location = new Location();
+		//In the case of an update
+		if (section.getLocation() != null) {
+			noUpdateTemp = false;	
+			location = serviceLocation.findById(section.getLocation().getId());
+			location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
+			location.setCity(serviceCity.findOrSaveCity("Poznań", "PL"));
+			location.setPostalAddress("Umultowska 87");
+			location.setLatitude("52.466909");
+			location.setLongitude("16.927859");
+			serviceLocation.save(location);
+		}
 		
-				location.setId(section.getLocation().getId());
-				location.setPostalAddress("krakowska 4/7");
-			//	location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
-				location.setCity(serviceCity.findOrSaveCity("Poznan", "PL"));
-				serviceCity.addCityTranslation("Poznan", "PL", "Posen", "EN");
-				serviceLocation.save(location);
-			
-			text = serviceText.checkingOrSetBlank(section.getSection(), language);
-			text.setText("LEGO");
-			serviceText.save(text);
-			
-			text = serviceText.checkingOrSetBlank(section.getDescription(), language);
-			text.setText("marka zabawek");
-			serviceText.save(text);
-		}	
-			
 		
+		section.setEmail("wmi@uam.com");
+		section.setPhone("887-098-543");
+		section.setEnabled(true);
+		//Not required
+		serviceLocation.save(location);
+		section.setLocation(serviceLocation.findById(location.getId()));
+		serviceSection.save(section);
+		
+		//Introduction of a new one
+		if(section.getLocation()!= null || noUpdateTemp){
+			location = serviceLocation.findById(section.getLocation().getId());
+			location.setRegon(serviceLocation.countryAssociatedWithRegion("PL", "Wielkopolske", "Polska"));
+			location.setCity(serviceCity.findOrSaveCity("Poznań", "PL"));
+			location.setPostalAddress("Umultowska 87");
+			location.setLatitude("52.466909");
+			location.setLongitude("16.927859");
+			serviceLocation.save(location);
+		}
+		
+		if (serviceTranslation.CheckingTextTranslation(section.section, Locale.ENGLISH) == null) {
+			serviceTranslation.newTranslationForObject(section.section, "Faculty of Mathematics and Computer Science",
+					"EN");
+		}
+		serviceTranslation.updateTranslationForObject(section.section, "Faculty of Mathematics and Computer Science",
+				"EN");
+
+		Locale locale = new Locale.Builder().setLanguage("pl").setRegion("PL").build();
+		if (serviceTranslation.CheckingTextTranslation(section.section, locale) == null) {
+			serviceTranslation.newTranslationForObject(section.section, "Wydział Matematyki I Informatyki", "PL");
+		}
+		serviceTranslation.updateTranslationForObject(section.section, "Wydział Matematyki I Informatyki", "PL");
+
 		Assert.assertNotNull(serviceSection.findById(section.getId()));
+		Assert.assertNotNull(serviceSection.findById(section.getId()).getDescription());
+		Assert.assertNotNull(serviceSection.findById(section.getId()).getLocation());
+		Assert.assertEquals(serviceSection.findById(section.getId()).getEmail(), "wmi@uam.com" );
+		Assert.assertEquals(serviceSection.findById(section.getId()).getPhone(), "887-098-543" );
+		
+		Assert.assertNotNull(serviceLocation.findById(location.getId()));
+		Assert.assertNotNull(serviceLocation.findById(location.getId()).getCity());
+		Assert.assertNotNull(serviceLocation.findById(location.getId()).getRegon());
+		Assert.assertEquals(serviceLocation.findById(location.getId()).getLongitude(), "16.927859" );
+		Assert.assertEquals(serviceLocation.findById(location.getId()).getPostalAddress(), "Umultowska 87" );
+		
+		serviceSection.cleanAndDelete(section);
+		
+		Assert.assertNull(serviceLocation.findById(location.getId()));
+		Assert.assertNull(serviceSection.findById(section.getId()));
 
 	}
+
 }

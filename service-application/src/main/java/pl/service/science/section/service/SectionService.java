@@ -26,9 +26,15 @@ public interface SectionService {
 	public void save(Section section);
 	
 	/**
-	 * Find entity by a section email. 
+	 * Checking an existing entity if not exist sets a blank entity with a section email end objects for translates 
 	 * @param email
 	 * @return the entity with the given email exists or a new section template if none found
 	 */
-	public Section ifExistfindByEmail(String email);
+	public Section checkingOrSetBlank(String email);
+	
+	/**
+	 * Clean and delete a given entity for a section object
+	 * @param section
+	 */
+	public void cleanAndDelete(Section section);
 }

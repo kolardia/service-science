@@ -86,8 +86,6 @@ public class LocationTest {
 	@Test
 	public void countryAssociatedWithRegion() {
 
-		serviceLocation.countryAssociatedWithRegion("PL", "Opolskie", "Polska");
-
 		Region region = new Region();
 		region = serviceRegion.fineOrSaveRegion("Wielkopolskie", "PL");
 		serviceRegion.save(region);
@@ -96,6 +94,8 @@ public class LocationTest {
 		country = serviceCountry.fineOrSaveCountry("Polska", "PL");
 		country.setRegion(region);
 		serviceCountry.save(country);
+		
+		serviceLocation.countryAssociatedWithRegion("PL", "Opolskie", "Polska");
 
 		Assert.assertEquals(country.getId(), serviceCountry.findByRegion(region).getId());
 
