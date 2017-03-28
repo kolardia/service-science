@@ -1,6 +1,5 @@
 package service.sience.service.location.test;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -27,28 +26,29 @@ public class CityTest {
 
 	@Autowired
 	protected TranslationService serviceTranslation;
-	
+
 	/**
 	 * Helper class for assert
 	 */
 	@Autowired
 	protected LanguageService serviceLanguage;
-	
+
 	/**
 	 * Helper class for assert
 	 */
 	@Autowired
 	protected TranslationTextService serviceTextTranslation;
-	
-	 @After public void cleanDatabase() {
-		 
-		 for (City city: serviceCity.findAll()){
-			 
-			 serviceCity.deleteCityWhithParts(city);
-		 }
-		 
-	   }
-	
+
+	/*
+	 * @After public void cleanDatabase() {
+	 * 
+	 * for (City city: serviceCity.findAll()){
+	 * 
+	 * serviceCity.deleteCityWhithParts(city); }
+	 * 
+	 * }
+	 */
+
 	@Test
 	public void newCity() {
 
@@ -83,7 +83,7 @@ public class CityTest {
 			}
 			Assert.assertEquals(String.valueOf("city" + j), serviceTextTranslation
 					.findByTextAndLanguage(String.valueOf("city" + j), serviceLanguage.adaptCode("EN")).getText());
-		
+
 		}
 	}
 

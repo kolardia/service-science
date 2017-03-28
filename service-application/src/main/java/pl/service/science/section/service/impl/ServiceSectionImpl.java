@@ -62,6 +62,7 @@ public class ServiceSectionImpl implements SectionService {
 			location = serviceLocation.findById(section.getLocation().getId());
 		}
 
+		section.setType(null);
 		section.setSection(null);
 		section.setDescription(null);
 		section.setLocation(null);

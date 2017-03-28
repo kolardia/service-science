@@ -1,6 +1,5 @@
 package service.sience.service.location.test;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -21,34 +20,35 @@ import pl.service.science.translation.service.TranslationTextService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
 public class RegionTest {
-	
+
 	@Autowired
 	protected RegionService serviceRegion;
 
 	@Autowired
 	protected TranslationService serviceTranslation;
-	
+
 	/**
 	 * Helper class for assert
 	 */
 	@Autowired
 	protected LanguageService serviceLanguage;
-	
+
 	/**
 	 * Helper class for assert
 	 */
 	@Autowired
 	protected TranslationTextService serviceTextTranslation;
-	
-	 @After public void cleanDatabase() {
-		 
-		 for (Region region: serviceRegion.findAll()){
-			 
-			 serviceRegion.deleteRegionWhithParts(region);
-		 }
-		 
-	   }
-	
+
+	/*
+	 * @After public void cleanDatabase() {
+	 * 
+	 * for (Region region: serviceRegion.findAll()){
+	 * 
+	 * serviceRegion.deleteRegionWhithParts(region); }
+	 * 
+	 * }
+	 */
+
 	@Test
 	public void newRegion() {
 
@@ -83,7 +83,7 @@ public class RegionTest {
 			}
 			Assert.assertEquals(String.valueOf("Gebiet" + j), serviceTextTranslation
 					.findByTextAndLanguage(String.valueOf("Gebiet" + j), serviceLanguage.adaptCode("DE")).getText());
-		
+
 		}
 	}
 

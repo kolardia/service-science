@@ -1,6 +1,5 @@
 package service.sience.service.location.test;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -44,14 +43,13 @@ public class CountryTest {
 	@Autowired
 	protected RegionService serviceRegion;
 
-	@After
-	public void cleanDatabase() {
-
-		for (Country country : serviceCountry.findAll()) {
-
-			serviceCountry.deleteWhithParts(country);
-		}
-	}
+	/*
+	 * @After public void cleanDatabase() {
+	 * 
+	 * for (Country country : serviceCountry.findAll()) {
+	 * 
+	 * serviceCountry.deleteWhithParts(country); } }
+	 */
 
 	@Test
 	public void newCountry() {

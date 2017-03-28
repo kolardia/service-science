@@ -16,5 +16,5 @@ public interface TypeDAO extends CrudRepository<Type, Long>{
 	public Type findByType(Translation type);
 	
 	public List<Type> findAll();
-
+	
 }
