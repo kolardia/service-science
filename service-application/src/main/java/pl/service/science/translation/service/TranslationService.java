@@ -82,6 +82,8 @@ public interface TranslationService {
 	 * @param translation
 	 */
 	public void delete(Translation translation);
+	
+	public void newOrUpdateForObject(Translation translation, Locale locale, String text);
 
 
 }

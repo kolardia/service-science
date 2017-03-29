@@ -26,4 +26,8 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		return dao.findByUserAndSectionAndAuthorization(user, section, status);
 	}
 
+	public void save(Authorization authorization) {
+
+		dao.save(authorization);
+	}
 }

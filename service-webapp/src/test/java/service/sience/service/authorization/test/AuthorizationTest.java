@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import pl.service.science.authorization.dao.AuthorizationDAO;
 import pl.service.science.authorization.domain.Authorization;
 import pl.service.science.authorization.domain.Profile;
 import pl.service.science.authorization.domain.Role;
 import pl.service.science.authorization.domain.Status;
 import pl.service.science.authorization.domain.User;
+import pl.service.science.authorization.service.AuthorizationService;
 import pl.service.science.authorization.service.ProfileService;
 import pl.service.science.authorization.service.ServiceRole;
 import pl.service.science.authorization.service.StatusService;
@@ -36,7 +36,7 @@ import pl.service.science.translation.service.TranslationTextService;
 public class AuthorizationTest {
 
 	@Autowired
-	AuthorizationDAO dao;
+	AuthorizationService serviceAuthorization;
 
 	@Autowired
 	protected SectionService serviceSection;
@@ -144,8 +144,8 @@ public class AuthorizationTest {
 			Section sectionTemp = serviceSection.checkingOrSetBlank("wmi@uam.com");
 			Status statusTemp = serviceStatus.checkOrSaveStatusByLeadingLanguage("Redaktor", "PL");
 			
-			if(dao.findByUserAndSectionAndAuthorization(userTemp, sectionTemp, statusTemp) != null){
-				authorization = dao.findByUserAndSectionAndAuthorization(userTemp, sectionTemp, statusTemp);
+			if(serviceAuthorization.findByUserAndSectionAndAuthorization(userTemp, sectionTemp, statusTemp) != null){
+				authorization = serviceAuthorization.findByUserAndSectionAndAuthorization(userTemp, sectionTemp, statusTemp);
 			}
 
 			Profile profileTemp = new Profile();
@@ -157,7 +157,7 @@ public class AuthorizationTest {
 			// Not required
 			serviceProfile.save(profileTemp);
 			authorization.setProfileAuthorization(profileTemp);
-			dao.save(authorization);
+			serviceAuthorization.save(authorization);
 
 			if (serviceRole.findByUserAndRola(userTemp, "REDAK") == null) {
 				Role role = new Role();

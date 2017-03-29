@@ -31,4 +31,9 @@ public interface AuthorizationService {
 	 */
 	public Authorization findByUserAndSectionAndAuthorization(User user, Section section, Status status);
 
+	/**
+	 * Saves a given entity
+	 * @param profile
+	 */
+	public void save(Authorization authorization);
 }

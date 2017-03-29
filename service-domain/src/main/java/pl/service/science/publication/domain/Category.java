@@ -1,6 +1,5 @@
 package pl.service.science.publication.domain;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import pl.service.science.translation.domain.Translation;
@@ -38,11 +36,6 @@ public class Category {
 	@JoinColumn(name = "category_translation_id")
 	public Translation categoryName;
 	
-	/**
-	 * The mapping on a database is one-to-many
-	 */
-	@OneToMany(mappedBy = "category")
-	List <Publication> publicationCategory;
 
 	public Category() {
 

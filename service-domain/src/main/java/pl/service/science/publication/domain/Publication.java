@@ -49,11 +49,11 @@ public class Publication {
 	public Boolean enabled;
 	
 	/**
-	 * The mapping on a database for column name: "publication_type_id"; the mapping on a database is many-to-one
+	 * The mapping on a database for column name: "publication_type_id"
 	 */
-	@ManyToOne
-	@JoinColumn(name = "publication_type_id")
-	public Type type;
+	
+	@Column(name = "publication_type_id")
+	public String type;
 
 	/**
 	 * The mapping on a database for column name: "publication_state_id"; the mapping on a database is many-to-one
@@ -70,11 +70,10 @@ public class Publication {
 	public Translation contents;
 
 	/**
-	 * The mapping on a database for column name: "category_id"; the mapping on a database is many-to-one
+	 * The mapping on a database for column name: "category_id"
 	 */
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	public Category category;
+	@Column(name = "category_id")
+	public String category;
 	
 	/**
 	 * The mapping on a database for column name: "autorization_id"; the mapping on a database is one-to-one
@@ -185,12 +184,12 @@ public class Publication {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Category getCategory() {
+	
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
@@ -297,6 +296,8 @@ public class Publication {
 	public void setForFree(Boolean forFree) {
 		this.forFree = forFree;
 	}
+	
+	
 /*
 	public Date getBeginningOfRecords() {
 		return beginningOfRecords;
@@ -329,6 +330,30 @@ public class Publication {
 	public void setEndOfevent(Date endOfevent) {
 		this.endOfevent = endOfevent;
 	}*/
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	@Override
 	public String toString() {

@@ -5,6 +5,8 @@ import java.util.Locale;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import pl.service.science.authorization.domain.Authorization;
 import pl.service.science.publication.dao.PublicationDAO;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.service.ServicePublication;
@@ -21,6 +23,39 @@ public class ServicePublicationImpl implements ServicePublication {
 
 	@Autowired
 	TranslationService serviceTranslation;
+
+	/**
+	 * public Section checkingOrSetBlank(String email) { if
+	 * (dao.findByEmail(email) == null) { Section section = new Section();
+	 * section.setEmail(email); section.setEnabled(false);
+	 * section.setSection(serviceTranslation.save(new Translation()));
+	 * section.setDescription(serviceTranslation.save(new Translation()));
+	 * section.setLocation(null); dao.save(section); return
+	 * findById(section.getId()); } return dao.findByEmail(email); };
+	 */
+
+	public Publication checkingOrSetBlank(Long id, Authorization authorization) {
+
+		Publication publication = new Publication();
+		
+		if (dao.findById(id) == null) {
+			publication.setEnabled(false);
+			publication.setAutorization(authorization);
+			publication.setTitle(serviceTranslation.save(new Translation()));
+			publication.setPurposeOfEvent(serviceTranslation.save(new Translation()));
+			publication.setCandidateProfile(serviceTranslation.save(new Translation()));
+			publication.setInitialRequirements(serviceTranslation.save(new Translation()));
+			publication.setContents(serviceTranslation.save(new Translation()));
+			publication.setMethodology(serviceTranslation.save(new Translation()));
+			publication.setEventProgram(serviceTranslation.save(new Translation()));
+
+			dao.save(publication);
+			publication = dao.findById(publication.getId());
+		} else {
+			publication =	dao.findById(id);
+		}
+		return publication;
+	}
 
 	public Publication findById(Long id) {
 		return dao.findById(id);
@@ -39,21 +74,20 @@ public class ServicePublicationImpl implements ServicePublication {
 		dao.delete(id);
 	};
 
-	public void deleteAllPublicationParts(Publication poublication){
+	public void deleteAllPublicationParts(Publication poublication) {
 		this.delete(poublication.getId());
 		serviceTranslation.removeTranslationWithTexts(poublication.getTitle());
 		serviceTranslation.removeTranslationWithTexts(poublication.getContents());
 	}
-	
-	
+
 	public void saveText(Translation translation, String text, String code) {
-	
+
 		serviceTranslation.newTranslationForObject(translation, text, code);
 	}
-	
-	public Translation insert(Translation translation){
+
+	public Translation insert(Translation translation) {
 		serviceTranslation.save(translation);
-		
+
 		return translation;
 	}
 

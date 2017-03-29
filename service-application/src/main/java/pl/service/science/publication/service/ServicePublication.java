@@ -2,6 +2,8 @@ package pl.service.science.publication.service;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
+
+import pl.service.science.authorization.domain.Authorization;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.translation.domain.Translation;
 
@@ -24,4 +26,6 @@ public interface ServicePublication {
 	Translation insert(Translation translation);
 
 	public void deleteAllPublicationParts(Publication poublication);
+	
+	public Publication checkingOrSetBlank(Long id, Authorization authorization);
 }

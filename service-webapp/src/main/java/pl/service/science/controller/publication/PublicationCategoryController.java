@@ -14,7 +14,6 @@ import DTO.PublicationCategoryDTO;
 import pl.service.science.publication.domain.Publication;
 import pl.service.science.publication.domain.Category;
 import pl.service.science.publication.service.ServicePublication;
-import pl.service.science.publication.service.ServiceCategory;
 import pl.service.science.translation.dao.TranslationTextDAO;
 
 @Controller
@@ -22,8 +21,6 @@ public class PublicationCategoryController {
 
 	final static Logger logger = Logger.getLogger(PublicationCategoryController.class);
 
-	@Autowired
-	ServiceCategory serviceCategory;
 
 	@Autowired
 	protected ServicePublication service;
@@ -58,7 +55,6 @@ public class PublicationCategoryController {
 	public String detailCategory(@PathVariable("id") Long id, Model model) {
 
 		Category categoryTemp = new Category();
-		categoryTemp = serviceCategory.findById(id);
 
 		model.addAttribute("title", categoryTemp.getId());
 		// model.addAttribute("contents", categoryTemp.getName());
@@ -86,7 +82,6 @@ public class PublicationCategoryController {
 			// categoryTemp.setName(form.getName());
 
 			// ublicationDao.addPublication(contest);
-			serviceCategory.save(categoryTemp);
 
 			return "redirect:/";
 

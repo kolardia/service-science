@@ -102,6 +102,14 @@ public class ServiceTranslationImpl implements TranslationService {
 
 	}
 	
+	public void newOrUpdateForObject(Translation translation, Locale locale, String text){
+		
+		if (this.CheckingTextTranslation(translation, locale) == null) {
+			this.newTranslationForObject(translation, text, locale.getLanguage());
+		}
+		this.updateTranslationForObject(translation, text, locale.getLanguage());
+	}
+	
 	public String CheckingTextTranslation(Translation translation, Locale locale) {
 		
 		String langLocale = locale.getLanguage();

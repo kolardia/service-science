@@ -1,14 +1,11 @@
 package pl.service.science.publication.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -39,11 +36,6 @@ public class Type {
 	@JoinColumn(name = "type_translation_id")
 	public Translation typeName;
 	
-	/**
-	 * The mapping on a database is one-to-many
-	 */
-	@OneToMany(mappedBy = "type")
-	List <Publication> publicationType;
 
 	public Long getId() {
 		return id;
